@@ -1,0 +1,51 @@
+body { 
+	background: url(../images/pattern.png); }
+
+.first { 
+	background: url(../images/first.jpg);
+	background-size: cover; }
+
+.navbar { 
+	border-radius: 0;
+	border: 0; }
+.center { 
+	width: 800px;
+	height: 300px;
+	height: auto;
+	padding: 25px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -400px;
+	margin-top: -150px;
+	text-align: center; }
+	.center h1 { 
+		color: white;
+		font-size: 80px;
+		font-family: roboto; }
+
+.second { 
+	color: white; }
+.second h1, 
+.second h3,
+.third h1 { 
+	font-family: bebas; }
+.second .logo { 
+	font-size: 150px;
+	color: darkorange; }
+
+hr.short { 
+	width: 50px;
+	border: 0;
+	border-bottom: 2px solid darkorange; }
+
+.third { 
+	background: white;
+	color: #404040; }
+
+.subscribe-btn { 
+	padding: 20px 40px;
+	border: 1px solid white;
+	color: darkorange;
+	font-family: bebas;
+	font-size: 20px; }

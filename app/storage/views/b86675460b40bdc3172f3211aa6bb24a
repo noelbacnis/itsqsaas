@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Software as a Service</title>
+	<?php echo HTML::style('assets/css/bootstrap.min.css');; ?>
+
+	<?php echo HTML::style('assets/css/bootstrap-theme.min.css');; ?>
+
+	<?php echo HTML::style('assets/css/app.css');; ?>
+
+	<?php echo HTML::script('assets/js/bootstrap.min.js');; ?>
+
+	<?php echo HTML::script('assets/js/npm.js');; ?>
+
+</head>
+<body>
+	<?php echo $__env->yieldContent('content'); ?>
+</body>
+</html>
