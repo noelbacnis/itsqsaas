@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'DefaultController@index');
+Route::get('subscribe', 'DefaultController@subscribe');
+Route::post('subscribe/doSubscribe', 'DefaultController@doSubscribe');
