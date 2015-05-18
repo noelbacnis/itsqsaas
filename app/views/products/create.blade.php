@@ -1,0 +1,1 @@
+/Applications/XAMPP/xamppfiles/htdocs/itsqsaas/app/views/products/create.blade.php

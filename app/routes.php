@@ -12,3 +12,8 @@
 */
 
 Route::get('/', 'DefaultController@index');
+
+Route::resource('products', 'ProductsController');
+Route::resource('categories', 'CategoriesController');
+Route::resource('customers', 'CustomersController');
+Route::resource('orders', 'OrdersController');
