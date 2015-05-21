@@ -625,6 +625,7 @@ Stack trace:
 #16 /opt/lampp/htdocs/itsqsaas/vendor/symfony/console/Symfony/Component/Console/Application.php(124): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
 #17 /opt/lampp/htdocs/itsqsaas/artisan(59): Symfony\Component\Console\Application->run()
 #18 {main} [] []
+<<<<<<< HEAD
 [2015-05-20 05:26:06] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '}'' in /opt/lampp/htdocs/itsqsaas/app/storage/views/b0ddf09b0281bec3df6494c8cd87e379:96
 Stack trace:
 #0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
@@ -1005,3 +1006,5 @@ Stack trace:
 #27 /opt/lampp/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(641): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
 #28 /opt/lampp/htdocs/itsqsaas/public/index.php(49): Illuminate\Foundation\Application->run()
 #29 {main} [] []
+=======
+>>>>>>> 204828c3aca9a3d6ded5977cb28a1d6bb961338d
