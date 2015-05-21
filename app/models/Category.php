@@ -8,6 +8,12 @@ class Category extends \Eloquent {
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = [];
+	protected $guarded = array('id');
+	protected $fillable = array('name');
+
+
+	public function products() {
+        return $this->hasMany('Product'); 
+    }
 
 }

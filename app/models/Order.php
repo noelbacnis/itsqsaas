@@ -8,6 +8,15 @@ class Order extends \Eloquent {
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = [];
+	protected $guarded = array('id');
+	protected $fillable = array('total', 'cash', 'customer_id', 'del_to', 'del_contact_number', 'del_address_number', 'del_address_baranggay', 'del_address_municipal', 'del_address_province', 'del_message', 'status');
+
+	public function orderProducts() {
+        return $this->hasMany('OrdersProduct', 'id', 'order_id'); 
+    }
+
+    public function customer(){        
+		return $this->belongsTo('Customer'); 
+	}
 
 }

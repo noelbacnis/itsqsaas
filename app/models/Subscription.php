@@ -8,6 +8,11 @@ class Subscription extends \Eloquent {
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = [];
+	protected $guarded = array('id');
+	protected $fillable = array('name', 'price');
+
+	public function clients() {
+        return $this->hasMany('Client'); 
+    }
 
 }
