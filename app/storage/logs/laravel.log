@@ -600,3 +600,28 @@ Stack trace:
 #18 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/artisan(59): Symfony\Component\Console\Application->run()
 #19 {main} [] []
 >>>>>>> 498238c2cb51e479c13d96a39af6a8a4a5d3c1a8
+[2015-05-18 21:40:38] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '<<' (T_SL)' in /opt/lampp/htdocs/itsqsaas/app/routes.php:15
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-05-18 21:41:15] production.ERROR: exception 'PDOException' with message 'SQLSTATE[HY000] [2002] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)' in /opt/lampp/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php:47
+Stack trace:
+#0 /opt/lampp/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(47): PDO->__construct('mysql:host=loca...', 'root', '', Array)
+#1 /opt/lampp/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Database/Connectors/MySqlConnector.php(20): Illuminate\Database\Connectors\Connector->createConnection('mysql:host=loca...', Array, Array)
+#2 /opt/lampp/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Database/Connectors/ConnectionFactory.php(57): Illuminate\Database\Connectors\MySqlConnector->connect(Array)
+#3 /opt/lampp/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Database/Connectors/ConnectionFactory.php(46): Illuminate\Database\Connectors\ConnectionFactory->createSingleConnection(Array)
+#4 /opt/lampp/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Database/DatabaseManager.php(176): Illuminate\Database\Connectors\ConnectionFactory->make(Array, 'mysql')
+#5 /opt/lampp/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Database/DatabaseManager.php(64): Illuminate\Database\DatabaseManager->makeConnection('mysql')
+#6 /opt/lampp/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Database/Migrations/DatabaseMigrationRepository.php(167): Illuminate\Database\DatabaseManager->connection(NULL)
+#7 /opt/lampp/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Database/Migrations/DatabaseMigrationRepository.php(135): Illuminate\Database\Migrations\DatabaseMigrationRepository->getConnection()
+#8 /opt/lampp/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(371): Illuminate\Database\Migrations\DatabaseMigrationRepository->repositoryExists()
+#9 /opt/lampp/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/MigrateCommand.php(98): Illuminate\Database\Migrations\Migrator->repositoryExists()
+#10 /opt/lampp/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/MigrateCommand.php(61): Illuminate\Database\Console\Migrations\MigrateCommand->prepareDatabase()
+#11 /opt/lampp/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Console/Command.php(112): Illuminate\Database\Console\Migrations\MigrateCommand->fire()
+#12 /opt/lampp/htdocs/itsqsaas/vendor/symfony/console/Symfony/Component/Console/Command/Command.php(253): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#13 /opt/lampp/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Console/Command.php(100): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#14 /opt/lampp/htdocs/itsqsaas/vendor/symfony/console/Symfony/Component/Console/Application.php(889): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#15 /opt/lampp/htdocs/itsqsaas/vendor/symfony/console/Symfony/Component/Console/Application.php(193): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Database\Console\Migrations\MigrateCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#16 /opt/lampp/htdocs/itsqsaas/vendor/symfony/console/Symfony/Component/Console/Application.php(124): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#17 /opt/lampp/htdocs/itsqsaas/artisan(59): Symfony\Component\Console\Application->run()
+#18 {main} [] []
