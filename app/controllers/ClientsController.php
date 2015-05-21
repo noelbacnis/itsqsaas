@@ -7,7 +7,7 @@ class ClientsController extends \BaseController {
 		$client_id = Auth::user()->id;
 		$client = Client::where('id', '=', $client_id)->with('subscription')->get();
 
-		return View::make('clients.dashboard', compact('client'));
+		return View::make('clients.dashboard', compact('client'))->nest('navbar', 'default.client_navbar');
 	}
 
 	public function showClientWebsite($domain)

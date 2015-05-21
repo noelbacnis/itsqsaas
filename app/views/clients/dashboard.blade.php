@@ -1,12 +1,8 @@
-@extends('layouts.master')
+@extends('default.client_navbar')
 
 
 
-@section('content')
-
-{{ HTML::style('assets/css/default.css'); }}
-
-<a href="{{ action('client_logout') }}"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+@section('content2')
 
 <div class="container-fluid">
 
@@ -21,18 +17,12 @@
                                 <i class="fa fa-dashboard"></i> Dashboard
                             </li>
                         </ol>
-                            <pre>
-                            @foreach ($client as $s)
-                                <?php //print_r($s)?>
-                                {{$s->subscription->name}}
-                            @endforeach
-                            </pre>
                     </div>
                 </div>
-              
+                <!-- /.row -->
 
             </div>
-
+            <!-- /.container-fluid -->
 
 
 
