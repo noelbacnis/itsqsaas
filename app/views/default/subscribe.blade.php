@@ -6,10 +6,10 @@
 <!-- 
 === COLOR PICKER PLUGIN CSS/JS -->
 {{ HTML::style('assets/colorpicker/css/colorpicker.css'); }}
-
 {{ HTML::script('assets/colorpicker/js/colorpicker.js'); }}
 
-
+{{ HTML::style('assets/css/dropzone.css'); }}
+{{ HTML::script('assets/js/dropzone.js'); }}
 
 <div class="container">
 	<div class="row">
@@ -31,6 +31,25 @@
 		@endforeach
 	</div>
 	@endif
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<div class="panel-title">Starters</div>
+				</div>
+				<div class="panel-body">
+					<div id="dropzone">
+						{{ Form::open(array('url' => 'uploadStarterBanner' ,'class' => 'dropzone dz-clickable')); }}
+
+						
+						{{ Form::close(); }}
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-lg-6">
 			<div class="panel panel-primary">
@@ -81,19 +100,19 @@
 					<button type="submit" class="btn btn-success form-control">Subscribe</button>
 				</div>
 			</div>
-
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<div class="panel-title">Subscription Information</div>
-				</div>
-				<div class="panel-body">
-					{{ Form::label('payment_period', 'Payment Period'); }}
-					{{ Form::select('wow_huh', array(1 => 'WOW HUH')); }}
-				</div>
-			</div>
 			{{ Form::close(); }}
-		</div>
-	</div>
+
+			<!--== DROPZONE FORM
+				================================================== -->
+			
+			
+
+			
+			
+		</div> <!-- col-lg-6 -->
+	</div><!-- row -->
+
+	
 </div>
 
 <script type="text/javascript">
@@ -114,6 +133,11 @@
 				}
 
 			});
+
+			Dropzone.options.myAwesomeDropzone = {
+
+				dictDefaultMessage : "tangina mu"
+			}
 		});
 	</script>
 
