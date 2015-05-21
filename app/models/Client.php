@@ -18,7 +18,4 @@ class Client extends \Eloquent {
 	public function user() {
         return $this->hasOne('User', 'user_id', 'id'); 
     }
-
-    
-
 }

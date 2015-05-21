@@ -6,8 +6,6 @@
 
 {{ HTML::style('assets/css/default.css'); }}
 
-
-
 	<div class="wrapper">
 		<div class="wrapper-inner first">
 		{{ $navbar }}
@@ -35,7 +33,7 @@
 						<h3>Web Template</h3>
 						<p>Avail of our free subscription and get a prestigious website template for you restaurant!</p>
 						<br><br>
-						<p><a href="{{ URL::to('subscribe').'?type=free'; }}" class="subscribe-btn">FREE</a></p>
+						<p><a href="{{ URL::to('free'); }}" class="subscribe-btn">FREE</a></p>
 					</div>
 					<div class="col-md-4">
 						<h3>PAID</h3>

@@ -1,1 +1,0 @@
-/Applications/XAMPP/xamppfiles/htdocs/itsqsaas/app/views/clients/index.blade.php

@@ -16,13 +16,13 @@ class DefaultController extends \BaseController {
 		return $view;
 	} # End index
 
-	public function subscribe()
+	public function freeSubscription()
 	{
 		$view = View::make('default.subscribe')->nest('navbar', 'default.navbar');
 		return $view;
 	} # End subscribe
 
-	public function doSubscribe()
+	public function doFreeSubscribe()
 	{
 		$rules = array(
 			'name' => 'required|min:2',
@@ -39,10 +39,26 @@ class DefaultController extends \BaseController {
 
 		if ($validator->fails())
 		{
-			return Redirect::to('subscribe')->withErrors($validator);
+			return Redirect::to('free')->withErrors($validator);
 		}
 		else
 		{
+			if (Input::hasFile('image'))
+			{
+				$file = Input::file('image');
+			}
+
+			$client = new Client;
+			$client->name = Input::get('name');
+			$client->description = Input::get('description');
+			$client->tagline = Input::get('tagline');
+			$client->image = $file->getClientOriginalName();
+			$client->primary_color = Input::get('primary_color');
+			$client->contact_number = Input::get('contact_number');
+			$client->address = Input::get('address');
+			$client->save();
+
+			return Redirect::to('/')->withErrors($validator);
 
 		} # End if-else validation
 

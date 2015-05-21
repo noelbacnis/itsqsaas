@@ -2,13 +2,22 @@
 
 @section('content')
 {{ HTML::style('assets/css/default.css'); }}
+
+<!-- 
+=== COLOR PICKER PLUGIN CSS/JS -->
+{{ HTML::style('assets/colorpicker/css/colorpicker.css'); }}
+
+{{ HTML::script('assets/colorpicker/js/colorpicker.js'); }}
+
+
+
 <div class="container">
 	<div class="row">
-		<h1 class="text-orange">Subscription Form</h1>
+		<h1 class="text-orange roboto">Subscription Form</h1>
 		<hr>
 	</div>
 	<div class="row">
-		<div class="col-lg-12" style="color: white; font-weight: 700;">
+		<div class="col-lg-12 roboto" style="color: white; font-weight: 700;">
 			<p>You are just a few steps away from having a fully functional website!</p>
 			<p>We need you to provide us with the following information:</p>
 		</div>
@@ -29,7 +38,7 @@
 					<div class="panel-title">Basic Information</div>
 				</div>
 				<div class="panel-body">
-				{{ Form::open(array('url' => 'subscribe/doSubscribe')) }}
+				{{ Form::open(array('url' => 'subscribe/doFreeSubscribe', 'files' => true)) }}
 					{{ Form::label('name', 'Restaurant Name'); }}
 					{{ Form::text('name', '', array('class' => 'form-control')); }}
 					<i>(Your restaurant name that will be displayed all through out the web)</i>
@@ -63,6 +72,7 @@
 					{{ Form::text('tagline', '', array('class' => 'form-control')); }}
 					<i>(Something like "Create. Innovate. Repeat")</i>
 					<br><br>
+					<div id="color-div" class="color-div"></div>
 					{{ Form::label('primary_color', 'Primary Color'); }}
 					{{ Form::text('primary_color', '', array('class' => 'form-control')); }}
 					<i>(The primary color of your company/restaurant)</i>
@@ -77,12 +87,34 @@
 					<div class="panel-title">Subscription Information</div>
 				</div>
 				<div class="panel-body">
-					
+					{{ Form::label('payment_period', 'Payment Period'); }}
+					{{ Form::select('wow_huh', array(1 => 'WOW HUH')); }}
 				</div>
 			</div>
 			{{ Form::close(); }}
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+		$(document).ready(function(){
+			$('#primary_color').ColorPicker({
+
+				onShow: function (colpkr) {
+					$(colpkr).fadeIn(200);
+					return false;
+				},
+				onHide: function (colpkr) {
+					$(colpkr).fadeOut(200);
+					return false;
+				},
+				onChange: function (hsb, hex, rgb) {
+					$('#color-div').css('backgroundColor', '#' + hex);
+					$('#primary_color').val(hex);
+				}
+
+			});
+		});
+	</script>
 
 @stop

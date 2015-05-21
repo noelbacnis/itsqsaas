@@ -9,11 +9,14 @@
 
 	<?php echo HTML::style('assets/css/app.css');; ?>
 
+	<?php echo HTML::script('assets/js/jquery.min.js');; ?>
+
 	<?php echo HTML::script('assets/js/bootstrap.min.js');; ?>
 
 	<?php echo HTML::script('assets/js/npm.js');; ?>
 
-</head>
+
+	</head>
 <body>
 	<?php echo $__env->yieldContent('content'); ?>
 </body>

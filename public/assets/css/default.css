@@ -62,3 +62,10 @@ hr.short {
 
 .text-orange { 
 	color: darkorange; }
+
+.color-div { 
+	height: 30px;
+	width: 30px;
+	border: 1px solid #000;
+	background: darkred;
+	background: url(../colorpicker/images/select.png) center; }
