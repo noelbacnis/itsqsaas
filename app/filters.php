@@ -33,7 +33,7 @@ App::after(function($request, $response)
 |
 */
 
-Route::filter('auth', function()
+Route::filter('client_auth', function()
 {
 	if (Auth::guest())
 	{
@@ -43,7 +43,7 @@ Route::filter('auth', function()
 		}
 		else
 		{
-			return Redirect::guest('login');
+			return Redirect::guest('client/login');
 		}
 	}
 });
@@ -65,9 +65,9 @@ Route::filter('auth.basic', function()
 |
 */
 
-Route::filter('guest', function()
+Route::filter('client_guest', function()
 {
-	if (Auth::check()) return Redirect::to('/');
+	if (Auth::check()) return Redirect::to('/client');
 });
 
 /*

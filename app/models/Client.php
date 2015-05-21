@@ -8,6 +8,14 @@ class Client extends \Eloquent {
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = [];
+	protected $guarded = array('id');
+	protected $fillable = array('name', 'description', 'tagline', 'image', 'primary_color', 'contact_number', 'address', 'status', 'subscription_id', 'domain');
 
+	public function subscription(){        
+		return $this->belongsTo('Subscription'); 
+	}
+
+	public function user() {
+        return $this->hasOne('User', 'user_id', 'id'); 
+    }
 }

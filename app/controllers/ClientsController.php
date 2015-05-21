@@ -2,6 +2,26 @@
 
 class ClientsController extends \BaseController {
 
+	public function showClientHome()
+	{
+		$client_id = Auth::user()->id;
+		$client = Client::where('id', '=', $client_id)->with('subscription')->get();
+
+		return View::make('clients.dashboard', compact('client'))->nest('navbar', 'default.client_navbar');
+	}
+
+	public function showClientWebsite($domain)
+	{
+		$domain_count = Client::where('domain', '=', $domain)->count();
+
+		if ($domain_count > 0) {
+			return View::make('clients.website')->nest('navbar', 'default.navbar');
+		}else{
+			echo "No such domain";
+		}
+		
+	}
+
 	/**
 	 * Display a listing of clients
 	 *
