@@ -17,7 +17,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
       </button>
-      {{ link_to_route('client_dashboard','saas', null,array('class'=>'navbar-brand')) }}
+      {{ link_to_route('client_dashboard','Client', null,array('class'=>'navbar-brand')) }}
     </div>
 
     <!-- Top Menu Items -->
