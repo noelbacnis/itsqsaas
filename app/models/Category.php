@@ -23,4 +23,8 @@ class Category extends \Eloquent {
         return $this->hasMany('Product'); 
     }
 
+    public function scopeActiveProducts($query){
+		return Product::where('status','=', 'ACTIVE');
+	}
+
 }

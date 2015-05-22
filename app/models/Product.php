@@ -29,4 +29,6 @@ class Product extends \Eloquent {
         return $this->belongsTo('Category'); 
     }
 
+    
+
 }

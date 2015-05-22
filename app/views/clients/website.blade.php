@@ -1,7 +1,5 @@
 @extends('layouts.master')
 
-
-
 @section('content')
 
 {{ HTML::style('assets/css/default.css'); }}
@@ -21,8 +19,21 @@
 	<div class="wrapper">
 		<div class="wrapper-inner second">
 			<div class="container">
-			<br><br>
-				
+				<br><br>
+
+				<!-- <pre> -->
+				<?php //print_r($categories)?>
+				<!-- </pre> -->
+				@if($categories->count())
+					@foreach($categories as $category)
+						{{$category->name}} <br>
+						@foreach($category->products as $product)
+							{{$product->name}} <br>
+							
+						@endforeach
+						<br>
+					@endforeach
+				@endif
 				<br><br>
 			</div>
 		</div>

@@ -15,7 +15,12 @@ class ClientsController extends \BaseController {
 		$domain_count = Client::where('domain', '=', $domain)->count();
 
 		if ($domain_count > 0) {
-			return View::make('clients.website')->nest('navbar', 'default.navbar');
+			// $categories = Category::activeProducts()->get();
+			$categories = Category::with('products')->get();
+			// echo "<pre>";
+			// print_r($categories);
+			// echo "</pre>";
+			return View::make('clients.website', compact('categories'))->nest('navbar', 'default.navbar');
 		}else{
 			echo "No such domain";
 		}
