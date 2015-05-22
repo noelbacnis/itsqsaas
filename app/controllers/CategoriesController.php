@@ -9,7 +9,7 @@ class CategoriesController extends \BaseController {
 	 */
 	public function index()
 	{
-		$categories = Category::all();
+		$categories = Category::paginate(10);
 
 		return View::make('categories.index', compact('categories'));
 	}
@@ -31,8 +31,9 @@ class CategoriesController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Category::$rules);
-
+		$validator = Validator::make($data = Input::all(), Category::$rules, Category::$messages);
+		$validator->setAttributeNames(Category::$friendly_names);
+		
 		if ($validator->fails())
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
@@ -79,7 +80,8 @@ class CategoriesController extends \BaseController {
 	{
 		$category = Category::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), Category::$rules);
+		$validator = Validator::make($data = Input::all(), Category::$rules, Category::$messages);
+		$validator->setAttributeNames(Category::$friendly_names);
 
 		if ($validator->fails())
 		{

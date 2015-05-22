@@ -8,9 +8,9 @@
 	{{ HTML::style('assets/css/sb-admin.css'); }}
 	{{ HTML::style('assets/css/plugins/morris.css'); }}
 	{{ HTML::style('assets/fonts/font-awesome/css/font-awesome.min.css'); }}
+	{{ HTML::style('assets/css/admin.css'); }}
 
-	{{ HTML::script('assets/js/jquery.min.js'); }}
-	{{ HTML::script('assets/js/bootstrap.min.js'); }}
+	
 
 	</head>
 <body>
