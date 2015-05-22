@@ -13,11 +13,10 @@
 
 Route::get('/', 'DefaultController@index');
 
-<<<<<<< HEAD
 
 Route::get('free', 'DefaultController@freeSubscription');
 Route::post('subscribe/doFreeSubscribe', 'DefaultController@doFreeSubscribe');
-=======
+
 Route::get('free', 'DefaultController@freeSubscription');
 Route::post('subscribe/doFreeSubscribe', 'DefaultController@doFreeSubscribe');
 
@@ -42,17 +41,13 @@ Route::group(array('before'=>'client_auth'), function() {
 
 Route::get('{domain}', 'ClientsController@showClientWebsite');
 
->>>>>>> 1debb10894e4bb474fdf0bdf7a7008d6db09ecd4
 
 Route::resource('products', 'ProductsController');
 Route::resource('categories', 'CategoriesController');
 Route::resource('customers', 'CustomersController');
 Route::resource('orders', 'OrdersController');
 Route::resource('subscriptions', 'SubscriptionsController');
-<<<<<<< HEAD
 
-=======
->>>>>>> 1debb10894e4bb474fdf0bdf7a7008d6db09ecd4
 Route::resource('clients', 'ClientsController');
 
 
