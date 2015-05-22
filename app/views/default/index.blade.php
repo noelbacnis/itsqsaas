@@ -6,12 +6,17 @@
 
 {{ HTML::style('assets/css/default.css'); }}
 
-	<div class="wrapper">
-		<div class="wrapper-inner first">
-		{{ $navbar }}
+	<div class="wrapper first">
+		<div class="wrapper-inner" style="background: rgba(0,0,0,0.7);">
+			
+				{{ $navbar }}
+			
 			<div class="center">
-				<h1>Software as a Service</h1>
-				<hr>
+				<div class="inner">
+					<img src="{{ URL::asset('assets/images/logo.png'); }}" alt="" class="img-responsive">
+					<br>
+					<p class="roboto">Providing worldly-wise computer solutions for restaurants. Tara, Computer!</p>
+				</div>
 			</div>
 		</div>
 	</div>

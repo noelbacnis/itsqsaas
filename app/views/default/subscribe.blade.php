@@ -102,16 +102,11 @@
 					<i>(The primary color of your company/restaurant)</i>
 				</div>
 				<div class="panel-footer">
-					<button type="submit" class="btn btn-success form-control">Subscribe</button>
+					<button id="submit" type="submit" class="btn btn-success form-control">Subscribe</button>
 				</div>
 			</div>
 			{{ Form::close(); }}
-
-			
-			
-			
-
-			
+		
 			
 		</div> <!-- col-lg-6 -->
 	</div><!-- row -->
@@ -143,11 +138,19 @@
 
 		Dropzone.options.dropzone = {
 
-			dictDefaultMessage : "<h2>Drag and drop images here.</h2><br>You can also click here to select your files.",
+			autoProcessQueue : false,
+
+			dictDefaultMessage : "<h2>Drag and drop images here for your banner.</h2><br>You can also click here to select your files.",
 			paramName : 'banners',
 			addRemoveLinks : true,
 			init : function() {
-				this.on("removedfile", function(f) { alert('removed'); });
+				
+				var submitButton = document.querySelector('#submit');
+					dropzone = this;
+
+				submitButton.addEventListener('click', function(){
+					dropzone.processQueue();
+				});
 			}
 			
 		}

@@ -81,6 +81,11 @@ class DefaultController extends \BaseController {
 		} # End if hasFile
 	}
 
+	public function removeUploadedBannerFromServer()
+	{
+
+	} # End removeUploadedBannerFromServer
+
 
 
 }
