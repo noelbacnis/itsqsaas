@@ -1,0 +1,1 @@
+/opt/lampp/htdocs/itsqsaas/app/views/banners/edit.blade.php

@@ -72,7 +72,10 @@ hr.short {
 
 form.dropzone { 
 	height: auto;
-	border: 2px dashed darkorange; }
+	border: 2px dashed darkorange;
+	border-radius: 10px; }
 .dz-clickable { 
 	cursor: pointer;
 	padding: 50px; }
+.dz-message { 
+	font-family: roboto; }
