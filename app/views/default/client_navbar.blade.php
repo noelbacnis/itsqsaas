@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.client_master')
 
 @section('content')
 
@@ -7,10 +7,6 @@
 @else
   <div>
 @endif
-
-{{ HTML::style('assets/css/sb-admin.css'); }}
-{{ HTML::style('assets/css/plugins/morris.css'); }}
-{{ HTML::style('assets/fonts/font-awesome/css/font-awesome.min.css'); }}
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->

@@ -1,7 +1,5 @@
 @extends('default.client_navbar')
 
-
-
 @section('content2')
 
 <div class="container-fluid">
