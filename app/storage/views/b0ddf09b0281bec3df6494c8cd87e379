@@ -6,10 +6,12 @@
 === COLOR PICKER PLUGIN CSS/JS -->
 <?php echo HTML::style('assets/colorpicker/css/colorpicker.css');; ?>
 
-
 <?php echo HTML::script('assets/colorpicker/js/colorpicker.js');; ?>
 
 
+<?php echo HTML::style('assets/css/dropzone.css');; ?>
+
+<?php echo HTML::script('assets/js/dropzone.js');; ?>
 
 
 <div class="container">
@@ -32,6 +34,27 @@
 		<?php endforeach; ?>
 	</div>
 	<?php endif; ?>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<div class="panel-title">Starters</div>
+				</div>
+				<div class="panel-body">
+					<div id="dropzone">
+						<?php echo Form::open(array('url' => 'uploadStarterBanner' ,'class' => 'dropzone dz-clickable'));; ?>
+
+
+						
+						<?php echo Form::close();; ?>
+
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-lg-6">
 			<div class="panel panel-primary">
@@ -97,22 +120,20 @@
 					<button type="submit" class="btn btn-success form-control">Subscribe</button>
 				</div>
 			</div>
-
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<div class="panel-title">Subscription Information</div>
-				</div>
-				<div class="panel-body">
-					<?php echo Form::label('payment_period', 'Payment Period');; ?>
-
-					<?php echo Form::select('wow_huh', array(1 => 'WOW HUH'));; ?>
-
-				</div>
-			</div>
 			<?php echo Form::close();; ?>
 
-		</div>
-	</div>
+
+			<!--== DROPZONE FORM
+				================================================== -->
+			
+			
+
+			
+			
+		</div> <!-- col-lg-6 -->
+	</div><!-- row -->
+
+	
 </div>
 
 <script type="text/javascript">
@@ -133,6 +154,11 @@
 				}
 
 			});
+
+			Dropzone.options.myAwesomeDropzone = {
+
+				dictDefaultMessage : "tangina mu"
+			}
 		});
 	</script>
 

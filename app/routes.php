@@ -13,6 +13,10 @@
 
 Route::get('/', 'DefaultController@index');
 
+
+Route::get('free', 'DefaultController@freeSubscription');
+Route::post('subscribe/doFreeSubscribe', 'DefaultController@doFreeSubscribe');
+
 Route::get('free', 'DefaultController@freeSubscription');
 Route::post('subscribe/doFreeSubscribe', 'DefaultController@doFreeSubscribe');
 
@@ -39,6 +43,7 @@ Route::resource('categories', 'CategoriesController');
 Route::resource('customers', 'CustomersController');
 Route::resource('orders', 'OrdersController');
 Route::resource('subscriptions', 'SubscriptionsController');
+
 Route::resource('clients', 'ClientsController');
 
 

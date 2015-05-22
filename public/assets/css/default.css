@@ -69,3 +69,10 @@ hr.short {
 	border: 1px solid #000;
 	background: darkred;
 	background: url(../colorpicker/images/select.png) center; }
+
+form.dropzone { 
+	height: auto;
+	border: 2px dashed darkorange; }
+.dz-clickable { 
+	cursor: pointer;
+	padding: 50px; }
