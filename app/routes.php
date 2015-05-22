@@ -17,13 +17,12 @@ Route::get('/', 'DefaultController@index');
 Route::get('free', 'DefaultController@freeSubscription');
 Route::post('subscribe/doFreeSubscribe', 'DefaultController@doFreeSubscribe');
 
-<<<<<<< HEAD
+
 Route::post('uploadStarterBanner', 'DefaultController@uploadStarterBanner');
 
 // Route::get('subscribe', 'DefaultController@subscribe');
 // Route::post('subscribe/doSubscribe', 'DefaultController@doSubscribe');
-=======
->>>>>>> 696f3670d5920233134608b568c860f176281070
+
 
 Route::group(array('before'=>'client_guest'), function() {  
 	Route::get('client', function(){ return Redirect::route('client_login'); });
