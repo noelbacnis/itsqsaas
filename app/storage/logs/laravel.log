@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [2015-05-21 18:08:06] production.ERROR: exception 'ErrorException' with message 'Use of undefined constant navbar - assumed 'navbar'' in /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/app/storage/views/9c941734a7d7fd6abf5b150d9f619503:6
 Stack trace:
 #0 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/app/storage/views/9c941734a7d7fd6abf5b150d9f619503(6): Illuminate\Exception\Handler->handleError(8, 'Use of undefine...', '/Applications/X...', 6, Array)
@@ -1487,3 +1488,5 @@ Stack trace:
 Stack trace:
 #0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
 #1 {main} [] []
+=======
+>>>>>>> fffa39a957b7f64a75f8c407dd746d373d6ccafa

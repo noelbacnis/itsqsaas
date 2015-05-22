@@ -40,7 +40,7 @@ Route::group(array('before'=>'client_auth'), function() {
 
 });
 
-Route::get('{domain}', 'ClientsController@showClientWebsite');
+// Route::get('{domain}', 'ClientsController@showClientWebsite');
 
 Route::resource('products', 'ProductsController');
 Route::resource('categories', 'CategoriesController');

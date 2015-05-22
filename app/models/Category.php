@@ -2,14 +2,21 @@
 
 class Category extends \Eloquent {
 
-	// Add your validation rules here
-	public static $rules = [
-		// 'title' => 'required'
-	];
-
 	// Don't forget to fill this array
 	protected $guarded = array('id');
 	protected $fillable = array('name');
+
+	public static $rules = array(
+		'name' => 'required'
+	);
+
+	public static $messages = array(
+		
+	);
+
+	public static $friendly_names = array(
+		'name' => 'category name'
+	);
 
 
 	public function products() {
