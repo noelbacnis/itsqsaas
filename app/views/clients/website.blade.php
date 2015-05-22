@@ -33,6 +33,8 @@
 						@endforeach
 						<br>
 					@endforeach
+				@else
+					No Products Yet
 				@endif
 				<br><br>
 			</div>
