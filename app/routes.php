@@ -17,8 +17,6 @@ Route::get('/', 'DefaultController@index');
 Route::get('free', 'DefaultController@freeSubscription');
 Route::post('subscribe/doFreeSubscribe', 'DefaultController@doFreeSubscribe');
 
-Route::get('free', 'DefaultController@freeSubscription');
-Route::post('subscribe/doFreeSubscribe', 'DefaultController@doFreeSubscribe');
 
 Route::group(array('before'=>'client_guest'), function() {  
 	Route::get('client', function(){ return Redirect::route('client_login'); });
