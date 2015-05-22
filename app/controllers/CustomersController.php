@@ -9,7 +9,7 @@ class CustomersController extends \BaseController {
 	 */
 	public function index()
 	{
-		$customers = Customer::all();
+		$customers = Customer::paginate(10);
 
 		return View::make('customers.index', compact('customers'));
 	}
@@ -21,7 +21,8 @@ class CustomersController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('customers.create');
+		$gender = array('F'=>'Female', 'M'=>'Male');
+		return View::make('customers.create', compact('gender'));
 	}
 
 	/**
@@ -31,7 +32,8 @@ class CustomersController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Customer::$rules);
+		$validator = Validator::make($data = Input::all(), Customer::$rules, Customer::$messages);
+		$validator->setAttributeNames(Customer::$friendly_names);
 
 		if ($validator->fails())
 		{
@@ -65,8 +67,9 @@ class CustomersController extends \BaseController {
 	public function edit($id)
 	{
 		$customer = Customer::find($id);
+		$gender = array('F'=>'Female', 'M'=>'Male');
 
-		return View::make('customers.edit', compact('customer'));
+		return View::make('customers.edit', compact('customer', 'gender'));
 	}
 
 	/**
@@ -79,7 +82,9 @@ class CustomersController extends \BaseController {
 	{
 		$customer = Customer::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), Customer::$rules);
+		$validator = Validator::make($data = Input::all(), Customer::$rules, Customer::$messages);
+		$validator->setAttributeNames(Customer::$friendly_names);
+
 
 		if ($validator->fails())
 		{

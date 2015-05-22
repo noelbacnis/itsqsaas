@@ -9,7 +9,7 @@ class OrdersController extends \BaseController {
 	 */
 	public function index()
 	{
-		$orders = Order::all();
+		$orders = Order::paginate(10);
 
 		return View::make('orders.index', compact('orders'));
 	}
