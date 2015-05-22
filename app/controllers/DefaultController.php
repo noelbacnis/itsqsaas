@@ -64,6 +64,26 @@ class DefaultController extends \BaseController {
 
 	} # End doSubscribe
 
+	public function uploadStarterBanner()
+	{
+		if (Input::hasFile('banners'))
+		{
+			$banners = Input::file('banners');
+
+			foreach ($banners as $b) :
+			
+				# Move uploaded file
+				$banners->move(URL::asset('banners'));
+
+				# Get filename
+				$filename = $banners->getClientOriginalName();
+
+			endforeach;
+			 # End foreach
+
+		} # End if hasFile
+	}
+
 
 
 }

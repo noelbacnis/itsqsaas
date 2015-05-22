@@ -13,7 +13,7 @@
 
 <div class="container">
 	<div class="row">
-		<h1 class="text-orange roboto">Subscription Form</h1>
+		<h1 class="text-orange roboto">Subscription Form {{ URL::asset('banners'); }}</h1>
 		<hr>
 	</div>
 	<div class="row">
@@ -23,6 +23,7 @@
 		</div>
 	</div>
 	<br><br>
+	
 	@if ($errors->has())
 	<div class="alert alert-danger alert-dismissible" role="alert">
 		@foreach ($errors->all() as $err)
@@ -31,6 +32,7 @@
 		@endforeach
 	</div>
 	@endif
+
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-primary">
@@ -39,7 +41,10 @@
 				</div>
 				<div class="panel-body">
 					<div id="dropzone">
-						{{ Form::open(array('url' => 'uploadStarterBanner' ,'class' => 'dropzone dz-clickable')); }}
+
+					<!--== DROPZONE FORM
+						================================================== -->
+						{{ Form::open(array('url' => 'uploadStarterBanner' ,'class' => 'dropzone dz-clickable', 'id' => 'dropzone')); }}
 
 						
 						{{ Form::close(); }}
@@ -102,8 +107,7 @@
 			</div>
 			{{ Form::close(); }}
 
-			<!--== DROPZONE FORM
-				================================================== -->
+			
 			
 			
 
@@ -134,11 +138,15 @@
 
 			});
 
-			Dropzone.options.myAwesomeDropzone = {
-
-				dictDefaultMessage : "tangina mu"
-			}
+			
 		});
+
+		Dropzone.options.dropzone = {
+
+			dictDefaultMessage : "<h2>Drag and drop images here.</h2><br>You can also click here to select your files.",
+			addRemoveLinks : true,
+			paramName : 'banners'
+		}
 	</script>
 
 @stop

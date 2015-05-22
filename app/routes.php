@@ -17,8 +17,7 @@ Route::get('/', 'DefaultController@index');
 Route::get('free', 'DefaultController@freeSubscription');
 Route::post('subscribe/doFreeSubscribe', 'DefaultController@doFreeSubscribe');
 
-Route::get('free', 'DefaultController@freeSubscription');
-Route::post('subscribe/doFreeSubscribe', 'DefaultController@doFreeSubscribe');
+Route::post('uploadStarterBanner', 'DefaultController@uploadStarterBanner');
 
 // Route::get('subscribe', 'DefaultController@subscribe');
 // Route::post('subscribe/doSubscribe', 'DefaultController@doSubscribe');
@@ -47,7 +46,7 @@ Route::resource('categories', 'CategoriesController');
 Route::resource('customers', 'CustomersController');
 Route::resource('orders', 'OrdersController');
 Route::resource('subscriptions', 'SubscriptionsController');
-
 Route::resource('clients', 'ClientsController');
+Route::resource('banners', 'BannersController');
 
 

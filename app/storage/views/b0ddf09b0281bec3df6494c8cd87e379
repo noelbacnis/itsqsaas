@@ -16,7 +16,7 @@
 
 <div class="container">
 	<div class="row">
-		<h1 class="text-orange roboto">Subscription Form</h1>
+		<h1 class="text-orange roboto">Subscription Form <?php echo URL::asset('banners');; ?></h1>
 		<hr>
 	</div>
 	<div class="row">
@@ -42,7 +42,10 @@
 				</div>
 				<div class="panel-body">
 					<div id="dropzone">
-						<?php echo Form::open(array('url' => 'uploadStarterBanner' ,'class' => 'dropzone dz-clickable'));; ?>
+
+					<!--== DROPZONE FORM
+						================================================== -->
+						<?php echo Form::open(array('url' => 'uploadStarterBanner' ,'class' => 'dropzone dz-clickable', 'id' => 'dropzone'));; ?>
 
 
 						
@@ -123,8 +126,7 @@
 			<?php echo Form::close();; ?>
 
 
-			<!--== DROPZONE FORM
-				================================================== -->
+			
 			
 			
 
@@ -155,11 +157,15 @@
 
 			});
 
-			Dropzone.options.myAwesomeDropzone = {
-
-				dictDefaultMessage : "tangina mu"
-			}
+			
 		});
+
+		Dropzone.options.dropzone = {
+
+			dictDefaultMessage : "<h2>Drag and drop images here.</h2><br>You can also click here to select your files.",
+			addRemoveLinks : true,
+			paramName : 'banners'
+		}
 	</script>
 
 <?php $__env->stopSection(); ?>
