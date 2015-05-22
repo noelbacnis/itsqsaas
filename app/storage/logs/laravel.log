@@ -1467,3 +1467,23 @@ Stack trace:
 #11 /opt/lampp/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(641): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
 #12 /opt/lampp/htdocs/itsqsaas/public/index.php(49): Illuminate\Foundation\Application->run()
 #13 {main} [] []
+[2015-05-22 04:25:34] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function move() on a non-object' in /opt/lampp/htdocs/itsqsaas/app/controllers/DefaultController.php:77
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-05-22 04:27:54] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function getClientOriginalName() on a non-object' in /opt/lampp/htdocs/itsqsaas/app/controllers/DefaultController.php:77
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-05-22 04:29:25] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function getClientOriginalName() on a non-object' in /opt/lampp/htdocs/itsqsaas/app/controllers/DefaultController.php:77
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-05-22 04:29:41] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function getClientOriginalName() on a non-object' in /opt/lampp/htdocs/itsqsaas/app/controllers/DefaultController.php:77
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-05-22 04:31:00] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function getClientOriginalName() on a non-object' in /opt/lampp/htdocs/itsqsaas/app/controllers/DefaultController.php:77
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []

@@ -70,16 +70,13 @@ class DefaultController extends \BaseController {
 		{
 			$banners = Input::file('banners');
 
-			foreach ($banners as $b) :
+			$filename = $banners->getClientOriginalName();
+			$banners->move(public_path().'/banners/', $filename);
+
+			$banner = new Banner;
+			$banner->filename = $filename;
 			
-				# Move uploaded file
-				$banners->move(URL::asset('banners'));
-
-				# Get filename
-				$filename = $banners->getClientOriginalName();
-
-			endforeach;
-			 # End foreach
+			$banner->save();
 
 		} # End if hasFile
 	}

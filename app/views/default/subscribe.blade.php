@@ -13,7 +13,7 @@
 
 <div class="container">
 	<div class="row">
-		<h1 class="text-orange roboto">Subscription Form {{ URL::asset('banners'); }}</h1>
+		<h1 class="text-orange roboto">Subscription Form</h1>
 		<hr>
 	</div>
 	<div class="row">
@@ -23,7 +23,7 @@
 		</div>
 	</div>
 	<br><br>
-	
+
 	@if ($errors->has())
 	<div class="alert alert-danger alert-dismissible" role="alert">
 		@foreach ($errors->all() as $err)
@@ -144,8 +144,12 @@
 		Dropzone.options.dropzone = {
 
 			dictDefaultMessage : "<h2>Drag and drop images here.</h2><br>You can also click here to select your files.",
+			paramName : 'banners',
 			addRemoveLinks : true,
-			paramName : 'banners'
+			init : function() {
+				this.on("removedfile", function(f) { alert('removed'); });
+			}
+			
 		}
 	</script>
 
