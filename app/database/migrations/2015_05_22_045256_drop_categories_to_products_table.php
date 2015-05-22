@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class AddColumnToProductsTable extends Migration {
+class DropCategoriesToProductsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,9 @@ class AddColumnToProductsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('products', function(Blueprint $table)
+		Schema::table('products', function($table)
 		{
-			// $table->renameColumn('categories_id','category_id');
-			$table->string('category_id');
+			$table->dropColumn('categories_id');
 		});
 	}
 
@@ -27,10 +26,6 @@ class AddColumnToProductsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('products', function(Blueprint $table)
-		{
-			
-		});
 	}
 
 }

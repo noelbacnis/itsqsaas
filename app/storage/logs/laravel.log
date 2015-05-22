@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 [2015-05-21 18:08:06] production.ERROR: exception 'ErrorException' with message 'Use of undefined constant navbar - assumed 'navbar'' in /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/app/storage/views/9c941734a7d7fd6abf5b150d9f619503:6
 Stack trace:
 #0 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/app/storage/views/9c941734a7d7fd6abf5b150d9f619503(6): Illuminate\Exception\Handler->handleError(8, 'Use of undefine...', '/Applications/X...', 6, Array)
@@ -153,6 +154,36 @@ Stack trace:
 #7 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/View/View.php(76): Illuminate\View\View->renderContents()
 #8 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/View/View.php(150): Illuminate\View\View->render()
 #9 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/View/View.php(134): Illuminate\View\View->gatherData()
+=======
+[2015-05-22 09:24:50] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function count() on a non-object' in /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/app/storage/views/84b672f3acfca8cc0244534516759045:47
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-05-22 09:24:51] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function count() on a non-object' in /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/app/storage/views/84b672f3acfca8cc0244534516759045:47
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-05-22 12:37:42] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Access to undeclared static property: Customer::$message' in /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/app/controllers/CustomersController.php:35
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-05-22 12:37:53] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Access to undeclared static property: Customer::$message' in /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/app/controllers/CustomersController.php:35
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-05-22 12:50:37] production.ERROR: exception 'InvalidArgumentException' with message 'Route [customer.update] not defined.' in /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Routing/UrlGenerator.php:231
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Html/FormBuilder.php(814): Illuminate\Routing\UrlGenerator->route('customer.update', Array)
+#1 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Html/FormBuilder.php(774): Illuminate\Html\FormBuilder->getRouteAction(Array)
+#2 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Html/FormBuilder.php(104): Illuminate\Html\FormBuilder->getAction(Array)
+#3 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Html/FormBuilder.php(146): Illuminate\Html\FormBuilder->open(Array)
+#4 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(211): Illuminate\Html\FormBuilder->model(Object(Customer), Array)
+#5 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/app/storage/views/32e2357d6161817714b681f086faff25(39): Illuminate\Support\Facades\Facade::__callStatic('model', Array)
+#6 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/app/storage/views/32e2357d6161817714b681f086faff25(39): Illuminate\Support\Facades\Form::model(Object(Customer), Array)
+#7 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(37): include('/Applications/X...')
+#8 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('/Applications/X...', Array)
+#9 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/View/View.php(134): Illuminate\View\Engines\CompilerEngine->get('/Applications/X...', Array)
+>>>>>>> 5ea785788c1ed3a420b6ce85eaa091b30ff3a81d
 #10 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/View/View.php(102): Illuminate\View\View->getContents()
 #11 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/View/View.php(76): Illuminate\View\View->renderContents()
 #12 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Http/Response.php(43): Illuminate\View\View->render()
@@ -170,6 +201,7 @@ Stack trace:
 #24 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/public/index.php(49): Illuminate\Foundation\Application->run()
 #25 {main}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 Next exception 'Illuminate\Database\QueryException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'status' in 'field list' (SQL: insert into `clients` (`name`, `description`, `tagline`, `image`, `primary_color`, `contact_number`, `address`, `status`, `updated_at`, `created_at`) values (Robert Esguerra, sample, Lel, ubuntu-wallpapers-9.jpg, 6b1414, 09327871166, SM North Edsa, , 2015-05-21 14:13:04, 2015-05-21 14:13:04))' in /opt/lampp/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Database/Connection.php:625
 Stack trace:
@@ -305,12 +337,16 @@ Stack trace:
 #11 {main} [] []
 =======
 Next exception 'ErrorException' with message 'Route [admin_home] not defined. (View: /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/app/views/default/client_navbar.blade.php)' in /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Routing/UrlGenerator.php:231
+=======
+Next exception 'ErrorException' with message 'Route [customer.update] not defined. (View: /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/app/views/customers/edit.blade.php)' in /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Routing/UrlGenerator.php:231
+>>>>>>> 5ea785788c1ed3a420b6ce85eaa091b30ff3a81d
 Stack trace:
 #0 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(41): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(InvalidArgumentException), 1)
 #1 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(56): Illuminate\View\Engines\PhpEngine->evaluatePath('/Applications/X...', Array)
 #2 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/View/View.php(134): Illuminate\View\Engines\CompilerEngine->get('/Applications/X...', Array)
 #3 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/View/View.php(102): Illuminate\View\View->getContents()
 #4 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/View/View.php(76): Illuminate\View\View->renderContents()
+<<<<<<< HEAD
 #5 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/View/View.php(150): Illuminate\View\View->render()
 #6 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/View/View.php(134): Illuminate\View\View->gatherData()
 #7 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/View/View.php(102): Illuminate\View\View->getContents()
@@ -1369,6 +1405,12 @@ Stack trace:
 #6 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}()
 #7 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Routing/Route.php(109): call_user_func_array(Object(Closure), Array)
 #8 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Routing/Router.php(1033): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+=======
+#5 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Http/Response.php(43): Illuminate\View\View->render()
+#6 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/symfony/http-foundation/Symfony/Component/HttpFoundation/Response.php(202): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Routing/Router.php(1501): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Routing/Router.php(1036): Illuminate\Routing\Router->prepareResponse(Object(Illuminate\Http\Request), Object(Illuminate\View\View))
+>>>>>>> 5ea785788c1ed3a420b6ce85eaa091b30ff3a81d
 #9 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Routing/Router.php(1001): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
 #10 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(775): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
 #11 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(745): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
@@ -1379,6 +1421,7 @@ Stack trace:
 #16 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(641): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
 #17 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/public/index.php(49): Illuminate\Foundation\Application->run()
 #18 {main} [] []
+<<<<<<< HEAD
 >>>>>>> 1debb10894e4bb474fdf0bdf7a7008d6db09ecd4
 [2015-05-21 21:54:02] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '<<' (T_SL)' in /opt/lampp/htdocs/itsqsaas/app/routes.php:16
 Stack trace:
@@ -1616,3 +1659,5 @@ Stack trace:
 #16 /opt/lampp/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(641): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
 #17 /opt/lampp/htdocs/itsqsaas/public/index.php(49): Illuminate\Foundation\Application->run()
 #18 {main} [] []
+=======
+>>>>>>> 5ea785788c1ed3a420b6ce85eaa091b30ff3a81d
