@@ -24,6 +24,7 @@ class DefaultController extends \BaseController {
 
 	public function doFreeSubscribe()
 	{
+		
 		$rules = array(
 			'name' => 'required|min:2',
 			'description' => 'required',
@@ -58,11 +59,11 @@ class DefaultController extends \BaseController {
 			$client->address = Input::get('address');
 			$client->save();
 
-			return Redirect::to('/')->withErrors($validator);
+			return Redirect::to('subscriptionPayment');
 
 		} # End if-else validation
 
-	} # End doSubscribe
+	} # End doFreeSubscribe
 
 	public function uploadStarterBanner()
 	{
@@ -75,16 +76,25 @@ class DefaultController extends \BaseController {
 
 			$banner = new Banner;
 			$banner->filename = $filename;
-			
+			$banner->status = 1;
+				
 			$banner->save();
+
+			# Update the client id of the newly uploaded images
+			$newBanner = Banner::where('filename', '=', $filename)->first();
+			$newClient = Client::where('created_at', '=', $newBanner->created_at)->first();
+
+			$newBanner->client_id = $newClient->id;
+			$newBanner->save();
 
 		} # End if hasFile
 	}
 
-	public function removeUploadedBannerFromServer()
+	public function subscriptionPayment()
 	{
-
-	} # End removeUploadedBannerFromServer
+		$view = View::make('default.payment')->nest('navbar', 'default.navbar');
+		return $view;
+	} # End subscriptionPayment
 
 
 

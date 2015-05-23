@@ -20,6 +20,8 @@ Route::post('subscribe/doFreeSubscribe', 'DefaultController@doFreeSubscribe');
 
 Route::post('uploadStarterBanner', 'DefaultController@uploadStarterBanner');
 
+Route::get('subscriptionPayment', 'DefaultController@subscriptionPayment');
+
 // Route::get('subscribe', 'DefaultController@subscribe');
 // Route::post('subscribe/doSubscribe', 'DefaultController@doSubscribe');
 
