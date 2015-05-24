@@ -2,6 +2,19 @@
 
 class ProductsController extends \BaseController {
 
+	public function viewProduct($id)
+	{
+		$categories = Category::with('products')->get();
+		$product = Product::where('id', '=', $id)->get();
+		return View::make('clients.website', compact('categories', 'product'))->nest('navbar', 'default.navbar');
+	}
+
+	public function addOrder()
+	{
+		$id = Input::get('quantity');
+		echo $id;
+	}
+
 	/**
 	 * Display a listing of products
 	 *
