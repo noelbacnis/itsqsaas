@@ -16,7 +16,9 @@
 	{{ $navbar }}
 		<div class="container">
 		<div class="row">
-			<h1 class="text-orange roboto">Subscription Form</h1>
+			<div class="col-lg-12">
+				<h1 class="text-orange roboto">Subscription Form</h1>
+			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-12 roboto" style="color: white; font-weight: 700;">
@@ -80,6 +82,10 @@
 						{{ Form::label('address', 'Address'); }}
 						{{ Form::text('address', '', array('class' => 'form-control')); }}
 						<i>(This is your mailing address. Displayed in your 'Contact' page)</i>
+						<br><br>
+						{{ Form::label('domain', 'Domain'); }}
+						{{ Form::text('domain', '', array('class' => 'form-control')); }}
+						<i>(This is your domain name. Your site will be available at www.domainname.com)</i>
 					</div>
 				</div>
 			</div>
@@ -102,9 +108,32 @@
 						{{ Form::label('primary_color', 'Primary Color'); }}
 						{{ Form::text('primary_color', '', array('class' => 'form-control')); }}
 						<i>(The primary color of your company/restaurant)</i>
+						
+
+					</div>
+				</div>
+
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<div class="panel-title">Featured Product</div>
+					</div>
+					<div class="panel-body">
+						{{ Form::label('product_image', 'Featured Product'); }}
+						{{ Form::file('product_image'); }}
+						<i>(Your best product that you want to emphasize on your site. Dimensions should fit your screen)</i>
+						<br><br>
+						{{ Form::label('product_name', 'Product Name'); }}
+						{{ Form::text('product_name', '', array('class' => 'form-control')); }}
+						<br>
+						{{ Form::label('product_description', 'Product Description'); }}
+						{{ Form::text('product_description', '', array('class' => 'form-control')); }}
+						<br>
+						{{ Form::label('product_price', 'Product Price'); }}
+						{{ Form::number('product_price', '', array('class' => 'form-control')); }}
+						
 					</div>
 					<div class="panel-footer">
-						<button id="submit" type="submit" class="btn btn-success form-control">Subscribe</button>
+						<button type="submit" id="submit" class="btn btn-success form-control">Submit Everything</button>
 					</div>
 				</div>
 				{{ Form::close(); }}

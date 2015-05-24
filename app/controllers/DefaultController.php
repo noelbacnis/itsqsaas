@@ -32,7 +32,11 @@ class DefaultController extends \BaseController {
 			'address' => 'required',
 			'image' => 'required|image',
 			'tagline' => 'required',
-			'primary_color' => 'required'
+			'primary_color' => 'required',
+			'product_image' => 'required|image',
+			'product_name' => 'required',
+			'product_description' => 'required',
+			'product_price' => 'required'
 			);
 
 
@@ -59,6 +63,29 @@ class DefaultController extends \BaseController {
 			$client->address = Input::get('address');
 			$client->save();
 
+			$directory = File::makeDirectory(public_path().'/uploads/'.Input::get('name'));
+
+			$filename = $file->getClientOriginalName();
+			$file->move(public_path().'/uploads/'.Input::get('name'), $filename);
+
+			$newClient = Client::where('name', '=', Input::get('name'))->first();
+
+			if (Input::hasFile('product_image'))
+			{
+				$prodFile = Input::file('product_image');
+
+				$product = new Product;
+				$product->name = Input::get('product_name');
+				$product->description = Input::get('product_description');
+				$product->price = Input::get('product_price');
+				$product->image = $prodFile->getClientOriginalName();
+				$product->status = 'ACTIVE';
+				$product->client_id = $newClient->id;
+				$product->save();
+
+				$prodFile->move(public_path().'/uploads/'.Input::get('name'), $prodFile->getClientOriginalName());
+			}
+
 			return Redirect::to('subscriptionPayment');
 
 		} # End if-else validation
@@ -67,27 +94,38 @@ class DefaultController extends \BaseController {
 
 	public function uploadStarterBanner()
 	{
-		if (Input::hasFile('banners'))
+		$rule = array('banners' => 'required');
+		$validator = Validator::make(Input::all(), $rule);
+
+		if ($validator->fails())
 		{
-			$banners = Input::file('banners');
+			return Redirect::to('free')->withErrors($validator);
+		}
+		else
+		{
+			if (Input::hasFile('banners'))
+			{
+				$banners = Input::file('banners');
 
-			$filename = $banners->getClientOriginalName();
-			$banners->move(public_path().'/banners/', $filename);
+				$filename = $banners->getClientOriginalName();
+				$banners->move(public_path().'/banners/', $filename);
 
-			$banner = new Banner;
-			$banner->filename = $filename;
-			$banner->status = 1;
-				
-			$banner->save();
+				$banner = new Banner;
+				$banner->filename = $filename;
+				$banner->status = 1;
+					
+				$banner->save();
 
-			# Update the client id of the newly uploaded images
-			$newBanner = Banner::where('filename', '=', $filename)->first();
-			$newClient = Client::where('created_at', '=', $newBanner->created_at)->first();
+				# Update the client id of the newly uploaded images
+				$newBanner = Banner::where('filename', '=', $filename)->first();
+				$newClient = Client::where('created_at', '=', $newBanner->created_at)->first();
 
-			$newBanner->client_id = $newClient->id;
-			$newBanner->save();
+				$newBanner->client_id = $newClient->id;
+				$newBanner->save();
 
-		} # End if hasFile
+			} # End if hasFile
+		} # End if validator
+		
 	}
 
 	public function subscriptionPayment()
