@@ -46,7 +46,7 @@ Route::group(array('before'=>'client_auth'), function() {
 Route::get('www/{domain}', 'ClientsController@showClientWebsite');
 Route::get('www/'.Session::get('domain').'/product/{id}', array('as' => 'view_product', 'uses' => 'ProductsController@viewProduct') );
 Route::post('www/'.Session::get('domain').'/order', array('as' => 'addorder','uses' => 'ProductsController@addOrder'));
-// Route::post('addorder', 'ProductsController@addOrder');
+Route::post('addorder', 'ProductsController@addOrder');
 
 Route::resource('products', 'ProductsController');
 Route::resource('categories', 'CategoriesController');
