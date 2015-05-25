@@ -19,7 +19,7 @@ class Product extends \Eloquent {
 
 	// Don't forget to fill this array
 	protected $guarded = array('id');
-	protected $fillable = array('name', 'description', 'price', 'image', 'status', 'category_id');
+	protected $fillable = array('name', 'description', 'price', 'image', 'status', 'category_id', 'client_id');
 
 	public function orderProducts() {
         return $this->hasMany('OrdersProduct', 'id', 'product_id'); 

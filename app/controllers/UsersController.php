@@ -15,7 +15,18 @@ class UsersController extends \BaseController {
 		
 	}
 
-	public function clientAuthenticate()
+	public function customerLogin()
+	{
+		if(Auth::check()){
+			return View::make('clients.website')->nest('navbar', 'default.customer_navbar');
+
+		}else{
+			return View::make('customers.login')->nest('navbar', 'default.customer_navbar');
+		}
+		
+	}
+
+	public function authenticate()
 	{
 		$user = array(
             'username' => Input::get('username'),
@@ -24,18 +35,20 @@ class UsersController extends \BaseController {
         );
 
 		if(Auth::attempt($user, false)){
-			return Redirect::route('client_dashboard')
- 								->with('flash_notice', 'You have successfully logged in.')
- 								->with('alert_class', 'alert-success');
-		}else{
-			return Redirect::route('client_login')
- 								->with('flash_notice', 'Log in failed.')
- 								->with('alert_class', 'alert-danger');
-		}
-		// var_dump($user);
-		// echo Hash::make('123');
-	}
+			if($user['user_type'] == 'client'){
+				return Redirect::route('client_dashboard')->with('flash_notice', 'You have successfully logged in.')->with('alert_class', 'alert-success');
+			}else if($user['user_type'] == 'customer'){
+				return Redirect::route('client_website')->with('flash_notice', 'You have successfully logged in.');
+			}
 
+		}else{
+			if($user['user_type'] == 'client'){
+				return Redirect::route('client_login')->with('flash_notice', 'Log in failed.')->with('alert_class', 'alert-danger');
+			}else if($user['user_type'] == 'customer'){
+				return Redirect::route('customer_login')->with('flash_notice', 'Log in failed.')->with('alert_class', 'alert-danger');
+			}
+		}
+	}
 
 	/**
 	 * Display a listing of users
