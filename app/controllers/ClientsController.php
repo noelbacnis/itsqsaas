@@ -12,13 +12,13 @@ class ClientsController extends \BaseController {
 
 	public function showClientWebsite($domain)
 	{
-		// echo "string";
 		$domain_count = Client::where('domain', '=', $domain)->count();
 
 		if ($domain_count > 0) {
 			Session::put('domain', $domain);
 			$categories = Category::with('products')->get();
-			return View::make('clients.website', compact('categories'))->nest('navbar', 'default.navbar');
+			
+			return View::make('clients.website', compact('categories'))->nest('navbar', 'default.customer_navbar');
 		}else{
 			echo "No such domain";
 		}

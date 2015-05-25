@@ -21,7 +21,7 @@ class Customer extends \Eloquent {
 		'last_name' => 'last name',
 		'first_name' => 'first name',
 		'del_contact_number' => 'contact number',
-		'del_address_number' => 'required',
+		'del_address_number' => 'address number',
 		'del_address_baranggay' => 'baranggay',
 		'del_address_municipal' => 'municipal',
 		'del_address_province' => 'province',
@@ -29,7 +29,7 @@ class Customer extends \Eloquent {
 
 	// Don't forget to fill this array
 	protected $guarded = array('id');
-	protected $fillable = array('last_name', 'first_name', 'gender', 'status', 'del_contact_number', 'del_address_number', 'del_address_baranggay', 'del_address_municipal', 'del_address_province');
+	protected $fillable = array('last_name', 'first_name', 'gender', 'status', 'del_contact_number', 'del_address_number', 'del_address_baranggay', 'del_address_municipal', 'del_address_province', 'client_id');
 
 	public function orders() {
         return $this->hasMany('Order'); 

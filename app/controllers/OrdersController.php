@@ -2,6 +2,22 @@
 
 class OrdersController extends \BaseController {
 
+	public function addOrder()
+	{
+		$qty = Input::get('quantity');
+		$id = Input::get('id');
+		// echo $qty.$id;
+		
+		// $validator = Validator::make($data = Input::all(), Client::$rules);
+
+		// if ($validator->fails())
+		// {
+		// 	return Redirect::back()->withErrors($validator)->withInput();
+		// }
+
+		// Client::create($data);
+	}
+
 	/**
 	 * Display a listing of orders
 	 *

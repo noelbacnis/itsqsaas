@@ -63,6 +63,7 @@
 							</div>
 							<div class="col-md-6" style="color:black">
 									@foreach($product as $p)
+										{{ Form::hidden('id', $p->id ); }}
 										<h3>{{ $p->name }}</h3>
 										<small>{{ $p->description }}</small>
 									@endforeach

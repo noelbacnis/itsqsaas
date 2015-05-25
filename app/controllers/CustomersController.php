@@ -2,6 +2,61 @@
 
 class CustomersController extends \BaseController {
 
+	public function customerRegister()
+	{
+		#Get Client ID
+		$client = Client::select('id')->where('domain', '=', Session::get('domain'))->get();
+		$client_id = $client[0]['id'];
+
+		return View::make('customers.register', compact('client_id'))->nest('navbar', 'default.customer_navbar');
+	}
+
+	public function customerRegisterValidate()
+	{
+		$data = Input::all();
+		
+		# Data Segragation Per table
+		$customer_data = array();
+		for ($i=0; $i < count($data) ; $i++) { 
+			$customer_data['client_id'] = $data['client_id'];
+			$customer_data['first_name'] = $data['first_name'];
+			$customer_data['last_name'] = $data['last_name'];
+			$customer_data['gender'] = $data['gender'];
+			$customer_data['del_contact_number'] = $data['del_contact_number'];
+			$customer_data['del_address_number'] = $data['del_address_number'];
+			$customer_data['del_address_baranggay'] = $data['del_address_baranggay'];
+			$customer_data['del_address_municipal'] = $data['del_address_municipal'];
+			$customer_data['del_address_province'] = $data['del_address_province'];
+			$customer_data['status'] = 'ACTIVE';
+		}
+
+		$user_data = array();
+		for ($i=0; $i < count($data) ; $i++) { 
+			$user_data['username'] = $data['username'];
+			$user_data['password'] = Hash::make($data['password']);
+			$user_data['user_type'] = 'customer';
+		}
+
+		# Validation
+		$validatorCustomer = Validator::make($customer_data, Customer::$rules, Customer::$messages);
+		$validatorCustomer->setAttributeNames(Customer::$friendly_names);
+		$validatorUser = Validator::make($user_data, User::$rules, User::$messages);
+		$validatorUser->setAttributeNames(User::$friendly_names);
+		
+		if ($validatorCustomer->fails() || $validatorUser->fails())
+		{
+			$validationMessages = array_merge_recursive($validatorUser->messages()->toArray(), $validatorCustomer->messages()->toArray());
+			return Redirect::back()->withErrors($validationMessages)->withInput();
+		}
+
+		# Database Insertion
+		$inserted_customer = Customer::create($customer_data);
+		$user_data['foreign_id'] = $inserted_customer->id;
+		$inserted_user = User::create($user_data);
+
+		return Redirect::route('client_website');
+	}
+
 	/**
 	 * Display a listing of customers
 	 *

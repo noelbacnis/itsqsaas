@@ -48,6 +48,21 @@ Route::filter('client_auth', function()
 	}
 });
 
+Route::filter('customer_auth', function()
+{
+	if (Auth::guest())
+	{
+		if (Request::ajax())
+		{
+			return Response::make('Unauthorized', 401);
+		}
+		else
+		{
+			return Redirect::guest('www/'.Session::get('domain').'/login');
+		}
+	}
+});
+
 
 Route::filter('auth.basic', function()
 {
@@ -68,6 +83,11 @@ Route::filter('auth.basic', function()
 Route::filter('client_guest', function()
 {
 	if (Auth::check()) return Redirect::to('/client');
+});
+
+Route::filter('customer_guest', function()
+{
+	if (Auth::check()) return Redirect::to('/www/'.Session::get('domain'));
 });
 
 /*
