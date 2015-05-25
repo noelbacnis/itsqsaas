@@ -86,6 +86,10 @@
 						{{ Form::label('domain', 'Domain'); }}
 						{{ Form::text('domain', '', array('class' => 'form-control')); }}
 						<i>(This is your domain name. Your site will be available at www.domainname.com)</i>
+						<br><br>
+						{{ Form::label('email', 'Contact E-mail'); }}
+						{{ Form::email('email', '', array('class' => 'form-control')); }}
+						<i>(Details of your subscription will be sent to this e-mail)</i>
 					</div>
 				</div>
 			</div>
@@ -130,7 +134,6 @@
 						<br>
 						{{ Form::label('product_price', 'Product Price'); }}
 						{{ Form::number('product_price', '', array('class' => 'form-control')); }}
-						
 					</div>
 					<div class="panel-footer">
 						<button type="submit" id="submit" class="btn btn-success form-control">Submit Everything</button>

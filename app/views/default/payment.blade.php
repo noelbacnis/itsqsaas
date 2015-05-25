@@ -31,6 +31,12 @@
 						<div class="panel-body">
 							{{ Form::label('payment_period', 'Payment Period'); }}
 							{{ Form::text('payment_period', 'Monthly', array('class' => 'form-control', 'disabled' => true)); }}
+							<br><br>
+							{{ Form::label('account_number', 'Account Number'); }}
+							{{ Form::text('account_number', '', array('class' => 'form-control')); }}
+							<br><br>
+							{{ Form::label('email', 'E-mail Address'); }}
+							{{ Form::text('email', '', array('class' => 'form-control')); }}
 						</div>
 					</div>
 				</div>
@@ -39,7 +45,16 @@
 						<div class="panel-heading">
 							<div class="panel-title">Subscription Information</div>
 						</div>
-						<div class="panel-body"></div>
+						<div class="panel-body">
+							{{ Form::label('restaurant_name', 'Restaurant Name'); }}
+							{{ Form::text('restaurant_name', $client->name, array('class' => 'form-control', 'disabled' => true)); }}
+							<br><br>
+							{{ Form::label('domain', 'Domain'); }}
+							{{ Form::text('domain', 'www.'.$client->domain.'.com', array('class' => 'form-control', 'disabled' => true)); }}
+							<br><br>
+							{{ Form::label('subscription', 'Subscription'); }}
+							{{ Form::text('subscription', 'Free', array('class' => 'form-control', 'disabled' => true)); }}
+						</div>
 					</div>
 				</div>
 			</div>

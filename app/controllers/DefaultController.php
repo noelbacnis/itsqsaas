@@ -32,6 +32,7 @@ class DefaultController extends \BaseController {
 			'address' => 'required',
 			'image' => 'required|image',
 			'tagline' => 'required',
+			'domain' => 'required',
 			'primary_color' => 'required',
 			'product_image' => 'required|image',
 			'product_name' => 'required',
@@ -61,6 +62,9 @@ class DefaultController extends \BaseController {
 			$client->primary_color = Input::get('primary_color');
 			$client->contact_number = Input::get('contact_number');
 			$client->address = Input::get('address');
+			$client->domain = Input::get('domain');
+			$client->email = Input::get('email');
+			$client->subscriptions_types_id = 1;
 			$client->save();
 
 			$directory = File::makeDirectory(public_path().'/uploads/'.Input::get('name'));
@@ -86,7 +90,7 @@ class DefaultController extends \BaseController {
 				$prodFile->move(public_path().'/uploads/'.Input::get('name'), $prodFile->getClientOriginalName());
 			}
 
-			return Redirect::to('subscriptionPayment');
+			return Redirect::to('subscriptionPayment?type=1&id='.$newClient->id);
 
 		} # End if-else validation
 
@@ -130,7 +134,9 @@ class DefaultController extends \BaseController {
 
 	public function subscriptionPayment()
 	{
-		$view = View::make('default.payment')->nest('navbar', 'default.navbar');
+		$data['client'] = Client::find(Input::get('id'));
+
+		$view = View::make('default.payment', $data)->nest('navbar', 'default.navbar');
 		return $view;
 	} # End subscriptionPayment
 
