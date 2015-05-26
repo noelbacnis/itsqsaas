@@ -65,8 +65,11 @@
 									@foreach($product as $p)
 										{{ Form::hidden('id', $p->id ); }}
 										<h3>{{ $p->name }}</h3>
-										<small>{{ $p->description }}</small>
+										<small>{{ $p->description }}</small> <br>
+										<small>{{ $p->price }}</small>
+										{{ Form::hidden('price', $p->price) }}
 									@endforeach
+
 							</div>
 							@endif
 						</div>
@@ -88,22 +91,35 @@
 							<table style="width:100%; color:black">';
 								<tr>
 									<td style="width:40%">Name</td>
-									<td style="width:20%">Quantity</td>
-									<td style="width:25%">Price</td>
-                                    <td style="width:15%">Cancel</td>
+									<td style="width:15%">Quantity</td>
+									<td style="width:15%">Price</td>
+									<td style="width:20%">Subtotal</td>
+                                    <td style="width:10%">Remove</td>
 								</tr>
-								<tr>
-									<td style="width:40%">Name</td>
-									<td style="width:20%">Quantity</td>
-									<td style="width:25%">Price</td>
-                                    <td style="width:15%">Cancel</td>
-								</tr>
+								<?php $total = 0;?>
+								@if (isset($order_products))
+									@foreach($order_products as $op)
+										<?php 
+											$subtotal = 0;
+											$subtotal = $op->product->price * $op->quantity;
+											$total += $subtotal;
+										?>
+										<tr>
+											<td style="width:40%">{{ $op->product->name }}</td>
+											<td style="width:15%">{{ $op->quantity }}</td>
+											<td style="width:15%">{{ $op->product->price }}</td>
+											<td style="width:15%">{{ $subtotal }}</td>
+		                                    <td style="width:10%">{{ link_to_route('remove_order', 'X', array($op->id)) }}</td>
+										</tr>
+									@endforeach
+								@endif
+								
 							</table>
 						</div>
 						<div class="panel-footer" style="color:black">
 							<div class="row">
 								<div class="col-md-6" style="padding:0px">Total:</div>
-								<div class="col-md-6" style="padding:0px">Php 999</div>
+								<div class="col-md-6" style="padding:0px">Php {{ $total }}</div>
 							</div>
 						</div>
 					</div>
