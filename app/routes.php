@@ -54,8 +54,9 @@ Route::group(array('before'=>'client_auth'), function() {
 # Client's Public Website routes
 Route::get('www/{domain}', 'ClientsController@showClientWebsite');
 Route::get('www/'.Session::get('domain').'/product/{id}', array('as' => 'view_product', 'uses' => 'ProductsController@viewProduct') );
-Route::post('www/'.Session::get('domain').'/order', array('as' => 'addorder','uses' => 'ProductsController@addOrder'));
-Route::post('addorder', 'OrdersController@addOrder');
+// Route::post('www/'.Session::get('domain').'/order', array('as' => 'addorder','uses' => 'ProductsController@addOrder'));
+Route::post('www/'.Session::get('domain').'/order', array('as' => 'addorder','uses' => 'OrdersController@addOrder'));
+Route::get('www/'.Session::get('domain').'/order/remove/{id}', array('as' => 'remove_order','uses' => 'OrdersController@removeOrder'));
 
 Route::group(array('before'=>'customer_guest'), function() {  
 	Route::get('www/'.Session::get('domain').'/login', array('as' => 'customer_login', 'uses' => 'UsersController@customerLogin') );

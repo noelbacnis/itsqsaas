@@ -4,18 +4,46 @@ class OrdersController extends \BaseController {
 
 	public function addOrder()
 	{
+		# GET ORDERED PRODUCT FROM VIEW
 		$qty = Input::get('quantity');
-		$id = Input::get('id');
-		// echo $qty.$id;
-		
-		// $validator = Validator::make($data = Input::all(), Client::$rules);
+		$price = Input::get('price');
+		$product_id = Input::get('id');
 
-		// if ($validator->fails())
-		// {
-		// 	return Redirect::back()->withErrors($validator)->withInput();
-		// }
+		# GETING CLIENT AND CUSTOMER ID
+		$client_id_object = Client::select('id')->where('domain', '=', Session::get('domain'))->get();
+		$client_id = $client_id_object[0]['id'];
+		$customer_id = Auth::user()->foreign_id;
 
-		// Client::create($data);
+		# CHECK IF THERE ARE ANY PENDING CART ORDERS
+		$order = Order::where('customer_id', '=', $customer_id)->where('status', '=', 'PENDING')->get();
+		if ($order->count() == 0) { 
+			# NEW ORDER
+			$order_data['total'] = $qty * $price;
+			$order_data['customer_id'] = $customer_id;
+			$order_data['status'] = 'PENDING';
+			$order_data['client_id'] = $client_id;
+			$order_data['registered'] = 'YES';
+
+			$inserted_order = Order::create($order_data);
+			$order_id = $inserted_order->id;
+
+		}else{ 
+			# ALEADY HAVE A PENDING UNSUBMITTED ORDER
+			$order_id = $order[0]['id'];
+		}
+
+		$order_product_data['quantity'] = $qty;
+		$order_product_data['order_id'] = $order_id;
+		$order_product_data['product_id'] = $product_id;
+		OrdersProduct::create($order_product_data);
+
+		return Redirect::back();
+	}
+
+	public function removeOrder($id)
+	{
+		OrdersProduct::destroy($id);
+		return Redirect::back();
 	}
 
 	/**
