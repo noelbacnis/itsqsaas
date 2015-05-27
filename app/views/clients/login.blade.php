@@ -23,7 +23,7 @@
 
 
             <!-- LOGIN FORM -->
-            {{Form::open(array('route'=>'client_authenticate'))}}
+            {{Form::open(array('route'=>'authenticate'))}}
                 {{ Form::hidden('user_type', 'client') }}
                 <p class="lead" style="margin-bottom:5px;color:white">Login</p>
                 <div class="form-group">

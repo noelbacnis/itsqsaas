@@ -64,7 +64,7 @@ class DefaultController extends \BaseController {
 			$client->address = Input::get('address');
 			$client->domain = Input::get('domain');
 			$client->email = Input::get('email');
-			$client->subscriptions_types_id = 1;
+			$client->subscription_id = 0;
 			$client->save();
 
 			$directory = File::makeDirectory(public_path().'/uploads/'.Input::get('name'));
@@ -89,6 +89,12 @@ class DefaultController extends \BaseController {
 
 				$prodFile->move(public_path().'/uploads/'.Input::get('name'), $prodFile->getClientOriginalName());
 			}
+
+			# New Subscription
+			$subscription = new Subscription;
+			$subscription->client_id = $newClient->id;
+			$subscription->subscription_type_id = 1;
+
 
 			return Redirect::to('subscriptionPayment?type=1&id='.$newClient->id);
 
@@ -139,6 +145,46 @@ class DefaultController extends \BaseController {
 		$view = View::make('default.payment', $data)->nest('navbar', 'default.navbar');
 		return $view;
 	} # End subscriptionPayment
+
+	public function doSubscriptionPayment()
+	{
+		$subscription = new Subscription;
+
+		$subscription->client_id = Input::get('client_id');
+		$subscription->subscription_type_id = Input::get('subscription_type_id');
+		$subscription->transaction_number = 0;
+		$subscription->total_amount = 0;
+		$subscription->start_period = strtotime(date('Y-m-d h:i:s'));
+		$subscription->end_period = strtotime("+".Input::get('period').' months', strtotime(date('Y-m-d h:i:s')));
+		$subscription->save();
+
+		return Redirect::to('subscriptionSuccess');
+	} # End doSubscriptionPayment
+
+	public function subscriptionSuccess()
+	{
+		$view = View::make('default.success')->nest('navbar', 'default.navbar');
+		return $view;
+	} # End subscriptionSuccess
+
+	public function enterTransactionNumber()
+	{
+
+	} # End enterTransactionNumber
+
+	public function doEnterTransactionNumber()
+	{
+		$rules = array(
+			'subscription_id'    => 'required',
+			'transaction_number' => 'required'
+		);
+
+		$sub = Subscription::find(Input::get('subscription_id'));
+		$sub->transaction_number = Input::get('transaction_number');
+		$sub->save();
+
+		return Redirect::to('/');
+	} # End doEnterTransactionNumber
 
 
 

@@ -107,3 +107,13 @@ form.dropzone {
 	transition: 0.3s;
 }
 
+
+button.transaction { 
+	padding: 20px 30px;
+	color: #89b8ff;
+	border: 2px solid #89b8ff;
+	background: transparent; }
+button.transaction:hover { 
+	text-decoration: none;
+	background: #89b8ff;
+	color: white; }

@@ -22,6 +22,13 @@ Route::post('uploadStarterBanner', 'DefaultController@uploadStarterBanner');
 
 Route::get('subscriptionPayment', 'DefaultController@subscriptionPayment');
 
+Route::post('subscribe/doSubscriptionPayment', 'DefaultController@doSubscriptionPayment');
+
+Route::get('subscriptionSuccess', 'DefaultController@subscriptionSuccess');
+
+Route::get('subscribe/enterTransactionNumber', 'DefaultController@enterTransactionNumber');
+Route::post('subscribe/doEnterTransactionNumber', 'DefaultController@doEnterTransactionNumber');
+
 // Route::get('subscribe', 'DefaultController@subscribe');
 // Route::post('subscribe/doSubscribe', 'DefaultController@doSubscribe');
 
