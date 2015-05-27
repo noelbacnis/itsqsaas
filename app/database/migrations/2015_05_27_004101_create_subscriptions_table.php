@@ -16,8 +16,8 @@ class CreateSubscriptionsTable extends Migration {
 		Schema::create('subscriptions', function($table){
 			$table->increments('id');
 			$table->integer('client_id');
-			$table->integer('subscriptions_types_id');
-			$table->string('account_number');
+			$table->integer('subscription_type_id');
+			$table->string('transaction_number');
 			$table->integer('total_amount');
 			$table->datetime('start_period');
 			$table->datetime('end_period');
@@ -33,6 +33,7 @@ class CreateSubscriptionsTable extends Migration {
 	public function down()
 	{
 		//
+		Schema::dropIfExists('subscriptions');
 	}
 
 }
