@@ -8,15 +8,24 @@ class ProductsController extends \BaseController {
 		$product = Product::where('id', '=', $id)->get();
 
 		if(Auth::check()){
-				$customer_id = Auth::user()->foreign_id;
-				$order = Order::where('customer_id', '=', $customer_id)->where('status', '=', 'PENDING')->get();
+			$customer_id = Auth::user()->foreign_id;
+			$order = Order::where('customer_id', '=', $customer_id)->where('status', '=', 'PENDING')->get();
+			if ($order->count() != 0) {
+				$order_id = $order[0]['id'];
+				$order_products = OrdersProduct::where('order_id', '=', $order_id)->with('product')->get();
+			}
+		}else{
+			if(Session::has('guest_hash')){
+				$guest_hash = Session::get('guest_hash');
+				$order = Order::where('guest_hash', '=', $guest_hash)->where('status', '=', 'PENDING')->get();
 				if ($order->count() != 0) {
 					$order_id = $order[0]['id'];
 					$order_products = OrdersProduct::where('order_id', '=', $order_id)->with('product')->get();
 				}
 			}
+		}
 			
-		return View::make('clients.website', compact('categories', 'product', 'order_products'))->nest('navbar', 'default.navbar');
+		return View::make('clients.website', compact('categories', 'product', 'order_products'))->nest('navbar', 'default.customer_navbar');
 	}
 
 	/**

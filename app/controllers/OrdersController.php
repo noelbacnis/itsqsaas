@@ -9,27 +9,70 @@ class OrdersController extends \BaseController {
 		$price = Input::get('price');
 		$product_id = Input::get('id');
 
-		# GETING CLIENT AND CUSTOMER ID
+		# GETING CLIENT ID
 		$client_id_object = Client::select('id')->where('domain', '=', Session::get('domain'))->get();
 		$client_id = $client_id_object[0]['id'];
-		$customer_id = Auth::user()->foreign_id;
 
-		# CHECK IF THERE ARE ANY PENDING CART ORDERS
-		$order = Order::where('customer_id', '=', $customer_id)->where('status', '=', 'PENDING')->get();
-		if ($order->count() == 0) { 
-			# NEW ORDER
-			$order_data['total'] = $qty * $price;
-			$order_data['customer_id'] = $customer_id;
-			$order_data['status'] = 'PENDING';
-			$order_data['client_id'] = $client_id;
-			$order_data['registered'] = 'YES';
+		if(Auth::check()){
+			#FOR LOGGED IN CUSTOMERS
+			$customer_id = Auth::user()->foreign_id;
+			$order = Order::where('customer_id', '=', $customer_id)->where('status', '=', 'PENDING')->get();
 
-			$inserted_order = Order::create($order_data);
-			$order_id = $inserted_order->id;
+			if ($order->count() == 0) { 
+				# NEW ORDER
+				$order_data['total'] = $qty * $price;
+				$order_data['status'] = 'PENDING';
+				$order_data['client_id'] = $client_id;
+				$order_data['customer_id'] = $customer_id;
+				$order_data['registered'] = 'YES';
 
-		}else{ 
-			# ALEADY HAVE A PENDING UNSUBMITTED ORDER
-			$order_id = $order[0]['id'];
+				#INSERT TO ORDERS TABLE
+				$inserted_order = Order::create($order_data);
+				$order_id = $inserted_order->id;
+
+
+			}else{ 
+				# ALEADY HAVE A PENDING UNSUBMITTED ORDER
+				$order_id = $order[0]['id'];
+				
+
+			}
+
+		}else{
+			# FOR GUEST CUSTOMERS
+			if(Session::has('guest_hash')){
+				$guest_hash = Session::get('guest_hash');
+				$order = Order::where('guest_hash', '=', $guest_hash)->where('status', '=', 'PENDING')->get();
+
+				if ($order->count() == 0) { 
+					# NEW ORDER
+					$order_data['total'] = $qty * $price;
+					$order_data['status'] = 'PENDING';
+					$order_data['client_id'] = $client_id;
+					$order_data['guest_hash'] = $guest_hash;
+
+					#INSERT TO ORDERS TABLE
+					$inserted_order = Order::create($order_data);
+					$order_id = $inserted_order->id;
+
+				}else{ 
+					# ALEADY HAVE A PENDING UNSUBMITTED ORDER
+					$order_id = $order[0]['id'];
+				
+
+				}
+			}else{
+				Session::put('guest_hash', Hash::make('dianne'));
+				# NEW ORDER
+				$order_data['total'] = $qty * $price;
+				$order_data['status'] = 'PENDING';
+				$order_data['client_id'] = $client_id;
+				$order_data['guest_hash'] = Session::get('guest_hash');
+
+				#INSERT TO ORDERS TABLE
+				$inserted_order = Order::create($order_data);
+				$order_id = $inserted_order->id;
+			}
 		}
 
 		$order_product_data['quantity'] = $qty;

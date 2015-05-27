@@ -76,7 +76,7 @@
 						<div class="panel-footer" style="">
 							<div class="row">
 								<div class="col-md-4" style="padding:0px">{{ Form::label('quantity', 'Quantity'); }}</div>
-								<div class="col-md-4" style="padding:0px">{{ Form::number('quantity', '', array('class' => 'form-control')); }}</div>
+								<div class="col-md-4" style="padding:0px">{{ Form::number('quantity', '1', array('class' => 'form-control', 'placeholder' => '1')); }}</div>
 								<div class="col-md-4" style="padding:0px"><button type="submit" class="btn btn-success form-control">Add Order</button></div>
 							</div>
 						</div>
