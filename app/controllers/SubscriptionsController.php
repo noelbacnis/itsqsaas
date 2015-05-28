@@ -9,7 +9,7 @@ class SubscriptionsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$subscriptions = Subscription::all();
+		$subscriptions = Subscription::where('client_id', '=', Auth::user()->foreign_id)->get();
 
 		return View::make('subscriptions.index', compact('subscriptions'));
 	}

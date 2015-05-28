@@ -40,12 +40,15 @@
       <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav side-nav">
-              @if (Auth::user()->user_type == 'client' && Session::get('subscription_type') == 'Premium')
+              @if (Auth::user()->user_type == 'client' && Session::get('subscription_type') == 3)
                 <li>
                     <a href="{{ action('client_dashboard') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Dashboard</a>
                 </li>
                 <li>
                     <a href="{{ action('categories.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Categories</a>
+                </li>
+                <li>
+                    <a href="{{ action('banners.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Banners</a>
                 </li>
                 <li>
                   <a href="{{ action('products.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Products</a>
@@ -56,7 +59,6 @@
                 <li>
                   <a href="{{ action('orders.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Orders</a>
                 </li>
-              @elseif (Auth::user()->user_type == 'admin')
                 <li>
                   <a href="{{ action('subscriptions.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Subscriptions</a>
                 </li>

@@ -45,7 +45,7 @@ class ClientsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$clients = Client::all();
+		$clients = Client::where('id', '=', Auth::user()->foreign_id)->first();
 
 		return View::make('clients.index', compact('clients'));
 	}
