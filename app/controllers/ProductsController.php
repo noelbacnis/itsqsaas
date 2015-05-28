@@ -39,21 +39,21 @@ class ProductsController extends \BaseController {
 	 */
 	public function index()
 	{
-<<<<<<< HEAD
+// <<<<<<< HEAD
 
 		$products = Product::where('client_id', '=', Auth::user()->foreign_id)->with('category')->paginate(10);
 
 		// return View::make('products.index', compact('products'));
 
 		// $products = Product::with('category')->paginate(10);
-=======
+// =======
 
 		// $products = Product::where('client_id', '=', Auth::user()->foreign_id)->with('category')->paginate(10);
 
 		// return View::make('products.index', compact('products'));
 
-		$products = Product::with('category')->paginate(10);
->>>>>>> b98efbe4978cec7ed7f72a2ef72c3b94ab22dc6d
+		// $products = Product::with('category')->paginate(10);
+// >>>>>>> b98efbe4978cec7ed7f72a2ef72c3b94ab22dc6d
 		$client_name = Client::select('name')->where('id', '=', Auth::user()->foreign_id)->first()->name;
 	
 		return View::make('products.index', compact('products', 'client_name'));
