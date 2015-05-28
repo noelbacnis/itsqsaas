@@ -150,7 +150,7 @@ class DefaultController extends \BaseController {
 	{
 		$subscription = new Subscription;
 
-		if (Input::get('client_id') == '')
+		if (Input::get('client_id') == '' && Input::get('subscription_type_id') != 1)
 		{
 			$client = new Client;
 			$client->email = Input::get('email');
@@ -165,6 +165,17 @@ class DefaultController extends \BaseController {
 			$subscription->start_period = date('Y-m-d h:i:s', strtotime(date('Y-m-d h:i:s')));
 			$subscription->end_period = date('Y-m-d h:i:s', strtotime("+".Input::get('period')." months", strtotime(date('Y-m-d h:i:s'))));
 			$subscription->save();
+
+			$newSub = Subscription::where('client_id', '=', $newClient->id)->first();
+			$newClient->subscription_id = $newSub->id;
+			$newClient->save();
+
+			$user = new User;
+			$user->username = 'admin';
+			$user->password = Hash::make(Input::get('email'));
+			$user->foreign_id = $newClient->id;
+			$user->user_type = 'client';
+			$user->save();
 		}
 		else
 		{
