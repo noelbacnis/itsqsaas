@@ -56,6 +56,17 @@ Route::group(array('before'=>'client_auth'), function() {
 
 });
 
+Route::get('admin', function(){ return Redirect::route('admin_login'); });
+Route::get('admin/login', array('as' => 'admin_login', 'uses' => 'UsersController@adminLogin'));
+
+Route::group(array('before'=>'admin_auth'), function() {  
+	Route::get('admin/dashboard', array('as' => 'admin_dashboard', 'uses' => 'ClientsController@showAdminHome'));
+	Route::get('admin/logout', array('as' => 'admin_logout', function () {
+		Auth::logout();
+		return Redirect::route('admin_login')->with('flash_notice', 'You are successfully logged out.')->with('alert_class', 'alert-success');
+	}));
+});
+
 # Client's Public Website routes
 Route::get('www/{domain}', 'ClientsController@showClientWebsite');
 Route::get('www/'.Session::get('domain').'/ordering', array('as' => 'customer_ordering','uses' => 'CustomersController@showOrderingPage'));
