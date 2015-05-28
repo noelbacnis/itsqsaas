@@ -18,10 +18,10 @@ class UsersController extends \BaseController {
 	public function customerLogin()
 	{
 		if(Auth::check()){
-			return View::make('clients.website')->nest('navbar', 'default.customer_navbar');
+			return View::make('website.website')->nest('navbar', 'default.customer_navbar');
 
 		}else{
-			return View::make('customers.login')->nest('navbar', 'default.customer_navbar');
+			return View::make('website.login')->nest('navbar', 'default.customer_navbar');
 		}
 		
 	}

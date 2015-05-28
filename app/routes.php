@@ -40,10 +40,10 @@ Route::get('check', function(){
 Route::post('/authenticate', array('as' => 'authenticate','uses' => 'UsersController@authenticate'));
 
 # Clients Admin Side routes
-Route::group(array('before'=>'client_guest'), function() {  
+// Route::group(array('before'=>'client_guest'), function() {  
 	Route::get('client', function(){ return Redirect::route('client_login'); });
 	Route::get('client/login', array('as' => 'client_login', 'uses' => 'UsersController@clientLogin'));
-});
+// });
 
 Route::group(array('before'=>'client_auth'), function() {  
 	Route::get('client/dashboard', array('as' => 'client_dashboard', 'uses' => 'ClientsController@showClientHome'));
@@ -58,16 +58,17 @@ Route::group(array('before'=>'client_auth'), function() {
 
 # Client's Public Website routes
 Route::get('www/{domain}', 'ClientsController@showClientWebsite');
+Route::get('www/'.Session::get('domain').'/ordering', array('as' => 'customer_ordering','uses' => 'CustomersController@showOrderingPage'));
 Route::get('www/'.Session::get('domain').'/product/{id}', array('as' => 'view_product', 'uses' => 'ProductsController@viewProduct') );
 Route::post('www/'.Session::get('domain').'/order', array('as' => 'addorder','uses' => 'OrdersController@addOrder'));
 Route::get('www/'.Session::get('domain').'/order/remove/{id}', array('as' => 'remove_order','uses' => 'OrdersController@removeOrder'));
 Route::post('www/'.Session::get('domain').'/order/validate', array('as' => 'customer_order_validate', 'uses' => 'OrdersController@customerOrderValidate') );
 
-Route::group(array('before'=>'customer_guest'), function() {  
+// Route::group(array('before'=>'customer_guest'), function() {  
 	Route::get('www/'.Session::get('domain').'/login', array('as' => 'customer_login', 'uses' => 'UsersController@customerLogin') );
 	Route::get('www/'.Session::get('domain').'/register', array('as' => 'customer_register', 'uses' => 'CustomersController@customerRegister') );
 	Route::post('www/'.Session::get('domain').'/register/validate', array('as' => 'customer_register_validate', 'uses' => 'CustomersController@customerRegisterValidate') );
-});
+// });
 
 Route::group(array('before'=>'customer_auth'), function() { 
 	Route::get('www/'.Session::get('domain'), array('as' => 'client_website', 'uses' => 'ClientsController@showClientWebsite'));
@@ -76,6 +77,8 @@ Route::group(array('before'=>'customer_auth'), function() {
 		return Redirect::route('customer_login')->with('flash_notice', 'You are successfully logged out.')->with('alert_class', 'alert-success');
 	}));
 });
+
+
 
 # CMS Resource Routes
 Route::resource('products', 'ProductsController');

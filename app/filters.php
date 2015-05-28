@@ -82,12 +82,12 @@ Route::filter('auth.basic', function()
 
 Route::filter('client_guest', function()
 {
-	if (Auth::check()) return Redirect::to('/client');
+	// if (Auth::check()) return Redirect::to('/client');
 });
 
 Route::filter('customer_guest', function()
 {
-	if (Auth::check()) return Redirect::to('/www/'.Session::get('domain'));
+	// if (Auth::check()) return Redirect::to('/www/'.Session::get('domain'));
 });
 
 /*

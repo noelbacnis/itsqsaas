@@ -4,6 +4,8 @@ class ProductsController extends \BaseController {
 
 	public function viewProduct($id)
 	{
+		$client_name = Client::select('name')->where('domain', '=', Session::get('domain'))->first()->name;
+
 		$categories = Category::with('products')->get();
 		$product = Product::where('id', '=', $id)->get();
 
@@ -26,7 +28,8 @@ class ProductsController extends \BaseController {
 			}
 		}
 			
-		return View::make('clients.website', compact('categories', 'product', 'order_products', 'customer_info'))->nest('navbar', 'default.customer_navbar');
+		return View::make('website.ordering', compact('categories', 'product', 'order_products', 'customer_info', 'client_name'))->nest('navbar', 'default.customer_navbar');
+		// return View::make('clients.website', compact('categories', 'product', 'order_products', 'customer_info', 'client_name'))->nest('navbar', 'default.customer_navbar');
 	}
 
 	/**
@@ -36,9 +39,16 @@ class ProductsController extends \BaseController {
 	 */
 	public function index()
 	{
+<<<<<<< HEAD
 		$products = Product::where('client_id', '=', Auth::user()->foreign_id)->with('category')->paginate(10);
 
 		return View::make('products.index', compact('products'));
+=======
+		$products = Product::with('category')->paginate(10);
+		$client_name = Client::select('name')->where('id', '=', Auth::user()->foreign_id)->first()->name;
+	
+		return View::make('products.index', compact('products', 'client_name'));
+>>>>>>> fec6e99aafb265242ffd5d76f8d41bdb70f85e3e
 	}
 
 	/**
@@ -69,6 +79,17 @@ class ProductsController extends \BaseController {
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
+		$client_name = Client::select('name')->where('id', '=', Auth::user()->foreign_id)->first()->name;
+		if(!File::exists(public_path().'/uploads/'.$client_name)){
+			File::makeDirectory(public_path().'/uploads/'.$client_name);
+		}
+		if (Input::hasFile('image')){
+			$file = Input::file('image');
+			$filename = $file->getClientOriginalName();
+			$file->move(public_path().'/uploads/'.$client_name, $filename);
+			$data['image'] = $filename;
+		}
+		
 		Product::create($data);
 
 		return Redirect::route('products.index');
@@ -98,8 +119,9 @@ class ProductsController extends \BaseController {
 		$product = Product::find($id);
 		$status = array('ACTIVE'=>'ACTIVE', 'INACTIVE'=>'INACTIVE');
 		$categories = Category::orderBy('name')->lists('name', 'id');
+		$client_name = Client::select('name')->where('id', '=', Auth::user()->foreign_id)->first()->name;
 
-		return View::make('products.edit', compact('product','status','categories'));
+		return View::make('products.edit', compact('product','status','categories','client_name'));
 	}
 
 	/**
@@ -118,6 +140,17 @@ class ProductsController extends \BaseController {
 		if ($validator->fails())
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
+		}
+
+		$client_name = Client::select('name')->where('id', '=', Auth::user()->foreign_id)->first()->name;
+		if(!File::exists(public_path().'/uploads/'.$client_name)){
+			File::makeDirectory(public_path().'/uploads/'.$client_name);
+		}
+		if (Input::hasFile('image')){
+			$file = Input::file('image');
+			$filename = $file->getClientOriginalName();
+			$file->move(public_path().'/uploads/'.$client_name, $filename);
+			$data['image'] = $filename;
 		}
 
 		$product->update($data);

@@ -2,25 +2,24 @@
 
 @section('content')
 
-{{ HTML::style('assets/css/default.css'); }}
+{{ HTML::style('assets/css/stylish-portfolio.css'); }}
+
+{{ $navbar }}
+
+	<!-- Header -->
+    <header id="top" class="header" style="height:250px">
+        <div class="text-vertical-center">
+            <h1>Restaurant</h1>
+            <h3>Register</h3>
+            <br>
+        </div>
+    </header>
 
 
-
-	<div class="wrapper">
-		<div class="wrapper-inner first">
-		{{ $navbar }}
-			<div class="center">
-				<h1>Client's Website</h1>
-				<hr>
-			</div>
-		</div>
-	</div>
-
-	<div class="wrapper">
-		<div class="wrapper-inner second">
-			<div class="container">
-				<br><br>
-
+	<!-- About -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="row">
 
 
 				<div class="col-md-5" style="background-color:none">
@@ -131,26 +130,45 @@
 				</div>
 
 
-
-				<br><br>
 			</div>
-		</div>
-	</div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
 
-	<div class="wrapper">
-		<div class="wrapper-inner third">
-			<div class="container">
-			<br><br>
-				
 
-				<br><br>
-			</div>
-		</div>
-	</div>
 
-	<div class="wrapper">
-		<div class="wrapper-inner">
-			<h1>Contact Us</h1>
-		</div>
-	</div>
+    <!-- Custom Theme JavaScript -->
+    <script>
+    // Closes the sidebar menu
+    $("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+
+    // Opens the sidebar menu
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+
+    // Scrolls to the selected menu item on the page
+    $(function() {
+        $('a[href*=#]:not([href=#])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+    </script>
+
+
 @stop

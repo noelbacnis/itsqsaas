@@ -2,13 +2,39 @@
 
 class CustomersController extends \BaseController {
 
+	public function showOrderingPage()
+	{
+		$client_name = Client::select('name')->where('domain', '=', Session::get('domain'))->first()->name;
+			$categories = Category::with('products')->get();
+			if(Auth::check()){
+				$customer_id = Auth::user()->foreign_id;
+				$customer_info = Customer::with('user')->findOrFail($customer_id);
+				$order = Order::where('customer_id', '=', $customer_id)->where('status', '=', 'PENDING')->get();
+				if ($order->count() != 0) {
+					$order_id = $order[0]['id'];
+					$order_products = OrdersProduct::where('order_id', '=', $order_id)->with('product')->get();
+				}
+			}else{
+				if(Session::has('guest_hash')){
+					$guest_hash = Session::get('guest_hash');
+					$order = Order::where('guest_hash', '=', $guest_hash)->where('status', '=', 'PENDING')->get();
+					if ($order->count() != 0) {
+						$order_id = $order[0]['id'];
+						$order_products = OrdersProduct::where('order_id', '=', $order_id)->with('product')->get();
+					}
+				}
+			}
+
+			return View::make('website.ordering', compact('categories', 'order_products', 'customer_info', 'client_name'))->nest('navbar', 'default.customer_navbar');	
+	}
+
 	public function customerRegister()
 	{
 		#Get Client ID
 		$client = Client::select('id')->where('domain', '=', Session::get('domain'))->get();
 		$client_id = $client[0]['id'];
 
-		return View::make('customers.register', compact('client_id'))->nest('navbar', 'default.customer_navbar');
+		return View::make('website.register', compact('client_id'))->nest('navbar', 'default.customer_navbar');
 	}
 
 	public function customerRegisterValidate()
