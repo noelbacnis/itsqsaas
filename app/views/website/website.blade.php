@@ -1,3 +1,5 @@
+{{ HTML::style('assets/css/stylish-portfolio.css'); }}
+
 <!-- Navigation -->
     <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
     <nav id="sidebar-wrapper">
