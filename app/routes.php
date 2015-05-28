@@ -42,7 +42,7 @@ Route::post('/authenticate', array('as' => 'authenticate','uses' => 'UsersContro
 # Clients Admin Side routes
 // Route::group(array('before'=>'client_guest'), function() {  
 	Route::get('client', function(){ return Redirect::route('client_login'); });
-	Route::get('client/login', array('as' => 'admin_login', 'uses' => 'UsersController@adminLogin'));
+	Route::get('client/login', array('as' => 'client_login', 'uses' => 'UsersController@adminLogin'));
 // });
 
 Route::group(array('before'=>'client_auth'), function() {  
