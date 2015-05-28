@@ -1,3 +1,9 @@
+@extends('layouts.master')
+
+@section('content')
+
+{{ HTML::style('assets/css/stylish-portfolio.css'); }}
+
 <!-- Navigation -->
     <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
     <nav id="sidebar-wrapper">
@@ -27,7 +33,7 @@
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h1>Restaurant de puta</h1>
+            <h1>Restaurant</h1>
             <h3>Welcome !</h3>
             <br>
             <!-- <a href="#about" class="btn btn-dark btn-lg">Find Out More</a> -->
@@ -145,28 +151,28 @@ The entire restaurant of our luxury hotel in Prague is a non-smoking establishme
                         <div class="col-md-6">
                             <div class="portfolio-item">
                                 <a href="#">
-                                    <img class="img-portfolio img-responsive" src="<?php echo base_url('bootstrap/img/portfolio-1.jpg')?>">
+                                    <img class="img-portfolio img-responsive" src="{{ URL::asset('assets/images/portfolio-1.jpg')}}">
                                 </a>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="portfolio-item">
                                 <a href="#">
-                                    <img class="img-portfolio img-responsive" src="<?php echo base_url('bootstrap/img/portfolio-2.jpg')?>">
+                                    <img class="img-portfolio img-responsive" src="{{ URL::asset('assets/images/portfolio-2.jpg')}}">
                                 </a>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="portfolio-item">
                                 <a href="#">
-                                    <img class="img-portfolio img-responsive" src="<?php echo base_url('bootstrap/img/portfolio-3.jpg')?>">
+                                    <img class="img-portfolio img-responsive" src="{{ URL::asset('assets/images/portfolio-3.jpg')}}">
                                 </a>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="portfolio-item">
                                 <a href="#">
-                                    <img class="img-portfolio img-responsive" src="<?php echo base_url('bootstrap/img/portfolio-4.jpg')?>">
+                                    <img class="img-portfolio img-responsive" src="{{ URL::asset('assets/images/portfolio-4.jpg')}}">
                                 </a>
                             </div>
                         </div>
@@ -236,12 +242,6 @@ The entire restaurant of our luxury hotel in Prague is a non-smoking establishme
         </div>
     </footer>
 
-    <!-- jQuery -->
-    <script src="<?php echo base_url('bootstrap/js/jquery.js') ?>"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="<?php echo base_url('bootstrap/js/bootstrap.min.js') ?>"></script>
-
     <!-- Custom Theme JavaScript -->
     <script>
     // Closes the sidebar menu
@@ -273,3 +273,4 @@ The entire restaurant of our luxury hotel in Prague is a non-smoking establishme
         });
     });
     </script>
+@stop

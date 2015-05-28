@@ -29,6 +29,9 @@ Route::get('subscriptionSuccess', 'DefaultController@subscriptionSuccess');
 Route::get('subscribe/enterTransactionNumber', 'DefaultController@enterTransactionNumber');
 Route::post('subscribe/doEnterTransactionNumber', 'DefaultController@doEnterTransactionNumber');
 
+Route::get('check', function(){
+	return View::make('website.website');
+});
 // Route::get('subscribe', 'DefaultController@subscribe');
 // Route::post('subscribe/doSubscribe', 'DefaultController@doSubscribe');
 
