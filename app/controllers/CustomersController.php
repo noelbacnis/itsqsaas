@@ -64,7 +64,7 @@ class CustomersController extends \BaseController {
 	 */
 	public function index()
 	{
-		$customers = Customer::paginate(10);
+		$customers = Customer::with('orders')->paginate(10);
 
 		return View::make('customers.index', compact('customers'));
 	}

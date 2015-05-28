@@ -9,6 +9,7 @@ class ProductsController extends \BaseController {
 
 		if(Auth::check()){
 			$customer_id = Auth::user()->foreign_id;
+			$customer_info = Customer::with('user')->findOrFail($customer_id);
 			$order = Order::where('customer_id', '=', $customer_id)->where('status', '=', 'PENDING')->get();
 			if ($order->count() != 0) {
 				$order_id = $order[0]['id'];
@@ -25,7 +26,7 @@ class ProductsController extends \BaseController {
 			}
 		}
 			
-		return View::make('clients.website', compact('categories', 'product', 'order_products'))->nest('navbar', 'default.customer_navbar');
+		return View::make('clients.website', compact('categories', 'product', 'order_products', 'customer_info'))->nest('navbar', 'default.customer_navbar');
 	}
 
 	/**
@@ -35,7 +36,7 @@ class ProductsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$products = Product::paginate(10);
+		$products = Product::with('category')->paginate(10);
 
 		return View::make('products.index', compact('products'));
 	}

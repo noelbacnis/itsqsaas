@@ -36,6 +36,7 @@ class UsersController extends \BaseController {
 
 		if(Auth::attempt($user, false)){
 			if($user['user_type'] == 'client'){
+				Session::put('subscription_type', 'Premium'); # TO CHANGE
 				return Redirect::route('client_dashboard')->with('flash_notice', 'You have successfully logged in.')->with('alert_class', 'alert-success');
 			}else if($user['user_type'] == 'customer'){
 				return Redirect::route('client_website')->with('flash_notice', 'You have successfully logged in.');

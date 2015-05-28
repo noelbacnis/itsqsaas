@@ -17,7 +17,7 @@ class OrdersController extends \BaseController {
 			#FOR LOGGED IN CUSTOMERS
 			$customer_id = Auth::user()->foreign_id;
 			$order = Order::where('customer_id', '=', $customer_id)->where('status', '=', 'PENDING')->get();
-
+			$order_data = array();
 			if ($order->count() == 0) { 
 				# NEW ORDER
 				$order_data['total'] = $qty * $price;
@@ -34,8 +34,10 @@ class OrdersController extends \BaseController {
 			}else{ 
 				# ALEADY HAVE A PENDING UNSUBMITTED ORDER
 				$order_id = $order[0]['id'];
+				$order_update = Order::where('id', '=', $order_id)->first();
+				$order_update->total += $qty * $price;
+				$order_update->update($order_data);
 				
-
 			}
 
 		}else{
@@ -58,11 +60,12 @@ class OrdersController extends \BaseController {
 				}else{ 
 					# ALEADY HAVE A PENDING UNSUBMITTED ORDER
 					$order_id = $order[0]['id'];
-				
-
+					$order_update = Order::where('id', '=', $order_id)->first();
+					$order_update->total += $qty * $price;
+					$order_update->update($order_data);
 				}
 			}else{
-				Session::put('guest_hash', Hash::make('dianne'));
+				Session::put('guest_hash', Hash::make('itsqsaas')); # generate random hash of itsqsaas word
 				# NEW ORDER
 				$order_data['total'] = $qty * $price;
 				$order_data['status'] = 'PENDING';
@@ -89,6 +92,48 @@ class OrdersController extends \BaseController {
 		return Redirect::back();
 	}
 
+	public function customerOrderValidate()
+	{
+		$data = Input::all();
+		
+		if(Auth::check()){
+			$order_id = Order::select('id')->where('customer_id', '=', Auth::user()->foreign_id)->get();
+		}else{
+			$order_id = Order::select('id')->where('guest_hash', '=', Session::get('guest_hash'))->get();
+		}
+
+		$order_id = $order_id[0]['id'];
+		$order = Order::findOrFail($order_id);
+
+		$validator = Validator::make($data = Input::all(), Order::$rules,  Order::$messages);
+		$validator->setAttributeNames(Order::$friendly_names);
+
+		if ($validator->fails())
+		{
+			return Redirect::back()->withErrors($validator)->withInput();
+		}
+
+		$order->update($data);
+
+		if(Session::has('guest_hash')){
+			Session::forget('guest_hash');
+		}
+
+		return Redirect::route('client_website');
+
+	}
+
+	public function changeStatus($id, $status)
+	{
+
+		$order = Order::where('id', '=', $id)->first();
+	    $order->status = $status;
+	    $order->save();
+
+	    return Redirect::back();
+	}
+
+
 	/**
 	 * Display a listing of orders
 	 *
@@ -96,7 +141,7 @@ class OrdersController extends \BaseController {
 	 */
 	public function index()
 	{
-		$orders = Order::paginate(10);
+		$orders = Order::with('customer')->paginate(10);
 
 		return View::make('orders.index', compact('orders'));
 	}
@@ -138,7 +183,10 @@ class OrdersController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$order = Order::findOrFail($id);
+		$order = Order::with('customer')->with(array('orderProducts'=>function($query){
+										    $query->with('product');
+										}))->findOrFail($id);
+
 
 		return View::make('orders.show', compact('order'));
 	}

@@ -44,11 +44,14 @@
 	                </thead>
 	                <tbody>
 	                    @foreach ($products as $product)
+	                    	<!-- <pre>
+	                    	<?php print_r($product)?>
+	                        </pre> -->
 	                        <tr>
 	                            <td class="col-md-2">{{ $product->name }}</td>
 	                            <td class="col-md-1">{{ $product->price }}</td>
 	                            <td class="col-md-2"> </td>
-	                            <td class="col-md-2">{{ $product->category->name }}</td>
+	                            <td class="col-md-2">{{ $product->category['name'] }}</td>
 	                            <td class="col-md-2">{{ $product->status }}</td>
 
 	                            <td class="col-md-3">

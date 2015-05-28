@@ -58,7 +58,7 @@
 	                                	{{ Form::open(array('method'=> 'DELETE', 'route' => array('customers.destroy', $customer->id))) }}    
 	                                		{{ Form::submit('Delete', array('class'=> 'btn btn-danger col-md-5')) }}
 		                                {{ Form::close() }}
-		                            @elseif ($customer->orderCustomers->count() > 0)                      
+		                            @else                   
 		                                {{ Form::submit('Delete', array('class'=> 'btn btn-danger col-md-5', 'style' => '', 'disabled')) }}
 	                                @endif
 	                                
