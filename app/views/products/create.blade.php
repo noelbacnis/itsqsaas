@@ -39,7 +39,7 @@
 		            @endif
 					
 					{{ Form::open(array('route' => 'products.store', 'files' => true, 'class' => 'form-horizontal')) }}
-
+					{{ Form::hidden('client_id', Auth::user()->foreign_id) }}
 		            <div class="col-md-4 well">
 						<b>Upload Product's Photo</b><br><br>
 						<!-- form open -->

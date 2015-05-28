@@ -29,6 +29,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			{{ Form::open(array('route' => 'categories.store' , 'class' => 'form-horizontal')) }}
+				{{ Form::hidden('client_id', Auth::user()->foreign_id) }}
 			<div class="panel panel-default">
 		        <div class="panel-body" style="padding:50px 100px 15px 100px;">
 

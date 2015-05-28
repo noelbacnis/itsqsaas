@@ -4,7 +4,7 @@ class Category extends \Eloquent {
 
 	// Don't forget to fill this array
 	protected $guarded = array('id');
-	protected $fillable = array('name');
+	protected $fillable = array('name', 'client_id');
 
 	public static $rules = array(
 		'name' => 'required'
