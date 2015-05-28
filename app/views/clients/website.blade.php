@@ -2,7 +2,7 @@
 
 @section('content')
 
-{{ HTML::style('assets/css/default.css'); }}
+{{ HTML::style('assets/css/stylish-portfolio.css'); }}
 
 
 
