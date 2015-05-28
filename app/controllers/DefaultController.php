@@ -150,13 +150,32 @@ class DefaultController extends \BaseController {
 	{
 		$subscription = new Subscription;
 
-		$subscription->client_id = Input::get('client_id');
-		$subscription->subscription_type_id = Input::get('subscription_type_id');
-		$subscription->transaction_number = 0;
-		$subscription->total_amount = 0;
-		$subscription->start_period = strtotime(date('Y-m-d h:i:s'));
-		$subscription->end_period = strtotime("+".Input::get('period').' months', strtotime(date('Y-m-d h:i:s')));
-		$subscription->save();
+		if (Input::get('client_id') == '')
+		{
+			$client = new Client;
+			$client->email = Input::get('email');
+			$client->save();
+
+			$newClient = Client::where('email', '=', Input::get('email'))->first();
+
+			$subscription->client_id = $newClient->id;
+			$subscription->subscription_type_id = Input::get('subscription_type_id');
+			$subscription->transaction_number = 0;
+			$subscription->total_amount = 0;
+			$subscription->start_period = date('Y-m-d h:i:s', strtotime(date('Y-m-d h:i:s')));
+			$subscription->end_period = date('Y-m-d h:i:s', strtotime("+".Input::get('period')." months", strtotime(date('Y-m-d h:i:s'))));
+			$subscription->save();
+		}
+		else
+		{
+			$subscription->client_id = Input::get('client_id');
+			$subscription->subscription_type_id = Input::get('subscription_type_id');
+			$subscription->transaction_number = 0;
+			$subscription->total_amount = 0;
+			$subscription->start_period = date('Y-m-d h:i:s', strtotime(date('Y-m-d h:i:s')));
+			$subscription->end_period = date('Y-m-d h:i:s', strtotime("+".Input::get('period')." months", strtotime(date('Y-m-d h:i:s'))));
+			$subscription->save();
+		} # End Input::get('client_id')
 
 		return Redirect::to('subscriptionSuccess');
 	} # End doSubscriptionPayment

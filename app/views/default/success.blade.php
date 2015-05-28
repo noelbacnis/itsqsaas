@@ -12,7 +12,7 @@
 		<div class="container">
 			<div class="center" style="margin-top: 50px;">
 				<div class="inner">
-					<p class="roboto">Great! Thank you for subscribing to</p>
+					<p class="roboto">Great! Thank you for subscribing to<?php echo date('Y-m-d H:i:s'); ?></p>
 					<img src="{{ URL::asset('assets/images/logo.png'); }}" alt="" class="img-responsive">
 					<br>
 					<p class="roboto">Restaurant Systems Service. Your website shall go live upon payment.</p>
@@ -34,6 +34,7 @@
         <h4 class="modal-title">Confirm Transaction</h4>
       </div>
       {{ Form::open(array('url' => 'subscribe/doEnterTransactionNumber')) }}
+      
       <div class="modal-body">
       	{{ Form::label('subscription_id', 'Subscription ID'); }}
       	{{ Form::text('subscription_id', '', array('class' => 'form-control', 'required' => true)); }}

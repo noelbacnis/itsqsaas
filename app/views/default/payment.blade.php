@@ -35,15 +35,29 @@
 										4 => '4 Months',
 										5 => '5 Months',
 										6 => '6 Months'
-									), 3, array('class' => 'form-control'));}}
+									), 3, array('class' => 'form-control', 'id' => 'months'));}}
 							<i>Period has a minimum of 3 Months</i>
 							<br><br>
+							@if (!Input::get('id'))
+								{{ Form::label('email', 'E-mail Address'); }}
+								{{ Form::text('email', '', array('class' => 'form-control')); }}
+								<i>Subscription information will be sent to this e-mail.</i>
+								<br><br>
+							@endif
 							{{ Form::checkbox('agree', 'Terms & Conditions'); }}
 							By checking this box, you agree to our Terms & Conditions in subscribing to our service.
 						</div>
 						<div class="panel-footer">
 						{{ Form::hidden('client_id', Input::get('id')); }}
 						{{ Form::hidden('subscription_type_id', Input::get('type')); }}
+						@if (Input::get('type') == 2)
+							<?php $amount = 19.99; ?>
+						@elseif (Input::get('type') == 3)
+							<?php $amount = 59.99; ?>
+						@else
+							<?php $amount = 0; ?>
+						@endif
+						{{ Form::hidden('amount', $amount, array('id' => 'amount')); }}
 
 
 							<button type="submit" class="btn btn-success form-control">Submit</button>
@@ -57,20 +71,36 @@
 						</div>
 						<div class="panel-body">
 							{{ Form::label('restaurant_name', 'Restaurant Name'); }} <br>
-							{{ $client->name; }}
+							@if ($client)
+								{{ $client->name; }}
+							@else
+								{{ 'N/A' }}
+							@endif
 							<br><br>
 							{{ Form::label('domain', 'Domain'); }} <br>
-							{{ 'www.'.$client->domain.'.com'; }}
+							@if ($client)
+								{{ 'www.'.$client->domain.'.com'; }}
+							@else
+								{{ 'N/A' }}
+							@endif
+							
 							<br><br>
 							{{ Form::label('subscription', 'Subscription'); }} <br>
-							{{ 'Free' }}
+							@if (Input::get('type') == 1)
+								{{ 'Free' }}
+							@elseif (Input::get('type') == 2)
+								{{ 'Paid' }}
+							@else
+								{{ 'Premium' }}
+							@endif
+
 							<br><br>
 							
 						</div>
 						<div class="panel-footer">
 							{{ Form::label('total_payment', 'Total Payment'); }}
 
-							<span id="total_payment" style="float: right;">Php 0.00</span>
+							<span id="total_payment" style="float: right;"></span>
 						</div>
 					</div>
 				</div>
@@ -79,4 +109,16 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		$('#months').on('change', function(){
+			var val = $(this).val();
+			var amount = $('#amount').val();
+
+			$('#total_payment').html('$'+(val*amount).toFixed(2));
+		});
+	});
+</script>
 @stop
