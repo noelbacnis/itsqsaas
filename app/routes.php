@@ -42,7 +42,7 @@ Route::post('/authenticate', array('as' => 'authenticate','uses' => 'UsersContro
 # Clients Admin Side routes
 // Route::group(array('before'=>'client_guest'), function() {  
 	Route::get('client', function(){ return Redirect::route('client_login'); });
-	Route::get('client/login', array('as' => 'client_login', 'uses' => 'UsersController@clientLogin'));
+	Route::get('client/login', array('as' => 'admin_login', 'uses' => 'UsersController@adminLogin'));
 // });
 
 Route::group(array('before'=>'client_auth'), function() {  
@@ -54,6 +54,17 @@ Route::group(array('before'=>'client_auth'), function() {
 	}));
 	Route::get('client/order/status/{id}/{status}', array('as' => 'order_change_status', 'uses' => 'OrdersController@changeStatus'));
 
+});
+
+Route::get('admin', function(){ return Redirect::route('admin_login'); });
+Route::get('admin/login', array('as' => 'admin_login', 'uses' => 'UsersController@adminLogin'));
+
+Route::group(array('before'=>'admin_auth'), function() {  
+	Route::get('admin/dashboard', array('as' => 'admin_dashboard', 'uses' => 'ClientsController@showAdminHome'));
+	Route::get('admin/logout', array('as' => 'admin_logout', function () {
+		Auth::logout();
+		return Redirect::route('admin_login')->with('flash_notice', 'You are successfully logged out.')->with('alert_class', 'alert-success');
+	}));
 });
 
 # Client's Public Website routes

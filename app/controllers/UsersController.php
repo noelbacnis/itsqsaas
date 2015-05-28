@@ -15,6 +15,18 @@ class UsersController extends \BaseController {
 		
 	}
 
+	public function adminLogin()
+	{
+		$menu_bar_visibility = true;
+		if(Auth::check()){
+			return Redirect::route('admin_dashboard')->with('menu_bar_visibility', $menu_bar_visibility);
+		}else{
+			$menu_bar_visibility = false;
+			return View::make('admin.login', compact('menu_bar_visibility'));
+		}
+		
+	}
+
 	public function customerLogin()
 	{
 		if(Auth::check()){
@@ -34,6 +46,8 @@ class UsersController extends \BaseController {
             'user_type' => Input::get('user_type')
         );
 
+        print_r($user);
+
 		if(Auth::attempt($user, false)){
 			if($user['user_type'] == 'client'){
 				$client_id = Auth::user()->foreign_id;
@@ -44,6 +58,8 @@ class UsersController extends \BaseController {
 				return Redirect::route('client_dashboard')->with('flash_notice', 'You have successfully logged in.')->with('alert_class', 'alert-success');
 			}else if($user['user_type'] == 'customer'){
 				return Redirect::route('client_website')->with('flash_notice', 'You have successfully logged in.');
+			}else if($user['user_type'] == 'admin'){
+				return Redirect::route('admin_dashboard')->with('flash_notice', 'You have successfully logged in.');
 			}
 
 		}else{
@@ -51,6 +67,8 @@ class UsersController extends \BaseController {
 				return Redirect::route('client_login')->with('flash_notice', 'Log in failed.')->with('alert_class', 'alert-danger');
 			}else if($user['user_type'] == 'customer'){
 				return Redirect::route('customer_login')->with('flash_notice', 'Log in failed.')->with('alert_class', 'alert-danger');
+			}else if($user['user_type'] == 'admin'){
+				return Redirect::route('admin_login')->with('flash_notice', 'Log in failed.')->with('alert_class', 'alert-danger');
 			}
 		}
 	}
