@@ -44,6 +44,17 @@
                 <li>
                     <a href="{{ action('client_dashboard') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Dashboard</a>
                 </li>
+                
+                
+                <li>
+                  <a href="{{ action('orders.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Orders</a>
+                </li>
+                <li>
+                  <a href="{{ action('subscriptions.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Subscriptions</a>
+                </li>
+                <li>
+                  <a href="{{ action('clients.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Clients</a>
+                </li>
                 <li>
                     <a href="{{ action('categories.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Categories</a>
                 </li>
@@ -56,14 +67,18 @@
                 <li>
                   <a href="{{ action('customers.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Customers</a>
                 </li>
+      @elseif (Session::get('subscription_type') == 2)
                 <li>
-                  <a href="{{ action('orders.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Orders</a>
+                    <a href="{{ action('categories.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Categories</a>
                 </li>
                 <li>
-                  <a href="{{ action('subscriptions.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Subscriptions</a>
+                    <a href="{{ action('banners.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Banners</a>
                 </li>
                 <li>
-                  <a href="{{ action('clients.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Clients</a>
+                  <a href="{{ action('products.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Products</a>
+                </li>
+                <li>
+                  <a href="{{ action('customers.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Customers</a>
                 </li>
               @endif
           </ul>

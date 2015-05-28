@@ -4832,3 +4832,7 @@ Stack trace:
 #16 /opt/lampp/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(641): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
 #17 /opt/lampp/htdocs/itsqsaas/public/index.php(49): Illuminate\Foundation\Application->run()
 #18 {main} [] []
+[2015-05-29 06:12:04] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '<<' (T_SL)' in /opt/lampp/htdocs/itsqsaas/app/controllers/ProductsController.php:42
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
