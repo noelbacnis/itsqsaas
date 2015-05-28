@@ -4,291 +4,274 @@
 
 {{ HTML::style('assets/css/stylish-portfolio.css'); }}
 
+<!-- Navigation -->
+    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
+    <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+            <li class="sidebar-brand">
+                <a href="#top"  onclick = $("#menu-close").click(); >Welcome</a>
+            </li>
+            <li>
+                <a href="#top" onclick = $("#menu-close").click(); >Home</a>
+            </li>
+            <li>
+                <a href="#about" onclick = $("#menu-close").click(); >About</a>
+            </li>
+            <li>
+                <a href="#services" onclick = $("#menu-close").click(); >Services</a>
+            </li>
+            <li>
+                <a href="#portfolio" onclick = $("#menu-close").click(); >The Restaurant</a>
+            </li>
+            <li>
+                <a href="#contact" onclick = $("#menu-close").click(); >Contact</a>
+            </li>
+        </ul>
+    </nav>
 
+    <!-- Header -->
+    <header id="top" class="header">
+        <div class="text-vertical-center">
+            <h1>Restaurant</h1>
+            <h3>Welcome !</h3>
+            <br>
+            <!-- <a href="#about" class="btn btn-dark btn-lg">Find Out More</a> -->
+        </div>
+    </header>
 
-	<div class="wrapper">
-		<div class="wrapper-inner first">
-		{{ $navbar }}
-			<div class="center">
-				<h1>Client's Website</h1>
-				<hr>
-			</div>
-		</div>
-	</div>
+    <!-- About -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>About</h2>
+                    <hr class="small">
+                    <h2>Stylish Portfolio is the perfect theme for your next project!</h2>
+                    <p class="lead">Our Prague five star hotel proudly presents its Franz Josef Restaurant.
 
-	<div class="wrapper">
-		<div class="wrapper-inner second">
-			<div class="container">
-				<br><br>
+Chef Michal Čermák and his team of professionals prepare specialities based on  traditional recipes from  the Central European region on a daily basis for you. Modern cooking methods, the freshest of ingredients and  stylish presentation promise a unique gourmet experience.
 
-				
-				<div class="row">
+In addition to our periodically modified à la carte menu, this luxury hotel restaurant offer meticulously prepared lunchtime menus, served between 12 noon and 3 pm on weekdays. This way you can treat yourself to a unique lunch in a peaceful setting for a mere CZK 165 for the main course, and fit that all in your lunch break. Moreover, we could  add your favourite dish to one of our future menus if you request it, so do not hesitate  to contact us.
+ 
+The entire restaurant of our luxury hotel in Prague is a non-smoking establishment. Parking is possible in a nearby roofed garage, with optional valet parking and car pull-up.</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
 
-				<div class="col-md-8" style="">
-					
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<div class="panel-title">Products</div>
-						</div>
-						<div class="panel-body" style="color:black">
-							@if($categories->count())
-								@foreach($categories as $category)
-									{{$category->name}} <br>
-									@foreach($category->products as $prod)
-										<a href="{{ route('view_product', $prod->id) }}">
-											{{$prod->name}}
-										</a>
-										<br>
-										
-									@endforeach
-								@endforeach
-							@else
-								No Products Yet
-							@endif
-						</div>
-					</div>
-				</div>
+    <!-- Services -->
+    <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
+    <section id="services" class="services bg-primary">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <h2>Our Services</h2>
+                    <hr class="small">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-cloud fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>Service Name</strong>
+                                </h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <a href="#" class="btn btn-light">Learn More</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-compass fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>Service Name</strong>
+                                </h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <a href="#" class="btn btn-light">Learn More</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-flask fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>Service Name</strong>
+                                </h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <a href="#" class="btn btn-light">Learn More</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-shield fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>Service Name</strong>
+                                </h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <a href="#" class="btn btn-light">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.col-lg-10 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
 
+    <!-- Callout -->
+    <aside class="callout">
+        <div class="text-vertical-center">
+            <h1>Vertically Centered Text</h1>
+        </div>
+    </aside>
 
-				<div class="col-md-4" style="">
-					{{ Form::open(array('route' => 'addorder' ,'class' => '', 'id' => '')); }}
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<div class="panel-title">Product Preview</div>
-						</div>
-						<div class="panel-body">
-							@if(isset($product))
-								@foreach($product as $p)
-									<div class="col-md-6" style="">
-										@if($p->image != '')
-											{{ HTML::image('uploads/'.$client_name.'/'.$p->image,'', array( 'width' => 120)) }} 
-										@else
-											{{ HTML::image('uploads/'.$client_name.'/'.$p->image,'', array( 'width' => 120)) }} 
-										@endif
-									</div>
-									<div class="col-md-6" style="color:black">
-										{{ Form::hidden('id', $p->id ); }}
-										<h3>{{ $p->name }}</h3>
-										<small>{{ $p->description }}</small> <br>
-										<small>{{ $p->price }}</small>
-										{{ Form::hidden('price', $p->price) }}
-									</div>
-								@endforeach
-							@endif
-						</div>
-						<div class="panel-footer" style="">
-							<div class="row">
-								<div class="col-md-4" style="padding:0px">{{ Form::label('quantity', 'Quantity'); }}</div>
-								<div class="col-md-4" style="padding:0px">{{ Form::number('quantity', '1', array('class' => 'form-control', 'placeholder' => '1')); }}</div>
-								<div class="col-md-4" style="padding:0px"><button type="submit" class="btn btn-success form-control">Add Order</button></div>
-							</div>
-						</div>
-					</div>
-					{{ Form::close(); }}
+    <!-- Portfolio -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h2>The Restaurant</h2>
+                    <hr class="small">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="portfolio-item">
+                                <a href="#">
+                                    <img class="img-portfolio img-responsive" src="{{ URL::asset('assets/images/portfolio-1.jpg')}}">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="portfolio-item">
+                                <a href="#">
+                                    <img class="img-portfolio img-responsive" src="{{ URL::asset('assets/images/portfolio-2.jpg')}}">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="portfolio-item">
+                                <a href="#">
+                                    <img class="img-portfolio img-responsive" src="{{ URL::asset('assets/images/portfolio-3.jpg')}}">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="portfolio-item">
+                                <a href="#">
+                                    <img class="img-portfolio img-responsive" src="{{ URL::asset('assets/images/portfolio-4.jpg')}}">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row (nested) -->
+                    <a href="#" class="btn btn-dark">View More Items</a>
+                </div>
+                <!-- /.col-lg-10 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
 
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<div class="panel-title">My Orders</div>
-						</div>
-						<div class="panel-body">
-							<table style="width:100%; color:black">
-								<tr>
-									<td style="width:40%">Name</td>
-									<td style="width:15%">Quantity</td>
-									<td style="width:15%">Price</td>
-									<td style="width:20%">Subtotal</td>
-                                    <td style="width:10%">Remove</td>
-								</tr>
-								<?php $total = 0;?>
-								@if (isset($order_products))
-									@foreach($order_products as $op)
-										<?php 
-											$subtotal = 0;
-											$subtotal = $op->product->price * $op->quantity;
-											$total += $subtotal;
-										?>
-										<tr>
-											<td style="width:40%">{{ $op->product->name }}</td>
-											<td style="width:15%">{{ $op->quantity }}</td>
-											<td style="width:15%">{{ $op->product->price }}</td>
-											<td style="width:15%">{{ $subtotal }}</td>
-		                                    <td style="width:10%">{{ link_to_route('remove_order', 'X', array($op->id)) }}</td>
-										</tr>
-									@endforeach
-								@endif
-								
-							</table>
-						</div>
-						<div class="panel-footer" style="color:black">
-							<div class="row">
-								<div class="col-md-6" style="padding:0px">Total:</div>
-								<div class="col-md-6" style="padding:0px">Php {{ $total }}</div>
-							</div>
-						</div>
-					</div>
+    <!-- Call to Action -->
+    <aside class="call-to-action bg-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h3>The buttons below are impossible to resist.</h3>
+                    <a href="#" class="btn btn-lg btn-light">Click Me!</a>
+                    <a href="#" class="btn btn-lg btn-dark">Look at Me!</a>
+                </div>
+            </div>
+        </div>
+    </aside>
 
-					</div>
+    <!-- Map -->
+    <section id="contact" class="map">
+        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
+        <br />
+        <small>
+            <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
+        </small>
+        </iframe>
+    </section>
 
-				</div> <!--/row-->
-				<div class="row">
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<div class="panel-title">Delivery Details</div>
-						</div>
-						<div class="panel-body">
-							
-							 <!-- NOTIFICATIONS -->
-			              @if (Session::has('flash_notice'))
-			                   <div class="alert alert-danger" id="msg" style="">{{ Session::get('flash_notice') }}</div>
-			              @endif
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h4><strong>Start Bootstrap</strong>
+                    </h4>
+                    <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
+                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:name@example.com">name@example.com</a>
+                        </li>
+                    </ul>
+                    <br>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
+                        </li>
+                    </ul>
+                    <hr class="small">
+                    <p class="text-muted">Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-			              @if ($errors->any())
-			                <div class="alert alert-danger alert-dismissable" id="" style="">
-			                    {{ implode('', $errors->all(':message <br>')) }}
-			                </div>
-			            @endif
-			             
-			            <!-- END OF NOTIFICATIONS -->
+    <!-- Custom Theme JavaScript -->
+    <script>
+    window.location = 'yoursite.html#jumpHere';
+    // Closes the sidebar menu
+    $("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
 
+    // Opens the sidebar menu
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
 
-			            <!-- DELIVERY FORM -->
-			            @if (isset($customer_info))
-			            	{{ Form::model($customer_info, array('method' => 'POST', 'class' => 'form-horizontal', 'route' => 'customer_order_validate')) }}
-			            	<?php $email = $customer_info->user->username ?>
-			            @else
-							{{ Form::open(array('route' => 'customer_order_validate' , 'class' => 'form-horizontal')) }}
-			            	<?php $email = '' ?>
-			            @endif
-			            	{{ Form::hidden('status', 'FOR APPROVAL') }}
-			                <div class="form-group">
-			                  <div class="input-group">
-			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-			                    {{ Form::text('first_name', $value=null, array('class' => 'form-control' , 'placeholder' => 'First Name')) }}
-			                  </div>
-			                </div>
+    // Scrolls to the selected menu item on the page
+    $(function() {
+        $('a[href*=#]:not([href=#])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
 
-			                <div class="form-group">
-			                  <div class="input-group">
-			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-			                    {{ Form::text('last_name', $value=null, array('class' => 'form-control' , 'placeholder' => 'Last Name')) }}
-			                  </div>
-			                </div>
-
-			                <div class="form-group">
-			                  <div class="input-group">
-			                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-			                    {{ Form::email('email', $email, array('class' => 'form-control' , 'placeholder' => 'Enter Email')) }}
-			                  </div>
-			                </div>
-
-			                <div class="form-group">
-			                  <div class="input-group">
-			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-			                    {{ Form::number('cash', $value=null, array('class' => 'form-control' , 'placeholder' => 'Change For')) }}
-			                  </div>
-			                </div>
-
-			                <div class="form-group">
-			                  <div class="input-group">
-			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-			                    {{ Form::text('del_contact_number', $value=null, array('class' => 'form-control' , 'placeholder' => 'Contact Number')) }}
-			                  </div>
-			                </div>
-
-			                <div class="form-group">
-			                  <div class="input-group">
-			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-			                    {{ Form::text('del_address_number', $value=null, array('class' => 'form-control' , 'placeholder' => 'Address Number')) }}
-			                  </div>
-			                </div>
-
-			                <div class="form-group">
-			                  <div class="input-group">
-			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-			                    {{ Form::text('del_address_baranggay', $value=null, array('class' => 'form-control' , 'placeholder' => 'Baranggay')) }}
-			                  </div>
-			                </div>
-
-			                <div class="form-group">
-			                  <div class="input-group">
-			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-			                    {{ Form::text('del_address_municipal', $value=null, array('class' => 'form-control' , 'placeholder' => 'Municipal')) }}
-			                  </div>
-			                </div>
-
-			                <div class="form-group">
-			                  <div class="input-group">
-			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-			                    {{ Form::text('del_address_province', $value=null, array('class' => 'form-control' , 'placeholder' => 'Province')) }}
-			                  </div>
-			                </div>
-
-			                <div class="form-group">
-			                  <div class="input-group">
-			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-			                		{{ Form::textarea('del_message', $value=null, array('class' => 'form-control')) }}
-			                  </div>
-			                </div>
-
-
-
-			                <div class="col-xs-12" style="padding:0px">
-			                  <button type="submit" class="btn btn-primary" style="width:100%">Register</button>
-			                  <hr>
-			                </div>
-			            {{Form::close()}}
-			          	<!-- END DELIVERY FORM -->
-
-						</div>
-						<div class="panel-footer" style="color:black">
-							<div class="row">
-								
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-				<br><br>
-			</div>
-		</div>
-	</div>
-
-	<div class="wrapper">
-		<div class="wrapper-inner third">
-			<div class="container">
-			<br><br>
-				
-
-				<br><br>
-			</div>
-		</div>
-	</div>
-
-	<div class="wrapper">
-		<div class="wrapper-inner">
-			<h1>Contact Us</h1>
-		</div>
-	</div>
-
-
-	<script>
-					// $('a').click(function(evt) {
-					//     evt.preventDefault();
-					//     var link = $(this).attr('href');
-					//     console.log(link);
-					//     $.ajax({
-					//         type: 'GET',
-					//         url: 'viewproduct/{id}',
-					//         data: { id: link },
-			  //               success: function(response)
-			  //               {
-			  //               	console.log(response);
-			  //               }
-					//     });
-					// });
-					// .done(function(url) { // pass the url back to the client after you incremented it
-					//     window.location = url;
-					// });
-				</script>
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+    </script>
 @stop

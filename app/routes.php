@@ -58,6 +58,7 @@ Route::group(array('before'=>'client_auth'), function() {
 
 # Client's Public Website routes
 Route::get('www/{domain}', 'ClientsController@showClientWebsite');
+Route::get('www/'.Session::get('domain').'/ordering', array('as' => 'customer_ordering','uses' => 'CustomersController@showOrderingPage'));
 Route::get('www/'.Session::get('domain').'/product/{id}', array('as' => 'view_product', 'uses' => 'ProductsController@viewProduct') );
 Route::post('www/'.Session::get('domain').'/order', array('as' => 'addorder','uses' => 'OrdersController@addOrder'));
 Route::get('www/'.Session::get('domain').'/order/remove/{id}', array('as' => 'remove_order','uses' => 'OrdersController@removeOrder'));
@@ -76,6 +77,8 @@ Route::group(array('before'=>'customer_auth'), function() {
 		return Redirect::route('customer_login')->with('flash_notice', 'You are successfully logged out.')->with('alert_class', 'alert-success');
 	}));
 });
+
+
 
 # CMS Resource Routes
 Route::resource('products', 'ProductsController');

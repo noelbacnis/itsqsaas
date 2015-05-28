@@ -13,31 +13,19 @@ class ClientsController extends \BaseController {
 	public function showClientWebsite($domain)
 	{
 		$domain_count = Client::where('domain', '=', $domain)->count();
-		$client_name = Client::select('name')->where('id', '=', Auth::user()->foreign_id)->first()->name;
-
-		Session::put('domain', $domain);
+		
+		
 		if ($domain_count > 0) {
-			$categories = Category::with('products')->get();
-			if(Auth::check()){
-				$customer_id = Auth::user()->foreign_id;
-				$customer_info = Customer::with('user')->findOrFail($customer_id);
-				$order = Order::where('customer_id', '=', $customer_id)->where('status', '=', 'PENDING')->get();
-				if ($order->count() != 0) {
-					$order_id = $order[0]['id'];
-					$order_products = OrdersProduct::where('order_id', '=', $order_id)->with('product')->get();
-				}
-			}else{
-				if(Session::has('guest_hash')){
-					$guest_hash = Session::get('guest_hash');
-					$order = Order::where('guest_hash', '=', $guest_hash)->where('status', '=', 'PENDING')->get();
-					if ($order->count() != 0) {
-						$order_id = $order[0]['id'];
-						$order_products = OrdersProduct::where('order_id', '=', $order_id)->with('product')->get();
-					}
-				}
-			}
-			// echo 'haha--'.Session::get('domain');
-			return View::make('clients.website', compact('categories', 'order_products', 'customer_info', 'client_name'))->nest('navbar', 'default.customer_navbar');
+			Session::put('domain', $domain);
+			$client_id = Client::select('id')->where('domain', '=', $domain)->first()->id;
+			$subscription = Subscription::select('subscription_type_id')->where('client_id', '=', $client_id)->first();
+			$subscription_type = SubscriptionsType::select('name')->where('id', '=', $subscription->subscription_type_id)->first();
+					
+			Session::remove('domain_subscription_type');
+			Session::put('domain_subscription_type', $subscription_type->name);
+
+			return View::make('website.website')->nest('navbar', 'default.customer_navbar');
+			// return View::make('clients.website', compact('categories', 'order_products', 'customer_info', 'client_name'))->nest('navbar', 'default.customer_navbar');
 		}else{
 			echo "No such domain";
 		}

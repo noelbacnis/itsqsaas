@@ -28,7 +28,8 @@ class ProductsController extends \BaseController {
 			}
 		}
 			
-		return View::make('clients.website', compact('categories', 'product', 'order_products', 'customer_info', 'client_name'))->nest('navbar', 'default.customer_navbar');
+		return View::make('website.ordering', compact('categories', 'product', 'order_products', 'customer_info', 'client_name'))->nest('navbar', 'default.customer_navbar');
+		// return View::make('clients.website', compact('categories', 'product', 'order_products', 'customer_info', 'client_name'))->nest('navbar', 'default.customer_navbar');
 	}
 
 	/**
