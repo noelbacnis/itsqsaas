@@ -35,4 +35,8 @@ class Customer extends \Eloquent {
         return $this->hasMany('Order'); 
     }
 
+    public function user() {
+        return $this->hasOne('User', 'foreign_id', 'id'); 
+    }
+
 }

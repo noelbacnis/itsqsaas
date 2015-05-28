@@ -76,7 +76,7 @@
 						<div class="panel-footer" style="">
 							<div class="row">
 								<div class="col-md-4" style="padding:0px">{{ Form::label('quantity', 'Quantity'); }}</div>
-								<div class="col-md-4" style="padding:0px">{{ Form::number('quantity', '', array('class' => 'form-control')); }}</div>
+								<div class="col-md-4" style="padding:0px">{{ Form::number('quantity', '1', array('class' => 'form-control', 'placeholder' => '1')); }}</div>
 								<div class="col-md-4" style="padding:0px"><button type="submit" class="btn btn-success form-control">Add Order</button></div>
 							</div>
 						</div>
@@ -134,6 +134,108 @@
 						</div>
 						<div class="panel-body">
 							
+							 <!-- NOTIFICATIONS -->
+			              @if (Session::has('flash_notice'))
+			                   <div class="alert alert-danger" id="msg" style="">{{ Session::get('flash_notice') }}</div>
+			              @endif
+
+			              @if ($errors->any())
+			                <div class="alert alert-danger alert-dismissable" id="" style="">
+			                    {{ implode('', $errors->all(':message <br>')) }}
+			                </div>
+			            @endif
+			             
+			            <!-- END OF NOTIFICATIONS -->
+
+
+			            <!-- DELIVERY FORM -->
+			            @if (isset($customer_info))
+			            	{{ Form::model($customer_info, array('method' => 'POST', 'class' => 'form-horizontal', 'route' => 'customer_order_validate')) }}
+			            	<?php $email = $customer_info->user->username ?>
+			            @else
+							{{ Form::open(array('route' => 'customer_order_validate' , 'class' => 'form-horizontal')) }}
+			            	<?php $email = '' ?>
+			            @endif
+			            	{{ Form::hidden('status', 'FOR APPROVAL') }}
+			                <div class="form-group">
+			                  <div class="input-group">
+			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+			                    {{ Form::text('first_name', $value=null, array('class' => 'form-control' , 'placeholder' => 'First Name')) }}
+			                  </div>
+			                </div>
+
+			                <div class="form-group">
+			                  <div class="input-group">
+			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+			                    {{ Form::text('last_name', $value=null, array('class' => 'form-control' , 'placeholder' => 'Last Name')) }}
+			                  </div>
+			                </div>
+
+			                <div class="form-group">
+			                  <div class="input-group">
+			                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+			                    {{ Form::email('email', $email, array('class' => 'form-control' , 'placeholder' => 'Enter Email')) }}
+			                  </div>
+			                </div>
+
+			                <div class="form-group">
+			                  <div class="input-group">
+			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+			                    {{ Form::number('cash', $value=null, array('class' => 'form-control' , 'placeholder' => 'Change For')) }}
+			                  </div>
+			                </div>
+
+			                <div class="form-group">
+			                  <div class="input-group">
+			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+			                    {{ Form::text('del_contact_number', $value=null, array('class' => 'form-control' , 'placeholder' => 'Contact Number')) }}
+			                  </div>
+			                </div>
+
+			                <div class="form-group">
+			                  <div class="input-group">
+			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+			                    {{ Form::text('del_address_number', $value=null, array('class' => 'form-control' , 'placeholder' => 'Address Number')) }}
+			                  </div>
+			                </div>
+
+			                <div class="form-group">
+			                  <div class="input-group">
+			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+			                    {{ Form::text('del_address_baranggay', $value=null, array('class' => 'form-control' , 'placeholder' => 'Baranggay')) }}
+			                  </div>
+			                </div>
+
+			                <div class="form-group">
+			                  <div class="input-group">
+			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+			                    {{ Form::text('del_address_municipal', $value=null, array('class' => 'form-control' , 'placeholder' => 'Municipal')) }}
+			                  </div>
+			                </div>
+
+			                <div class="form-group">
+			                  <div class="input-group">
+			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+			                    {{ Form::text('del_address_province', $value=null, array('class' => 'form-control' , 'placeholder' => 'Province')) }}
+			                  </div>
+			                </div>
+
+			                <div class="form-group">
+			                  <div class="input-group">
+			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+			                		{{ Form::textarea('del_message', $value=null, array('class' => 'form-control')) }}
+			                  </div>
+			                </div>
+
+
+
+			                <div class="col-xs-12" style="padding:0px">
+			                  <button type="submit" class="btn btn-primary" style="width:100%">Register</button>
+			                  <hr>
+			                </div>
+			            {{Form::close()}}
+			          	<!-- END DELIVERY FORM -->
+
 						</div>
 						<div class="panel-footer" style="color:black">
 							<div class="row">

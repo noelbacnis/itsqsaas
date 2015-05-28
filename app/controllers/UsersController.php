@@ -36,6 +36,11 @@ class UsersController extends \BaseController {
 
 		if(Auth::attempt($user, false)){
 			if($user['user_type'] == 'client'){
+				$client_id = Auth::user()->foreign_id;
+				$subscription = Subscription::select('subscription_type_id')->where('client_id', '=', $client_id)->first();
+				$subscription_type = SubscriptionsType::select('name')->where('id', '=', $subscription->subscription_type_id)->first();
+				
+				Session::put('subscription_type', $subscription_type->name);
 				return Redirect::route('client_dashboard')->with('flash_notice', 'You have successfully logged in.')->with('alert_class', 'alert-success');
 			}else if($user['user_type'] == 'customer'){
 				return Redirect::route('client_website')->with('flash_notice', 'You have successfully logged in.');

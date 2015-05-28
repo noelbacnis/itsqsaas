@@ -40,7 +40,7 @@
       <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav side-nav">
-              @if (Auth::user()->user_type == 'client')
+              @if (Auth::user()->user_type == 'client' && Session::get('subscription_type') == 'Premium')
                 <li>
                     <a href="{{ action('client_dashboard') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Dashboard</a>
                 </li>

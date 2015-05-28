@@ -46,17 +46,19 @@ Route::group(array('before'=>'client_auth'), function() {
 	Route::get('client/dashboard', array('as' => 'client_dashboard', 'uses' => 'ClientsController@showClientHome'));
 	Route::get('client/logout', array('as' => 'client_logout', function () {
 		Auth::logout();
+		Session::forget('subscription_type');
 		return Redirect::route('client_login')->with('flash_notice', 'You are successfully logged out.')->with('alert_class', 'alert-success');
 	}));
+	Route::get('client/order/status/{id}/{status}', array('as' => 'order_change_status', 'uses' => 'OrdersController@changeStatus'));
 
 });
 
 # Client's Public Website routes
 Route::get('www/{domain}', 'ClientsController@showClientWebsite');
 Route::get('www/'.Session::get('domain').'/product/{id}', array('as' => 'view_product', 'uses' => 'ProductsController@viewProduct') );
-// Route::post('www/'.Session::get('domain').'/order', array('as' => 'addorder','uses' => 'ProductsController@addOrder'));
 Route::post('www/'.Session::get('domain').'/order', array('as' => 'addorder','uses' => 'OrdersController@addOrder'));
 Route::get('www/'.Session::get('domain').'/order/remove/{id}', array('as' => 'remove_order','uses' => 'OrdersController@removeOrder'));
+Route::post('www/'.Session::get('domain').'/order/validate', array('as' => 'customer_order_validate', 'uses' => 'OrdersController@customerOrderValidate') );
 
 Route::group(array('before'=>'customer_guest'), function() {  
 	Route::get('www/'.Session::get('domain').'/login', array('as' => 'customer_login', 'uses' => 'UsersController@customerLogin') );
