@@ -36,7 +36,7 @@ class ProductsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$products = Product::with('category')->paginate(10);
+		$products = Product::where('client_id', '=', Auth::user()->foreign_id)->with('category')->paginate(10);
 
 		return View::make('products.index', compact('products'));
 	}

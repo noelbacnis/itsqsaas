@@ -85,5 +85,6 @@ Route::resource('orders', 'OrdersController');
 Route::resource('subscriptions', 'SubscriptionsController');
 Route::resource('clients', 'ClientsController');
 Route::resource('banners', 'BannersController');
+Route::resource('users', 'UsersController');
 
 

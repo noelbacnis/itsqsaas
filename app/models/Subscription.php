@@ -19,8 +19,8 @@ class Subscription extends \Eloquent {
         return $this->hasMany('Client'); 
     }
 
-    public function subscriptionsType() {
-        return $this->hasMany('SubscriptionsType', 'id', 'subscription_type_id'); 
-    }
+    // public function subscriptionsType() {
+    //     return $this->belongsTo('SubscriptionsType', 'id', 'subscription_type_id'); 
+    // }
 
 }

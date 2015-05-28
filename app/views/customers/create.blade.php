@@ -96,6 +96,7 @@
 		                    {{ Form::label('del_address_province', 'Province', array('class' => 'col-sm-3 control-label')) }}
 		                    <div class="col-sm-9">
 		                        {{ Form::text('del_address_province', $value=null, array('class' => 'form-control' , 'placeholder' => '')) }}
+		                        {{ Form::hidden('client_id', Auth::user()->foreign_id, array('class' => 'form-control' , 'placeholder' => '')) }}
 		                    </div>
 		                </div>
 
