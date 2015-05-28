@@ -37,6 +37,8 @@
 		                    {{ implode('', $errors->all(':message <br>')) }}
 		                </div>
 		            @endif
+					
+					{{ Form::open(array('route' => 'products.store', 'files' => true, 'class' => 'form-horizontal')) }}
 
 		            <div class="col-md-4 well">
 						<b>Upload Product's Photo</b><br><br>
@@ -44,13 +46,12 @@
 						    <div class="form-group">
 								
 					            <div class="col-sm-12">
-						            {{ Form::file('image', $value=null, array('class' => 'form-control' , 'placeholder' => '')) }}
+						            {{ Form::file('image') }}
 						        </div>
 						    </div>
 					    <!-- form close -->
 					</div>
 
-					{{ Form::open(array('route' => 'products.store' , 'class' => 'form-horizontal')) }}
 		            <div class="col-md-8">
 		                <div class="form-group">
 		                    {{ Form::label('name', 'Product Name', array('class' => 'col-sm-3 control-label')) }}

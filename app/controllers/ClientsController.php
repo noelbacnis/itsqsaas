@@ -13,6 +13,8 @@ class ClientsController extends \BaseController {
 	public function showClientWebsite($domain)
 	{
 		$domain_count = Client::where('domain', '=', $domain)->count();
+		$client_name = Client::select('name')->where('id', '=', Auth::user()->foreign_id)->first()->name;
+
 		Session::put('domain', $domain);
 		if ($domain_count > 0) {
 			$categories = Category::with('products')->get();
@@ -35,7 +37,7 @@ class ClientsController extends \BaseController {
 				}
 			}
 			// echo 'haha--'.Session::get('domain');
-			return View::make('clients.website', compact('categories', 'order_products', 'customer_info'))->nest('navbar', 'default.customer_navbar');
+			return View::make('clients.website', compact('categories', 'order_products', 'customer_info', 'client_name'))->nest('navbar', 'default.customer_navbar');
 		}else{
 			echo "No such domain";
 		}

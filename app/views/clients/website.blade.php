@@ -58,19 +58,22 @@
 						</div>
 						<div class="panel-body">
 							@if(isset($product))
-							<div class="col-md-6" style="">
-								{{ HTML::image('assets/images/first.jpg','product image', array( 'width' => 120)) }}
-							</div>
-							<div class="col-md-6" style="color:black">
-									@foreach($product as $p)
+								@foreach($product as $p)
+									<div class="col-md-6" style="">
+										@if($p->image != '')
+											{{ HTML::image('uploads/'.$client_name.'/'.$p->image,'', array( 'width' => 120)) }} 
+										@else
+											{{ HTML::image('uploads/'.$client_name.'/'.$p->image,'', array( 'width' => 120)) }} 
+										@endif
+									</div>
+									<div class="col-md-6" style="color:black">
 										{{ Form::hidden('id', $p->id ); }}
 										<h3>{{ $p->name }}</h3>
 										<small>{{ $p->description }}</small> <br>
 										<small>{{ $p->price }}</small>
 										{{ Form::hidden('price', $p->price) }}
-									@endforeach
-
-							</div>
+									</div>
+								@endforeach
 							@endif
 						</div>
 						<div class="panel-footer" style="">
@@ -88,7 +91,7 @@
 							<div class="panel-title">My Orders</div>
 						</div>
 						<div class="panel-body">
-							<table style="width:100%; color:black">';
+							<table style="width:100%; color:black">
 								<tr>
 									<td style="width:40%">Name</td>
 									<td style="width:15%">Quantity</td>
