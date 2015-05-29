@@ -8,6 +8,10 @@ class Banner extends \Eloquent {
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = [];
+	protected $fillable = array('client_id', 'filename', 'status');
+
+	public function client() {
+        return $this->belongsTo('Client'); 
+    }
 
 }

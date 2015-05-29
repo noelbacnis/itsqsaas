@@ -7,30 +7,69 @@
 {{ $navbar }}
 
     <!-- Header -->
-    <header id="top" class="header">
+    @if($client_cms->banners->count())
+    @foreach ($client_cms->banners[0] as $p)
+    <header id="top" class="header" style='background: transparent url("http://localhost/itsqsaas/public/banners/{{ $client_cms->banners[0]->filename }}") no-repeat scroll center center / cover'>
+    <?php //break();?>
+    @endforeach
+    @else
+    <header id="top" class="header" style='background: transparent url("http://localhost/itsqsaas/public/banners/burger.jpg") no-repeat scroll center center / cover'>
+    
+    @endif
         <div class="text-vertical-center">
-            <h1>Restaurant</h1>
-            <h3>Welcome !</h3>
+            <h1>{{ $client_cms->name }}</h1>
+            <h3>{{ $client_cms->tagline }}</h3>
             <br>
             <!-- <a href="#about" class="btn btn-dark btn-lg">Find Out More</a> -->
         </div>
     </header>
 
     <!-- About -->
-    <section id="about" class="about">
+    <section id="products" class="about">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>About</h2>
-                    <hr class="small">
-                    <h2>Stylish Portfolio is the perfect theme for your next project!</h2>
-                    <p class="lead">Our Prague five star hotel proudly presents its Franz Josef Restaurant.
+                    @if($client_cms->products->count() == 1)
 
-Chef Michal Čermák and his team of professionals prepare specialities based on  traditional recipes from  the Central European region on a daily basis for you. Modern cooking methods, the freshest of ingredients and  stylish presentation promise a unique gourmet experience.
+                        <h2>Featured Product</h2>
+                        <hr class="small">
+                        <div class="row">
+                                <div class="service-item">
+                                    <span class="fa-stack fa-4x">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-cloud fa-stack-1x text-primary"></i>
+                                    </span>
 
-In addition to our periodically modified à la carte menu, this luxury hotel restaurant offer meticulously prepared lunchtime menus, served between 12 noon and 3 pm on weekdays. This way you can treat yourself to a unique lunch in a peaceful setting for a mere CZK 165 for the main course, and fit that all in your lunch break. Moreover, we could  add your favourite dish to one of our future menus if you request it, so do not hesitate  to contact us.
- 
-The entire restaurant of our luxury hotel in Prague is a non-smoking establishment. Parking is possible in a nearby roofed garage, with optional valet parking and car pull-up.</p>
+                                    {{ HTML::image('uploads/'.$client_name.'/'.$client_cms->products[0]->image,'', array( 'width' => '100%')) }} 
+
+                                    <h4>
+                                        <strong>{{ $client_cms->products[0]->name }}</strong>
+                                    </h4>
+                                    <p>{{ $client_cms->products[0]->description }}</p>
+                                    <p>PHP {{ $client_cms->products[0]->price }}</p>
+                                    <p>{{ $client_cms->products[0]->category->name }}</p>
+                                </div>
+                        </div>
+                    @else
+                        <div class="col-lg-10 col-lg-offset-1 text-center">
+                        <h2>Our Products</h2>
+                        <hr class="small">
+                        <div class="row">
+                        @foreach ($client_cms->products as $p)
+                            <div class="col-md-6">
+                                <div class="portfolio-item">
+                                    <a href="#">
+                                        {{ HTML::image('uploads/'.$client_name.'/'.$p->image,'', array( 'class' => 'img-portfolio img-responsive' )) }}
+                                    </a>
+                                </div>
+                                <h4><strong>{{ $p->name }}</strong></h4>
+                                <p>{{ $p->description }}</p>
+                                <p>PHP {{ $p->price }}</p>
+                                <p>{{ $p->category->name }}</p>
+                            </div>
+                        @endforeach
+                        <div></div>
+                   @endif
                 </div>
             </div>
             <!-- /.row -->
@@ -40,66 +79,14 @@ The entire restaurant of our luxury hotel in Prague is a non-smoking establishme
 
     <!-- Services -->
     <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-    <section id="services" class="services bg-primary">
+    <section id="about" class="services bg-primary">
         <div class="container">
             <div class="row text-center">
                 <div class="col-lg-10 col-lg-offset-1">
-                    <h2>Our Services</h2>
+                     <h2>About</h2>
                     <hr class="small">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-cloud fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-compass fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-flask fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-shield fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- <h2>Stylish Portfolio is the perfect theme for your next project!</h2> -->
+                    <p class="lead">{{ $client_cms->description }}</p>
                     <!-- /.row (nested) -->
                 </div>
                 <!-- /.col-lg-10 -->
@@ -110,52 +97,61 @@ The entire restaurant of our luxury hotel in Prague is a non-smoking establishme
     </section>
 
     <!-- Callout -->
-    <aside class="callout">
+ <!--    <aside class="callout">
         <div class="text-vertical-center">
-            <h1>Vertically Centered Text</h1>
+            <h1>Welcome!</h1>
         </div>
-    </aside>
+    </aside> -->
 
     <!-- Portfolio -->
     <section id="portfolio" class="portfolio">
         <div class="container">
             <div class="row">
-                <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h2>The Restaurant</h2>
-                    <hr class="small">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="{{ URL::asset('assets/images/portfolio-1.jpg')}}">
-                                </a>
-                            </div>
+
+                
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                  <!-- Indicators -->
+                  <ol class="carousel-indicators">
+                     <?php $first_loop = true; $counter = 0?>
+                    @foreach ($client_cms->banners as $p)
+                        @if ($first_loop == true)
+                         <li data-target="#carousel-example-generic" data-slide-to="{{ $counter++}}" class="active"></li>
+                        @else
+                         <li data-target="#carousel-example-generic" data-slide-to="{{ $counter++}}"></li>
+                        @endif
+                        <?php $first_loop = false?>
+                    @endforeach
+                  </ol>
+
+                  <!-- Wrapper for slides -->
+                  <div class="carousel-inner" role="listbox">
+                    <?php $first_loop = true?>
+                    @foreach ($client_cms->banners as $p)
+                        @if ($first_loop == true)
+                        <div class="item active">
+                        @else
+                        <div class="item">
+                        @endif
+                          {{ HTML::image('banners/'.$p->filename,'', array( 'class' => '')) }}
                         </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="{{ URL::asset('assets/images/portfolio-2.jpg')}}">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="{{ URL::asset('assets/images/portfolio-3.jpg')}}">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="{{ URL::asset('assets/images/portfolio-4.jpg')}}">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.row (nested) -->
-                    <a href="#" class="btn btn-dark">View More Items</a>
+                        <?php $first_loop = false?>
+                    @endforeach
+
+                  </div>
+
+                  <!-- Controls -->
+                  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
                 </div>
+
+
+
                 <!-- /.col-lg-10 -->
             </div>
             <!-- /.row -->
@@ -164,39 +160,55 @@ The entire restaurant of our luxury hotel in Prague is a non-smoking establishme
     </section>
 
     <!-- Call to Action -->
+    <section id="contact" class="portfolio">
     <aside class="call-to-action bg-primary">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h3>The buttons below are impossible to resist.</h3>
-                    <a href="#" class="btn btn-lg btn-light">Click Me!</a>
-                    <a href="#" class="btn btn-lg btn-dark">Look at Me!</a>
+            <div class="row text-center">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <h2>Contact Us</h2>
+                    <h4>Any questions? Don't hesitate. Ask us!</h4>
+                    <hr class="small">
+                    <div class="row">
+                        <h3>Contact Number</h3>
+                        <p class="lead">
+                            {{ $client_cms->contact_number }}
+                        </p>
+                        <br>
+                        <h3>Address</h3>
+                        <p class="lead">
+                            {{ $client_cms->address }}
+                        </p>
+                    </div>
+                    <!-- /.row (nested) -->
                 </div>
+                <!-- /.col-lg-10 -->
             </div>
+            <!-- /.row -->
         </div>
     </aside>
+    </section>
 
     <!-- Map -->
-    <section id="contact" class="map">
+    <!-- <section id="contact" class="map">
         <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
         <br />
         <small>
             <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
         </small>
         </iframe>
-    </section>
+    </section> -->
 
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h4><strong>Start Bootstrap</strong>
+                   <!--  <h4><strong>{{ $client_cms->name }}</strong>
                     </h4>
-                    <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
+                    <p>{{ $client_cms->address }}</p> -->
                     <ul class="list-unstyled">
-                        <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
-                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:name@example.com">name@example.com</a>
+                        <!-- <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li> -->
+                        <!-- <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:name@example.com">tara@yahoo.com</a> -->
                         </li>
                     </ul>
                     <br>
@@ -212,7 +224,7 @@ The entire restaurant of our luxury hotel in Prague is a non-smoking establishme
                         </li>
                     </ul>
                     <hr class="small">
-                    <p class="text-muted">Copyright &copy; Your Website 2014</p>
+                    <p class="text-muted">Copyright &copy;Tara, Computer 2014</p>
                 </div>
             </div>
         </div>
@@ -234,7 +246,7 @@ The entire restaurant of our luxury hotel in Prague is a non-smoking establishme
 
     // Scrolls to the selected menu item on the page
     $(function() {
-        $('a[href*=#]:not([href=#])').click(function() {
+         $('#sidebar-wrapper a[href*=#]').click(function() {
             if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
 
                 var target = $(this.hash);

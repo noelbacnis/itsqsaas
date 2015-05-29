@@ -18,4 +18,12 @@ class Client extends \Eloquent {
 	public function user() {
         return $this->hasOne('User', 'user_id', 'id'); 
     }
+
+    public function products() {
+        return $this->hasMany('Product'); 
+    }
+
+    public function banners() {
+        return $this->hasMany('Banner'); 
+    }
 }

@@ -20,9 +20,10 @@ class ClientsController extends \BaseController {
 	public function showClientWebsite($domain)
 	{
 		$domain_count = Client::where('domain', '=', $domain)->count();
-		
+
 		if ($domain_count > 0) {
 			Session::put('domain', $domain);
+			$client_name = Client::select('name')->where('domain', '=', Session::get('domain'))->first()->name;
 			$client_id = Client::select('id')->where('domain', '=', $domain)->first()->id;
 			$subscription = Subscription::select('subscription_type_id')->where('client_id', '=', $client_id)->first();
 			$subscription_type = SubscriptionsType::select('name')->where('id', '=', $subscription->subscription_type_id)->first();
@@ -30,7 +31,11 @@ class ClientsController extends \BaseController {
 			Session::remove('domain_subscription_type');
 			Session::put('domain_subscription_type', $subscription_type->name);
 
-			return View::make('website.website')->nest('navbar', 'default.customer_navbar');
+			$client_cms = Client::with('banners')->with('products')->where('id', '=', $client_id)->first();
+			// echo "<pre>";
+			// print_r($client_cms);
+			// echo "</pre>";
+			return View::make('website.website', compact('client_cms', 'client_name'))->nest('navbar', 'default.customer_navbar');
 			// return View::make('clients.website', compact('categories', 'order_products', 'customer_info', 'client_name'))->nest('navbar', 'default.customer_navbar');
 		}else{
 			echo "No such domain";

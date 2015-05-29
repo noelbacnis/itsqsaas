@@ -36,7 +36,7 @@ class OrdersController extends \BaseController {
 				$order_id = $order[0]['id'];
 				$order_update = Order::where('id', '=', $order_id)->first();
 				$order_update->total += $qty * $price;
-				$order_update->update($order_data);
+				$order_update->update();
 				
 			}
 
@@ -62,7 +62,7 @@ class OrdersController extends \BaseController {
 					$order_id = $order[0]['id'];
 					$order_update = Order::where('id', '=', $order_id)->first();
 					$order_update->total += $qty * $price;
-					$order_update->update($order_data);
+					$order_update->update();
 				}
 			}else{
 				Session::put('guest_hash', Hash::make('itsqsaas')); # generate random hash of itsqsaas word

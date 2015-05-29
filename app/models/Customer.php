@@ -38,5 +38,8 @@ class Customer extends \Eloquent {
     public function user() {
         return $this->hasOne('User', 'foreign_id', 'id'); 
     }
+    public function client(){        
+		return $this->belongsTo('Client'); 
+	}
 
 }

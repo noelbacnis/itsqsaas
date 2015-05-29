@@ -53,6 +53,7 @@ Route::group(array('before'=>'client_auth'), function() {
 		return Redirect::route('client_login')->with('flash_notice', 'You are successfully logged out.')->with('alert_class', 'alert-success');
 	}));
 	Route::get('client/order/status/{id}/{status}', array('as' => 'order_change_status', 'uses' => 'OrdersController@changeStatus'));
+	Route::post('uploadBanner', 'BannersController@uploadStarterBanner');
 
 });
 
@@ -65,6 +66,10 @@ Route::group(array('before'=>'admin_auth'), function() {
 		Auth::logout();
 		return Redirect::route('admin_login')->with('flash_notice', 'You are successfully logged out.')->with('alert_class', 'alert-success');
 	}));
+});
+
+Route::get('flush', function(){
+	Session::flush();
 });
 
 # Client's Public Website routes
@@ -98,7 +103,7 @@ Route::resource('customers', 'CustomersController');
 Route::resource('orders', 'OrdersController');
 Route::resource('subscriptions', 'SubscriptionsController');
 Route::resource('clients', 'ClientsController');
-Route::resource('banners', 'BannersController');
+Route::resource('gallery', 'BannersController');
 Route::resource('users', 'UsersController');
 
 

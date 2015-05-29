@@ -49,7 +49,7 @@
 						<!--== DROPZONE FORM
 							================================================== -->
 							{{ Form::open(array('url' => 'uploadStarterBanner' ,'class' => 'dropzone dz-clickable', 'id' => 'dropzone')); }}
-
+							{{ Form::text('dummy_email', '', array('id' => 'dummy_email')); }}
 							
 							{{ Form::close(); }}
 						</div>
@@ -88,7 +88,7 @@
 						<i>(This is your domain name. Your site will be available at www.domainname.com)</i>
 						<br><br>
 						{{ Form::label('email', 'Contact E-mail'); }}
-						{{ Form::email('email', '', array('class' => 'form-control')); }}
+						{{ Form::email('email', '', array('class' => 'form-control', 'id' => 'email')); }}
 						<i>(Details of your subscription will be sent to this e-mail)</i>
 					</div>
 				</div>
@@ -167,6 +167,11 @@
 					$('#primary_color').val(hex);
 				}
 
+			});
+
+			$('#email').on('keyup', function(){
+				var txt = $(this).val();
+				$('#dummy_email').val(txt);
 			});
 			
 		});

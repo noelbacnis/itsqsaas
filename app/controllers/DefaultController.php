@@ -73,6 +73,12 @@ class DefaultController extends \BaseController {
 			$file->move(public_path().'/uploads/'.Input::get('name'), $filename);
 
 			$newClient = Client::where('name', '=', Input::get('name'))->first();
+			// echo "clid -- ".$newClient->id;
+			if (Session::has('session_email'))
+			{
+				Session::remove('session_email');
+				Session::put('session_email', $newClient->email);
+			}
 
 			if (Input::hasFile('product_image'))
 			{
@@ -95,6 +101,14 @@ class DefaultController extends \BaseController {
 			$subscription->client_id = $newClient->id;
 			$subscription->subscription_type_id = 1;
 
+			$user = new User;
+			$user->username = 'admin';
+			$user->password = Hash::make(Input::get('email'));
+			$user->foreign_id = $newClient->id;
+			$user->user_type = 'client';
+			$user->save();
+
+			// echo "sess---".Session::get('session_email');
 
 			return Redirect::to('subscriptionPayment?type=1&id='.$newClient->id);
 
@@ -115,6 +129,9 @@ class DefaultController extends \BaseController {
 		{
 			if (Input::hasFile('banners'))
 			{
+
+				$newClient = Client::where('email', '=', Session::get('session_email'))->first();
+
 				$banners = Input::file('banners');
 
 				$filename = $banners->getClientOriginalName();
@@ -122,16 +139,17 @@ class DefaultController extends \BaseController {
 
 				$banner = new Banner;
 				$banner->filename = $filename;
+				$banner->client_id = $newClient->id;
 				$banner->status = 1;
 					
 				$banner->save();
 
 				# Update the client id of the newly uploaded images
-				$newBanner = Banner::where('filename', '=', $filename)->first();
-				$newClient = Client::where('created_at', '=', $newBanner->created_at)->first();
+				// $newBanner = Banner::where('filename', '=', $filename)->first();
+				
 
-				$newBanner->client_id = $newClient->id;
-				$newBanner->save();
+				// $newBanner->client_id = $newClient->id;
+				// $newBanner->save();
 
 			} # End if hasFile
 		} # End if validator

@@ -17,7 +17,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
       </button>
-      {{ link_to_route('client_dashboard','Client', null,array('class'=>'navbar-brand')) }}
+      {{ link_to_route('admin_dashboard','Client', null,array('class'=>'navbar-brand')) }}
     </div>
 
     <!-- Top Menu Items -->
@@ -28,11 +28,11 @@
             <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
-              <li> <a href="{{ action('client_logout') }}"><i class="fa fa-fw fa-power-off"></i> Log Out</a> </li>
+              <li> <a href="{{ action('admin_logout') }}"><i class="fa fa-fw fa-power-off"></i> Log Out</a> </li>
           </ul>
         </li>
       @else
-        <li>{{ link_to_route('client_login','Login') }}</li>
+        <li>{{ link_to_route('admin_login','Login') }}</li>
       @endif
     </ul>
 
@@ -40,47 +40,13 @@
       <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav side-nav">
-              @if (Auth::user()->user_type == 'client' && Session::get('subscription_type') == 3)
-                <li>
-                    <a href="{{ action('client_dashboard') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Dashboard</a>
-                </li>
-                
-                
-                <li>
-                  <a href="{{ action('orders.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Orders</a>
-                </li>
+             
                 <li>
                   <a href="{{ action('subscriptions.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Subscriptions</a>
                 </li>
                 <li>
                   <a href="{{ action('clients.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Clients</a>
                 </li>
-                <li>
-                    <a href="{{ action('categories.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Categories</a>
-                </li>
-                <li>
-                    <a href="{{ action('gallery.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Banners</a>
-                </li>
-                <li>
-                  <a href="{{ action('products.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Products</a>
-                </li>
-                <li>
-                  <a href="{{ action('customers.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Customers</a>
-                </li>
-      @elseif (Session::get('subscription_type') == 2)
-                <li>
-                    <a href="{{ action('categories.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Categories</a>
-                </li>
-                <li>
-                    <a href="{{ action('gallery.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Banners</a>
-                </li>
-                <li>
-                  <a href="{{ action('products.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Products</a>
-                </li>
-               <!--  <li>
-                  <a href="{{ action('customers.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Customers</a>
-                </li> -->
-              @endif
           </ul>
         </div>
         <!-- /.navbar-collapse -->

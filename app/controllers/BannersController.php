@@ -2,6 +2,42 @@
 
 class BannersController extends \BaseController {
 
+	public function uploadStarterBanner()
+	{
+		$rule = array('banners' => 'required');
+		$validator = Validator::make(Input::all(), $rule);
+
+		if ($validator->fails())
+		{
+			return Redirect::back()->withErrors($validator);
+		}
+		else
+		{
+			if (Input::hasFile('banners'))
+			{
+				$banners = Input::file('banners');
+
+				$filename = $banners->getClientOriginalName();
+				$banners->move(public_path().'/banners/', $filename);
+
+				$banner = new Banner;
+				$banner->filename = $filename;
+				$banner->status = 1;
+					
+				$banner->save();
+
+				# Update the client id of the newly uploaded images
+				$newBanner = Banner::where('filename', '=', $filename)->first();
+				// $newClient = Client::where('created_at', '=', $newBanner->created_at)->first();
+
+				$newBanner->client_id = Auth::user()->foreign_id;
+				$newBanner->save();
+
+			} # End if hasFile
+		} # End if validator
+		
+	}
+
 	/**
 	 * Display a listing of banners
 	 *
