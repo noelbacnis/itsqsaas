@@ -172,7 +172,7 @@ class DefaultController extends \BaseController {
 	{
 		$subscription = new Subscription;
 
-		if (Input::get('subscription_type_id') != 1 && Input::get('email') == '')
+		if (Input::get('subscription_type_id') != 1)
 		{
 			$client = new Client;
 			$client->email = Input::get('email');
