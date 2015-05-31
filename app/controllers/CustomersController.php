@@ -5,7 +5,11 @@ class CustomersController extends \BaseController {
 	public function showOrderingPage()
 	{
 		$client_name = Client::select('name')->where('domain', '=', Session::get('domain'))->first()->name;
-			$categories = Category::with('products')->get();
+		$client_id = Client::select('id')->where('domain', '=', Session::get('domain'))->first()->id;
+		$categories = Category::with('products')->where('client_id', '=', $client_id)->get();
+		// echo "<pre>";
+		// print_r($categories);
+		// echo "</pre>";
 			if(Auth::check()){
 				$customer_id = Auth::user()->foreign_id;
 				$customer_info = Customer::with('user')->findOrFail($customer_id);

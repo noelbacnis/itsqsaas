@@ -68,7 +68,7 @@ class ProductsController extends \BaseController {
 	public function create()
 	{
 		$status = array('ACTIVE'=>'ACTIVE', 'INACTIVE'=>'INACTIVE');
-		$categories = Category::orderBy('name')->lists('name', 'id');
+		$categories = Category::where('client_id', '=', Auth::user()->foreign_id)->orderBy('name')->lists('name', 'id');
 
 		return View::make('products.create', compact('status','categories'));
 	}

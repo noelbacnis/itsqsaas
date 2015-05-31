@@ -169,7 +169,7 @@ class ClientsController extends \BaseController {
 		$client->update($data);
 
 		// return Redirect::route('clients.index');
-		return Redirect::route('clients.client_info');
+		return Redirect::route('client_info');
 	}
 
 	/**

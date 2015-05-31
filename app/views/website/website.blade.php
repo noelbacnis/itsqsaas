@@ -6,21 +6,61 @@
 
 {{ $navbar }}
 
-    <!-- Header -->
-    @if($client_cms->banners->count())
-        @foreach ($client_cms->banners[0] as $p)
-            <header id="top" class="header" style='background: transparent url("http://localhost/itsqsaas/public/banners/{{ $client_cms->banners[0]->filename }}") no-repeat scroll center center / cover'>
-        @endforeach
-    @else
-        <header id="top" class="header" style='background: transparent url("http://localhost/itsqsaas/public/banners/burger.jpg") no-repeat scroll center center / cover'>
-    @endif
 
-        <div class="text-vertical-center">
-            <h1>{{ $client_cms->name }}</h1>
-            <h3>{{ $client_cms->tagline }}</h3>
-            <br>
-            <!-- <a href="#about" class="btn btn-dark btn-lg">Find Out More</a> -->
-        </div>
+    <!-- Header -->
+    <header id="top" class="header" style=''>
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="position:absolute;z-index:0;width:100%;height:auto;">
+                  <!-- Indicators -->
+                  <?php $first_loop = true; $counter = 0?>
+                    @foreach ($client_cms->banners as $p)
+                    <ol class="carousel-indicators">
+                        @if ($first_loop == true)
+                         <li data-target="#carousel-example-generic" data-slide-to="{{ $counter++}}" class="active"></li>
+                        @else
+                         <li data-target="#carousel-example-generic" data-slide-to="{{ $counter++}}"></li>
+                        @endif
+                        <?php $first_loop = false?>
+                    </ol>
+                   @endforeach
+
+                  <!-- Wrapper for slides -->
+                  <div class="carousel-inner" role="listbox" style="height:720px">
+                    <?php $first_loop = true?>
+                    @foreach ($client_cms->banners as $p)
+                        @if ($first_loop == true)
+                        <div class="item active">
+                        @else
+                        <div class="item">
+                        @endif
+                          {{ HTML::image('banners/'.$p->filename,'', array( 'class' => '', 'style'=>'min-width: 100%;min-height: 60%;')) }}
+                        </div>
+                        <?php $first_loop = false; 
+                        //break;?>
+                    @endforeach
+
+                  </div>
+                
+                @if ($client_cms->banners->count())
+                  <!-- Controls -->
+                  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+                <!-- /.col-lg-10 -->
+                @endif
+            </div>
+
+            <div class="text-vertical-center" style="position:absolute; z-index:20;width: 50%;height: 100%; top:40%;left:25%;display: table;text-shadow: 0 1px 2px rgba(0,0,0,.6)">
+                <h1>{{ $client_cms->name }}</h1>
+                <h3>{{ $client_cms->tagline }}</h3>
+                <br>
+            </div>
+
     </header>
 
     <!-- About -->
@@ -109,64 +149,20 @@
     </aside> -->
 
     <!-- Portfolio -->
-    <section id="portfolio" class="portfolio">
+ <!--    <section id="portfolio" class="portfolio">
         <div class="container">
             <div class="row">
-
+ -->
                 
-                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                  <!-- Indicators -->
-                  <ol class="carousel-indicators">
-                     <?php $first_loop = true; $counter = 0?>
-                    @foreach ($client_cms->banners as $p)
-                        @if ($first_loop == true)
-                         <li data-target="#carousel-example-generic" data-slide-to="{{ $counter++}}" class="active"></li>
-                        @else
-                         <li data-target="#carousel-example-generic" data-slide-to="{{ $counter++}}"></li>
-                        @endif
-                        <?php $first_loop = false?>
-                    @endforeach
-                  </ol>
-
-                  <!-- Wrapper for slides -->
-                  <div class="carousel-inner" role="listbox">
-                    <?php $first_loop = true?>
-                    @foreach ($client_cms->banners as $p)
-                        @if ($first_loop == true)
-                        <div class="item active">
-                        @else
-                        <div class="item">
-                        @endif
-                          {{ HTML::image('banners/'.$p->filename,'', array( 'class' => '')) }}
-                        </div>
-                        <?php $first_loop = false?>
-                    @endforeach
-
-                  </div>
-
-                  <!-- Controls -->
-                  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </div>
-
-
-
-                <!-- /.col-lg-10 -->
-            </div>
+                
             <!-- /.row -->
-        </div>
+        <!-- </div> -->
         <!-- /.container -->
-    </section>
+    <!-- </section> -->
 
     <!-- Call to Action -->
     <section id="contact" class="portfolio">
-    <aside class="call-to-action bg-primary">
+    <aside class="call-to-action">
         <div class="container">
             <div class="row text-center">
                 <div class="col-lg-10 col-lg-offset-1">
@@ -204,7 +200,7 @@
     </section> -->
 
     <!-- Footer -->
-    <footer>
+    <footer class=" bg-primary" style="color:white">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
@@ -229,7 +225,8 @@
                         </li>
                     </ul>
                     <hr class="small">
-                    <p class="text-muted">Copyright &copy;Tara, Computer 2014</p>
+                    <!-- <p class="text-muted">Copyright &copy;Tara, Computer 2014</p> -->
+                    <p>Copyright &copy;Tara, Computer 2014</p>
                 </div>
             </div>
         </div>

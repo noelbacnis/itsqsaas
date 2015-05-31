@@ -24,6 +24,10 @@
 	    			<td>@if ($clients['name']) {{ $clients['name'] }} @else {{ 'Not set' }} @endif</td>
 	    		</tr>
 	    		<tr>
+	    			<td><b>Domain Name:</b></td>
+	    			<td>@if ($clients['domain']) {{ $clients['domain'] }} @else {{ 'Not set' }} @endif</td>
+	    		</tr>
+	    		<tr>
 	    			<td><b>Subscription Type:</b></td>
 	    			<td>{{ $clients->subscription[0]['subscriptionsType']['name'] }}</td>
 	    		</tr>
