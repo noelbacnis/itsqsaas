@@ -9,7 +9,8 @@ class BannersController extends \BaseController {
 
 		if ($validator->fails())
 		{
-			return Redirect::back()->withErrors($validator);
+			return Redirect::back();
+			// return Redirect::back()->withErrors($validator);
 		}
 		else
 		{
@@ -45,7 +46,7 @@ class BannersController extends \BaseController {
 	 */
 	public function index()
 	{
-		$banners = Banner::all();
+		$banners = Banner::where('client_id', '=', Auth::user()->foreign_id)->orderBy('created_at','DESC')->paginate(10);
 
 		return View::make('banners.index', compact('banners'));
 	}

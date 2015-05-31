@@ -60,9 +60,9 @@
 		                                {{ link_to_route('orders.show', 'View', array($order->id), array('class' => 'btn btn-info col-md-5', 'style' => 'margin-right:5px')) }}
 		                                
 		                                @if ($order->status == 'FOR APPROVAL' || $order->status == 'REJECTED' )
-		                                	{{ link_to_route('order_change_status', 'Approve', array($order->id,'APPROVED'), array('class' => 'btn btn-info col-md-5', 'style' => 'margin-right:5px')) }}
+		                                	{{ link_to_route('order_change_status', 'Approve', array($order->id,'APPROVED'), array('class' => 'btn btn-info col-md-6', 'style' => 'margin-right:5px')) }}
 			                            @elseif ($order->status == 'APPROVED')                   
-			                                {{ link_to_route('order_change_status', 'Reject', array($order->id,'REJECTED'), array('class' => 'btn btn-info col-md-5', 'style' => 'margin-right:5px')) }}
+			                                {{ link_to_route('order_change_status', 'Reject', array($order->id,'REJECTED'), array('class' => 'btn btn-info col-md-6', 'style' => 'margin-right:5px')) }}
 		                                @endif
 		                            </td>
 		                        </tr>

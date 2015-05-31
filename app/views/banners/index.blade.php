@@ -42,8 +42,9 @@
 
 
 
-	<div class="row">
+		<div class="row">
 			<div class="col-lg-12">
+
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<div class="panel-title">Starters</div>
@@ -63,6 +64,43 @@
 						
 					</div>
 				</div>
+
+				@if ($banners->count())
+		            <table class="table table-striped table-bordered">
+		                <thead>
+		                    <tr>
+		                        <th>Banners</th>
+		                        <th>Date Uploaded</th>
+		                        <th>Action</th>
+		                    </tr>
+		                </thead>
+		                <tbody>
+		                    @foreach ($banners as $banner)
+		                        <tr>
+		                            <td class="col-md-5"> {{ HTML::image('banners/'.$banner->filename,'', array( 'width' => 200)) }} </td>
+		                            <td class="col-md-4">{{ $banner->created_at }}</td>
+
+		                            <td class="col-md-4">
+		                                	{{ Form::open(array('method'=> 'DELETE', 'route' => array('gallery.destroy', $banner->id))) }}    
+		                                		{{ Form::submit('Delete', array('class'=> 'btn btn-danger col-md-12')) }}
+			                                {{ Form::close() }}
+			                            
+		                                
+		                            </td>
+		                        </tr>
+		                    @endforeach
+		                </tbody>
+		            </table>
+
+		            <div class="pull-right">
+		                {{ $banners->links(); }}
+		            </div>
+		            
+		        @else
+		            There are no Banners yet
+		        @endif
+
+
 			</div>
 		</div>
 

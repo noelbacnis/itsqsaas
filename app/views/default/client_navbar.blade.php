@@ -50,7 +50,7 @@
                   <a href="{{ action('orders.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Orders</a>
                 </li>
                 <li>
-                  <a href="{{ action('subscriptions.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Subscriptions</a>
+                  <a href="{{ action('client_subscription') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Subscriptions</a>
                 </li>
                 <li>
                   <a href="{{ action('client_info') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Clients</a>
@@ -72,7 +72,10 @@
                   <a href="{{ action('client_dashboard') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Dashboard</a>
                 </li>
                 <li>
-                  <a href="{{ action('client_info') }}"><i class="fa fa-fw fa-bar-chart-o"></i> My Restaurant Info</a>
+                  <a href="{{ action('client_info') }}"><i class="fa fa-fw fa-bar-chart-o"></i> My Restaurant's Info</a>
+                </li>
+                <li>
+                  <a href="{{ action('client_subscription') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Subscriptions</a>
                 </li>
                 <li>
                     <a href="{{ action('categories.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Categories</a>

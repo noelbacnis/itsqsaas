@@ -5,8 +5,8 @@ class ProductsController extends \BaseController {
 	public function viewProduct($id)
 	{
 		$client_name = Client::select('name')->where('domain', '=', Session::get('domain'))->first()->name;
-
-		$categories = Category::with('products')->get();
+		$client_id = Client::select('id')->where('domain', '=', Session::get('domain'))->first()->id;
+		$categories = Category::with('products')->where('client_id', '=', $client_id)->get();
 		$product = Product::where('id', '=', $id)->get();
 
 		if(Auth::check()){
