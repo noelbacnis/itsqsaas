@@ -19,6 +19,13 @@ class ClientsController extends \BaseController {
 		return View::make('clients.client_info', compact('clients'));
 	}
 
+	public function showClientSubscriptions()
+	{
+		$subscriptions = Subscription::with('subscriptionsType')->where('client_id', '=', Auth::user()->foreign_id)->get();
+		// print_r($clients);
+		return View::make('clients.client_subscription', compact('subscriptions'));
+	}
+
 	public function showAdminHome()
 	{
 		// $client_id = Auth::user()->id;

@@ -87,7 +87,7 @@
                                     <p>PHP {{ $client_cms->products[0]->price }}</p>
                                 </div>
                         </div>
-                    @else
+                    @elseif ($client_cms->products->count() > 1)
                         <div class="col-lg-10 col-lg-offset-1 text-center">
                         <h2>Our Products</h2>
                         <hr class="small">
@@ -113,8 +113,16 @@
                                 <p>{{ $p->category->name }}</p>
                             </div>
                         @endforeach
-                        <div></div>
-                   @endif
+                            <div>
+                        </div>
+                    @else
+                        <div class="col-lg-10 col-lg-offset-1 text-center">
+                            <h2>Our Products</h2>
+                            <hr class="small">
+                            <div class="row">
+                                No Products Yet
+                            </div>
+                    @endif
                 </div>
             </div>
             <!-- /.row -->

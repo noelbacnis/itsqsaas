@@ -46,6 +46,7 @@ Route::post('/authenticate', array('as' => 'authenticate','uses' => 'UsersContro
 Route::group(array('before'=>'client_auth'), function() {  
 	Route::get('client/dashboard', array('as' => 'client_dashboard', 'uses' => 'ClientsController@showClientHome'));
 	Route::get('client/info', array('as' => 'client_info', 'uses' => 'ClientsController@showClientInfo'));
+	Route::get('client/subscriptions', array('as' => 'client_subscription', 'uses' => 'ClientsController@showClientSubscriptions'));
 	Route::get('client/logout', array('as' => 'client_logout', function () {
 		Auth::logout();
 		Session::forget('subscription_type');
