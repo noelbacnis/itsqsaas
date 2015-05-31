@@ -30,6 +30,9 @@ Route::get('subscribe/enterTransactionNumber', 'DefaultController@enterTransacti
 Route::post('subscribe/doEnterTransactionNumber', 'DefaultController@doEnterTransactionNumber');
 
 Route::get('phpinfo', function(){ echo phpinfo(); });
+
+Route::post('upgradeSubscription', 'ClientsController@upgradeSubscription');
+Route::post('upgrade/doEnterTransactionNumber', 'ClientsController@doEnterTransactionNumber');
 // Route::get('subscribe', 'DefaultController@subscribe');
 // Route::post('subscribe/doSubscribe', 'DefaultController@doSubscribe');
 
