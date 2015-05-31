@@ -19,9 +19,15 @@ class ClientsController extends \BaseController {
 
 	public function showClientWebsite($domain)
 	{
-		$domain_count = Client::where('domain', '=', $domain)->count();
+		// $domain = Client::where('domain', '=', $domain)->count();
+		$domain_info = Client::where('domain', '=', $domain)->first();
 
-		if ($domain_count > 0) {
+		// echo "<pre>";
+		// 	print_r($domain);
+		// 	echo "</pre>";
+
+		if (isset($domain_info) && $domain_info->status == 'ACTIVE') {
+		// if ($domain > 0) {
 			Session::put('domain', $domain);
 			$client_name = Client::select('name')->where('domain', '=', Session::get('domain'))->first()->name;
 			$client_id = Client::select('id')->where('domain', '=', $domain)->first()->id;
@@ -32,11 +38,17 @@ class ClientsController extends \BaseController {
 			Session::put('domain_subscription_type', $subscription_type->name);
 
 			$client_cms = Client::with('banners')->with('products')->where('id', '=', $client_id)->first();
+			// $client_cms = Client::with('banners')->with(array('products'=>function($query){
+			// 											$query->with('category');
+			// 										}))->where('id', '=', $client_id)->first();
+
+
 			// echo "<pre>";
-			// print_r($client_cms);
+			// print_r($domain);
 			// echo "</pre>";
 			return View::make('website.website', compact('client_cms', 'client_name'))->nest('navbar', 'default.customer_navbar');
-			// return View::make('clients.website', compact('categories', 'order_products', 'customer_info', 'client_name'))->nest('navbar', 'default.customer_navbar');
+		}else if ($domain_info->status == 'INACTIVE') {
+			echo "Account not yet active";
 		}else{
 			echo "No such domain";
 		}
@@ -50,9 +62,11 @@ class ClientsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$clients = Client::where('id', '=', Auth::user()->foreign_id)->first();
-
-		return View::make('clients.index', compact('clients'));
+		$clients = Client::paginate(10);
+		echo "<pre>";
+		print_r($clients);
+		echo "</pre>";
+		// return View::make('clients.index', compact('clients'));
 	}
 
 	/**

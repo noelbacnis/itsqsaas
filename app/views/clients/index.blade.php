@@ -5,10 +5,10 @@
 <!-- Page Heading -->
     <div class="row">
        	<div class="col-lg-12">
-            <h1 class="page-header"> Your Restaurant </h1>
+            <h1 class="page-header"> Clients </h1>
             <ol class="breadcrumb">
                 <li> <i class="fa fa-dashboard"></i>  <a href="{{ action('client_dashboard') }}">Dashboard</a> </li>
-               	<li class="active"> <i class="fa fa-table"></i> Client </li>
+               	<li class="active"> <i class="fa fa-table"></i> Clients </li>
             </ol>
         </div>
     </div>
@@ -19,7 +19,7 @@
 	    
 	    <div class="col-md-6">
 	    	
-	    	<table class="table table-striped table-bordered">
+	    	<!-- <table class="table table-striped table-bordered">
 	    		<tr>
 	    			<td><b>Restaurant Name:</b></td>
 	    			<td>@if ($clients->name) {{ $clients->name }} @else {{ 'Not set' }} @endif</td>
@@ -36,7 +36,32 @@
 	    		<tr>
 	    			<td colspan="2">{{ link_to_route('clients.edit', 'Edit', array($clients->id), array('class' => 'btn btn-info col-md-5', 'style' => 'margin-right:5px')) }}</td>
 	    		</tr>
-	    	</table>
+	    	</table> -->
+
+
+	    	 <table class="table table-striped table-bordered">
+		    	<thead>
+		    		<tr>
+		    			<th>Name</th>
+		    			<th>Domain/th>
+		    			<th>Email</th>
+		    			<th>Contact Number</th>
+		    			<th>Status</th>
+		    			<th>Date Created</th>
+		    			<th>Actions</th>
+		    		</tr>
+		    	</thead>
+		    	<tbody>
+		    		@if ($clients->count())
+						@foreach ($clients as $c)
+							<tr>
+								<td><?php print_r($c)?></td>
+								
+							</tr>
+						@endforeach
+					@endif
+		    	</tbody>
+		    </table>
 	    </div>
 	</div>
 
