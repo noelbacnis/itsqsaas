@@ -47,7 +47,7 @@
 						<h3>Content Management System</h3>
 						<p>Manage the content of your website with our Content Management System when you subscribe to our monthly service.</p>
 						<br>
-						<p><a href="{{ URL::to('subscriptionPayment').'?type=1'; }}" class="subscribe-btn">$ 19.99</a></p>
+						<p><a href="{{ URL::to('subscriptionPayment').'?type=2'; }}" class="subscribe-btn">$ 19.99</a></p>
 					</div>
 					<div class="col-md-4">
 						<h3>PREMIUM</h3>

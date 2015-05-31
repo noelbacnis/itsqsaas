@@ -67,7 +67,10 @@ class DefaultController extends \BaseController {
 			$client->subscription_id = 0;
 			$client->save();
 
-			$directory = File::makeDirectory(public_path().'/uploads/'.Input::get('name'));
+			if (!File::exists(public_path().'/uploads/'.Input::get('name')))
+			{
+				$directory = File::makeDirectory(public_path().'/uploads/'.Input::get('name'));
+			}
 
 			$filename = $file->getClientOriginalName();
 			$file->move(public_path().'/uploads/'.Input::get('name'), $filename);
@@ -77,8 +80,12 @@ class DefaultController extends \BaseController {
 			if (Session::has('session_email'))
 			{
 				Session::remove('session_email');
+			}
+			else
+			{
 				Session::put('session_email', $newClient->email);
 			}
+			
 
 			if (Input::hasFile('product_image'))
 			{
@@ -97,16 +104,16 @@ class DefaultController extends \BaseController {
 			}
 
 			# New Subscription
-			$subscription = new Subscription;
-			$subscription->client_id = $newClient->id;
-			$subscription->subscription_type_id = 1;
+			// $subscription = new Subscription;
+			// $subscription->client_id = $newClient->id;
+			// $subscription->subscription_type_id = 1;
 
-			$user = new User;
-			$user->username = 'admin';
-			$user->password = Hash::make(Input::get('email'));
-			$user->foreign_id = $newClient->id;
-			$user->user_type = 'client';
-			$user->save();
+			// $user = new User;
+			// $user->username = Input::get('email');
+			// $user->password = Hash::make('1234');
+			// $user->foreign_id = $newClient->id;
+			// $user->user_type = 'client';
+			// $user->save();
 
 			// echo "sess---".Session::get('session_email');
 
@@ -130,8 +137,6 @@ class DefaultController extends \BaseController {
 			if (Input::hasFile('banners'))
 			{
 
-				$newClient = Client::where('email', '=', Session::get('session_email'))->first();
-
 				$banners = Input::file('banners');
 
 				$filename = $banners->getClientOriginalName();
@@ -139,14 +144,13 @@ class DefaultController extends \BaseController {
 
 				$banner = new Banner;
 				$banner->filename = $filename;
-				$banner->client_id = $newClient->id;
 				$banner->status = 1;
 					
 				$banner->save();
 
 				# Update the client id of the newly uploaded images
 				// $newBanner = Banner::where('filename', '=', $filename)->first();
-				
+				// $newClient = Client::where('email', '=', Session::get('session_email'))->first();
 
 				// $newBanner->client_id = $newClient->id;
 				// $newBanner->save();
@@ -168,7 +172,7 @@ class DefaultController extends \BaseController {
 	{
 		$subscription = new Subscription;
 
-		if (Input::get('client_id') == '' && Input::get('subscription_type_id') != 1)
+		if (Input::get('subscription_type_id') != 1 && Input::get('email') == '')
 		{
 			$client = new Client;
 			$client->email = Input::get('email');
@@ -189,11 +193,13 @@ class DefaultController extends \BaseController {
 			$newClient->save();
 
 			$user = new User;
-			$user->username = 'admin';
-			$user->password = Hash::make(Input::get('email'));
+			$user->username = Input::get('email');
+			$user->password = Hash::make('1234');
 			$user->foreign_id = $newClient->id;
 			$user->user_type = 'client';
 			$user->save();
+
+			return Redirect::to('subscriptionSuccess');
 		}
 		else
 		{
@@ -204,9 +210,11 @@ class DefaultController extends \BaseController {
 			$subscription->start_period = date('Y-m-d h:i:s', strtotime(date('Y-m-d h:i:s')));
 			$subscription->end_period = date('Y-m-d h:i:s', strtotime("+".Input::get('period')." months", strtotime(date('Y-m-d h:i:s'))));
 			$subscription->save();
+
+			return Redirect::to('/');
 		} # End Input::get('client_id')
 
-		return Redirect::to('subscriptionSuccess');
+		
 	} # End doSubscriptionPayment
 
 	public function subscriptionSuccess()
