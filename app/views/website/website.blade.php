@@ -4,6 +4,8 @@
 
 {{ HTML::style('assets/css/stylish-portfolio.css'); }}
 
+
+
 {{ $navbar }}
 
 
@@ -56,6 +58,8 @@
             </div>
 
             <div class="text-vertical-center" style="position:absolute; z-index:20;width: 50%;height: 100%; top:40%;left:25%;display: table;text-shadow: 0 1px 2px rgba(0,0,0,.6)">
+                
+                <span>{{ HTML::image('uploads/'.$client_name.'/'.$client_cms->image, '', array( 'class' => '', 'style'=>'width: 100px;')) }}</span>
                 <h1>{{ $client_cms->name }}</h1>
                 <h3>{{ $client_cms->tagline }}</h3>
                 <br>
@@ -132,7 +136,7 @@
 
     <!-- Services -->
     <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-    <section id="about" class="services bg-primary">
+    <section id="about" class="services bg-primary" style="background-color:#{{ $client_cms->primary_color }}">
         <div class="container">
             <div class="row text-center">
                 <div class="col-lg-10 col-lg-offset-1">
@@ -208,7 +212,7 @@
     </section> -->
 
     <!-- Footer -->
-    <footer class=" bg-primary" style="color:white">
+    <footer class=" bg-primary"  style="background-color:#{{ $client_cms->primary_color }}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">

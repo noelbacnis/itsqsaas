@@ -28,12 +28,16 @@ class UsersController extends \BaseController {
 	}
 
 	public function customerLogin()
-	{
+	{	
+		$client_id = Client::select('id')->where('domain', '=', Session::get('domain'))->first()->id;
+		$client_cms = Client::with('banners')->with('products')->where('id', '=', $client_id)->first();
+
 		if(Auth::check()){
-			return View::make('website.website')->nest('navbar', 'default.customer_navbar');
+			return Redirect::route('client_website');
+			// return View::make('website.website', compact('client_cms'))->nest('navbar', 'default.customer_navbar');
 
 		}else{
-			return View::make('website.login')->nest('navbar', 'default.customer_navbar');
+			return View::make('website.login', compact('client_cms'))->nest('navbar', 'default.customer_navbar');
 		}
 		
 	}

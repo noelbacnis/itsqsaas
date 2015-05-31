@@ -2,6 +2,9 @@
 
 @section('content2')
 
+{{ HTML::style('assets/colorpicker/css/colorpicker.css'); }}
+{{ HTML::script('assets/colorpicker/js/colorpicker.js'); }}
+
 
 <div class="row">
        	<div class="col-lg-12">
@@ -71,9 +74,12 @@
 						
 
 					</div>
+					<div class="panel-footer">
+						<button type="submit" id="submit" class="btn btn-success form-control">Submit Everything</button>
+					</div>
 				</div>
 
-				<div class="panel panel-default">
+				<!-- <div class="panel panel-default">
 					<div class="panel-heading">
 						<div class="panel-title">Featured Product</div>
 					</div>
@@ -94,12 +100,39 @@
 					<div class="panel-footer">
 						<button type="submit" id="submit" class="btn btn-success form-control">Submit Everything</button>
 					</div>
-				</div>
+				</div> -->
 				{{ Form::close(); }}
 
 
 
+<script type="text/javascript">
+		$(document).ready(function(){
+			$('#primary_color').ColorPicker({
 
+				onShow: function (colpkr) {
+					$(colpkr).fadeIn(200);
+					return false;
+				},
+				onHide: function (colpkr) {
+					$(colpkr).fadeOut(200);
+					return false;
+				},
+				onChange: function (hsb, hex, rgb) {
+					$('#color-div').css('backgroundColor', '#' + hex);
+					$('#primary_color').val(hex);
+				}
+
+			});
+
+			$('#email').on('keyup', function(){
+				var val = $(this).val();
+				$('#dummy_email').val(val);
+			});
+
+			
+		});
+
+	</script>
 
 
 @stop

@@ -7,6 +7,8 @@ class CustomersController extends \BaseController {
 		$client_name = Client::select('name')->where('domain', '=', Session::get('domain'))->first()->name;
 		$client_id = Client::select('id')->where('domain', '=', Session::get('domain'))->first()->id;
 		$categories = Category::with('products')->where('client_id', '=', $client_id)->get();
+		$client_cms = Client::with('banners')->with('products')->where('id', '=', $client_id)->first();
+
 		// echo "<pre>";
 		// print_r($categories);
 		// echo "</pre>";
@@ -29,7 +31,7 @@ class CustomersController extends \BaseController {
 				}
 			}
 
-			return View::make('website.ordering', compact('categories', 'order_products', 'customer_info', 'client_name'))->nest('navbar', 'default.customer_navbar');	
+			return View::make('website.ordering', compact('categories', 'order_products', 'customer_info', 'client_name', 'client_cms'))->nest('navbar', 'default.customer_navbar');	
 	}
 
 	public function customerRegister()
@@ -37,8 +39,11 @@ class CustomersController extends \BaseController {
 		#Get Client ID
 		$client = Client::select('id')->where('domain', '=', Session::get('domain'))->get();
 		$client_id = $client[0]['id'];
+		// $client_id = Client::select('id')->where('domain', '=', Session::get('domain'))->first()->id;
+		$client_cms = Client::with('banners')->with('products')->where('id', '=', $client_id)->first();
 
-		return View::make('website.register', compact('client_id'))->nest('navbar', 'default.customer_navbar');
+
+		return View::make('website.register', compact('client_id', 'client_cms'))->nest('navbar', 'default.customer_navbar');
 	}
 
 	public function customerRegisterValidate()
