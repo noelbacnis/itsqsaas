@@ -65,6 +65,7 @@ class DefaultController extends \BaseController {
 			$client->domain = Input::get('domain');
 			$client->email = Input::get('email');
 			$client->subscription_id = 0;
+			$client->status = 'ACTIVE';
 			$client->save();
 
 			if (!File::exists(public_path().'/uploads/'.Input::get('name')))
@@ -176,6 +177,7 @@ class DefaultController extends \BaseController {
 		{
 			$client = new Client;
 			$client->email = Input::get('email');
+			$client->status = 'INACTIVE';
 			$client->save();
 
 			$newClient = Client::where('email', '=', Input::get('email'))->first();
