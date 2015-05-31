@@ -12,11 +12,11 @@ class Subscription extends \Eloquent {
 	protected $fillable = array('client_id', 'subscription_type_id', 'transaction_number', 'total_amount', 'start_period', 'end_period');
 
 	public function clients() {
-        return $this->hasMany('Client'); 
+        return $this->belongsTo('Client', 'client_id', 'id'); 
     }
 
-    // public function subscriptionsType() {
-    //     return $this->belongsTo('SubscriptionsType', 'id', 'subscription_type_id'); 
-    // }
+    public function subscriptionsType() {
+        return $this->belongsTo('SubscriptionsType', 'subscription_type_id', 'id'); 
+    }
 
 }

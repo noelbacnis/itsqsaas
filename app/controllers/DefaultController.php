@@ -64,6 +64,7 @@ class DefaultController extends \BaseController {
 			$client->address = Input::get('address');
 			$client->domain = Input::get('domain');
 			$client->email = Input::get('email');
+			$client->status = 'ACTIVE';
 			$client->subscription_id = 0;
 			$client->save();
 
@@ -184,6 +185,7 @@ class DefaultController extends \BaseController {
 			$subscription->subscription_type_id = Input::get('subscription_type_id');
 			$subscription->transaction_number = 0;
 			$subscription->total_amount = 0;
+			$subscription->status = 'INACTIVE';
 			$subscription->start_period = date('Y-m-d h:i:s', strtotime(date('Y-m-d h:i:s')));
 			$subscription->end_period = date('Y-m-d h:i:s', strtotime("+".Input::get('period')." months", strtotime(date('Y-m-d h:i:s'))));
 			$subscription->save();

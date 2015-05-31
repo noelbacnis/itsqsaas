@@ -2,6 +2,12 @@
 
 class SubscriptionsController extends \BaseController {
 
+	public function clientSubscriptions(){
+		$subscriptions = Subscription::where('client_id', '=', Auth::user()->foreign_id)->get();
+
+		return View::make('subscriptions.index', compact('subscriptions'));
+	}
+
 	/**
 	 * Display a listing of subscriptions
 	 *
@@ -9,7 +15,11 @@ class SubscriptionsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$subscriptions = Subscription::where('client_id', '=', Auth::user()->foreign_id)->get();
+		$subscriptions = Subscription::with('subscriptionsType')->with('clients')->orderBy('created_at', 'DESC')->paginate(10);
+
+		// $subscriptions = Subscription::with('subscriptionsType')->with(array('clients'=>function($query){
+		// 																$query->orderBy('status', 'INACTIVE');
+		// 														}))->paginate(10);
 
 		return View::make('subscriptions.index', compact('subscriptions'));
 	}
@@ -51,8 +61,8 @@ class SubscriptionsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$subscription = Subscription::findOrFail($id);
-
+		$subscription = Subscription::with('subscriptionsType')->with('clients')->find($id);
+		// print_r($subscription);
 		return View::make('subscriptions.show', compact('subscription'));
 	}
 

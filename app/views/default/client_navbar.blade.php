@@ -52,9 +52,9 @@
                 <li>
                   <a href="{{ action('subscriptions.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Subscriptions</a>
                 </li>
-                <!-- <li>
-                  <a href="{{ action('clients.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Clients</a>
-                </li> -->
+                <li>
+                  <a href="{{ action('client_info') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Clients</a>
+                </li>
                 <li>
                     <a href="{{ action('categories.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Categories</a>
                 </li>
@@ -76,6 +76,9 @@
                 </li>
                 <li>
                   <a href="{{ action('products.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Products</a>
+                </li>
+                <li>
+                  <a href="{{ action('client_info') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Clients</a>
                 </li>
                <!--  <li>
                   <a href="{{ action('customers.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Customers</a>

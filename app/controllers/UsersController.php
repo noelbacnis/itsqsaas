@@ -46,16 +46,22 @@ class UsersController extends \BaseController {
             'user_type' => Input::get('user_type')
         );
 
-        print_r($user);
+        // print_r($user);
 
 		if(Auth::attempt($user, false)){
 			if($user['user_type'] == 'client'){
 				$client_id = Auth::user()->foreign_id;
-				$subscription = Subscription::select('subscription_type_id')->where('client_id', '=', $client_id)->first();
-				$subscription_type = SubscriptionsType::where('id', '=', $subscription->subscription_type_id)->first();
+				$account_status = Client::where('id', '=', $client_id)->first();
+				// if($account_status->status == 'ACTIVE'){
+					$subscription = Subscription::select('subscription_type_id')->where('client_id', '=', $client_id)->first();
+					$subscription_type = SubscriptionsType::where('id', '=', $subscription->subscription_type_id)->first();
+					Session::put('subscription_type', $subscription_type->id);
+					return Redirect::route('client_dashboard')->with('flash_notice', 'You have successfully logged in.')->with('alert_class', 'alert-success');
+
+				// }else{
+				// 	return Redirect::route('client_login')->with('flash_notice', 'Account not yet activated by the admin')->with('alert_class', 'alert-danger');
+				// }
 				
-				Session::put('subscription_type', $subscription_type->id);
-				return Redirect::route('client_dashboard')->with('flash_notice', 'You have successfully logged in.')->with('alert_class', 'alert-success');
 			}else if($user['user_type'] == 'customer'){
 				return Redirect::route('client_website')->with('flash_notice', 'You have successfully logged in.');
 			}else if($user['user_type'] == 'admin'){

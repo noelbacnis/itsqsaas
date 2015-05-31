@@ -9,7 +9,7 @@ class CategoriesController extends \BaseController {
 	 */
 	public function index()
 	{
-		$categories = Category::paginate(10);
+		$categories = Category::where('client_id', '=', Auth::user()->foreign_id)->paginate(10);
 
 		return View::make('categories.index', compact('categories'));
 	}

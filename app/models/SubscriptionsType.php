@@ -12,7 +12,7 @@ class SubscriptionsType extends \Eloquent {
 	protected $fillable = array('name', 'price');
 
     public function subscriptions() {
-        return $this->hasMany('Subscriptions', 'id', 'subscription_type_id'); 
+        return $this->hasMany('Subscriptions', 'subscription_type_id', 'id'); 
     }
 
 }

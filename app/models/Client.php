@@ -12,7 +12,7 @@ class Client extends \Eloquent {
 	protected $fillable = array('name', 'description', 'tagline', 'image', 'primary_color', 'contact_number', 'address', 'status', 'subscription_id', 'domain');
 
 	public function subscription(){        
-		return $this->belongsTo('Subscription'); 
+		return $this->hasMany('Subscription', 'client_id', 'id'); 
 	}
 
 	public function user() {

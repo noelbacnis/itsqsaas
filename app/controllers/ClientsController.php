@@ -10,6 +10,15 @@ class ClientsController extends \BaseController {
 		return View::make('clients.dashboard', compact('client'));
 	}
 
+	public function showClientInfo()
+	{
+		$clients = Client::with(array('subscription'=>function($query){
+									$query->with('subscriptionsType');
+				}))->where('id', '=', Auth::user()->foreign_id)->first();
+		// print_r($clients);
+		return View::make('clients.client_info', compact('clients'));
+	}
+
 	public function showAdminHome()
 	{
 		// $client_id = Auth::user()->id;
@@ -19,36 +28,38 @@ class ClientsController extends \BaseController {
 
 	public function showClientWebsite($domain)
 	{
-		// $domain = Client::where('domain', '=', $domain)->count();
+		$domain_count = Client::where('domain', '=', $domain)->count();
 		$domain_info = Client::where('domain', '=', $domain)->first();
 
 		// echo "<pre>";
 		// 	print_r($domain);
 		// 	echo "</pre>";
 
-		if (isset($domain_info) && $domain_info->status == 'ACTIVE') {
-		// if ($domain > 0) {
-			Session::put('domain', $domain);
-			$client_name = Client::select('name')->where('domain', '=', Session::get('domain'))->first()->name;
-			$client_id = Client::select('id')->where('domain', '=', $domain)->first()->id;
-			$subscription = Subscription::select('subscription_type_id')->where('client_id', '=', $client_id)->first();
-			$subscription_type = SubscriptionsType::select('name')->where('id', '=', $subscription->subscription_type_id)->first();
-					
-			Session::remove('domain_subscription_type');
-			Session::put('domain_subscription_type', $subscription_type->name);
+		if ($domain_count > 0) {
+			if ($domain_info->status == 'ACTIVE') {
+				// if ($domain > 0) {
+				Session::put('domain', $domain);
+				$client_name = Client::select('name')->where('domain', '=', Session::get('domain'))->first()->name;
+				$client_id = Client::select('id')->where('domain', '=', $domain)->first()->id;
+				$subscription = Subscription::select('subscription_type_id')->where('client_id', '=', $client_id)->first();
+				$subscription_type = SubscriptionsType::select('name')->where('id', '=', $subscription->subscription_type_id)->first();
+						
+				Session::remove('domain_subscription_type');
+				Session::put('domain_subscription_type', $subscription_type->name);
 
-			$client_cms = Client::with('banners')->with('products')->where('id', '=', $client_id)->first();
-			// $client_cms = Client::with('banners')->with(array('products'=>function($query){
-			// 											$query->with('category');
-			// 										}))->where('id', '=', $client_id)->first();
+				$client_cms = Client::with('banners')->with('products')->where('id', '=', $client_id)->first();
+				// $client_cms = Client::with('banners')->with(array('products'=>function($query){
+				// 											$query->with('category');
+				// 										}))->where('id', '=', $client_id)->first();
 
 
-			// echo "<pre>";
-			// print_r($domain);
-			// echo "</pre>";
-			return View::make('website.website', compact('client_cms', 'client_name'))->nest('navbar', 'default.customer_navbar');
-		}else if ($domain_info->status == 'INACTIVE') {
-			echo "Account not yet active";
+				// echo "<pre>";
+				// print_r($domain);
+				// echo "</pre>";
+				return View::make('website.website', compact('client_cms', 'client_name'))->nest('navbar', 'default.customer_navbar');
+			}else if ($domain_info->status == 'INACTIVE') {
+				echo "Account not yet active";
+			}
 		}else{
 			echo "No such domain";
 		}
@@ -157,7 +168,8 @@ class ClientsController extends \BaseController {
 
 		$client->update($data);
 
-		return Redirect::route('clients.index');
+		// return Redirect::route('clients.index');
+		return Redirect::route('clients.client_info');
 	}
 
 	/**
