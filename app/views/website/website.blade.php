@@ -8,14 +8,13 @@
 
     <!-- Header -->
     @if($client_cms->banners->count())
-    @foreach ($client_cms->banners[0] as $p)
-    <header id="top" class="header" style='background: transparent url("http://localhost/itsqsaas/public/banners/{{ $client_cms->banners[0]->filename }}") no-repeat scroll center center / cover'>
-    <?php //break();?>
-    @endforeach
+        @foreach ($client_cms->banners[0] as $p)
+            <header id="top" class="header" style='background: transparent url("http://localhost/itsqsaas/public/banners/{{ $client_cms->banners[0]->filename }}") no-repeat scroll center center / cover'>
+        @endforeach
     @else
-    <header id="top" class="header" style='background: transparent url("http://localhost/itsqsaas/public/banners/burger.jpg") no-repeat scroll center center / cover'>
-    
+        <header id="top" class="header" style='background: transparent url("http://localhost/itsqsaas/public/banners/burger.jpg") no-repeat scroll center center / cover'>
     @endif
+
         <div class="text-vertical-center">
             <h1>{{ $client_cms->name }}</h1>
             <h3>{{ $client_cms->tagline }}</h3>
@@ -30,7 +29,6 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     @if($client_cms->products->count() == 1)
-
                         <h2>Featured Product</h2>
                         <hr class="small">
                         <div class="row">
@@ -47,7 +45,6 @@
                                     </h4>
                                     <p>{{ $client_cms->products[0]->description }}</p>
                                     <p>PHP {{ $client_cms->products[0]->price }}</p>
-                                    <p>{{ $client_cms->products[0]->category->name }}</p>
                                 </div>
                         </div>
                     @else
@@ -57,11 +54,19 @@
                         <div class="row">
                         @foreach ($client_cms->products as $p)
                             <div class="col-md-6">
-                                <div class="portfolio-item">
-                                    <a href="#">
-                                        {{ HTML::image('uploads/'.$client_name.'/'.$p->image,'', array( 'class' => 'img-portfolio img-responsive' )) }}
-                                    </a>
-                                </div>
+                                @if($p->image != '')
+                                    <div class="portfolio-item">
+                                        <a href="#">
+                                            {{ HTML::image('uploads/'.$client_name.'/'.$p->image,'', array( 'class' => 'img-portfolio img-responsive', 'width' => '300px' )) }}
+                                        </a>
+                                    </div>
+                                @else
+                                     <div class="portfolio-item">
+                                        <a href="#">
+                                            {{ HTML::image('assets/images/default_img_1.png','', array( 'class' => 'img-portfolio img-responsive', 'width' => '300px' )) }}
+                                        </a>
+                                    </div>
+                                @endif
                                 <h4><strong>{{ $p->name }}</strong></h4>
                                 <p>{{ $p->description }}</p>
                                 <p>PHP {{ $p->price }}</p>

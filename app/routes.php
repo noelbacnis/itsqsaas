@@ -68,9 +68,9 @@ Route::group(array('before'=>'admin_auth'), function() {
 	}));
 });
 
-Route::get('flush', function(){
-	Session::flush();
-});
+// Route::get('flush', function(){
+// 	Session::flush();
+// });
 
 # Client's Public Website routes
 Route::get('www/{domain}', 'ClientsController@showClientWebsite');

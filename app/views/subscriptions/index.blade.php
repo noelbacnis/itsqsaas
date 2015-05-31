@@ -1,4 +1,4 @@
-@extends('default.client_navbar')
+@extends('default.admin_navbar')
 
 @section('content2')
 

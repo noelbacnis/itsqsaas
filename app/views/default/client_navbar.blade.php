@@ -52,9 +52,9 @@
                 <li>
                   <a href="{{ action('subscriptions.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Subscriptions</a>
                 </li>
-                <li>
+                <!-- <li>
                   <a href="{{ action('clients.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Clients</a>
-                </li>
+                </li> -->
                 <li>
                     <a href="{{ action('categories.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Categories</a>
                 </li>
