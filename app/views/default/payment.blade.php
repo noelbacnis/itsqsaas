@@ -40,7 +40,7 @@
 							<br><br>
 							@if (!Input::get('id'))
 								{{ Form::label('email', 'E-mail Address'); }}
-								{{ Form::text('email', '', array('class' => 'form-control')); }}
+								{{ Form::text('email', '', array('class' => 'form-control', 'required' => 'required')); }}
 								<i>Subscription information will be sent to this e-mail.</i>
 								<br><br>
 							@endif

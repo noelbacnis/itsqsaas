@@ -29,9 +29,7 @@ Route::get('subscriptionSuccess', 'DefaultController@subscriptionSuccess');
 Route::get('subscribe/enterTransactionNumber', 'DefaultController@enterTransactionNumber');
 Route::post('subscribe/doEnterTransactionNumber', 'DefaultController@doEnterTransactionNumber');
 
-Route::get('check', function(){
-	return View::make('website.website');
-});
+Route::get('phpinfo', function(){ echo phpinfo(); });
 // Route::get('subscribe', 'DefaultController@subscribe');
 // Route::post('subscribe/doSubscribe', 'DefaultController@doSubscribe');
 
@@ -70,6 +68,9 @@ Route::group(array('before'=>'admin_auth'), function() {
 
 Route::get('flush', function(){
 	Session::flush();
+});
+Route::get('allsess', function(){
+	echo Session::get('session_email');
 });
 
 # Client's Public Website routes

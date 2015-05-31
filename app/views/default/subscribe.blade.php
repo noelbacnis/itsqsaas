@@ -49,7 +49,6 @@
 						<!--== DROPZONE FORM
 							================================================== -->
 							{{ Form::open(array('url' => 'uploadStarterBanner' ,'class' => 'dropzone dz-clickable', 'id' => 'dropzone')); }}
-							{{ Form::text('dummy_email', '', array('id' => 'dummy_email')); }}
 							
 							{{ Form::close(); }}
 						</div>
@@ -167,11 +166,6 @@
 					$('#primary_color').val(hex);
 				}
 
-			});
-
-			$('#email').on('keyup', function(){
-				var txt = $(this).val();
-				$('#dummy_email').val(txt);
 			});
 			
 		});
