@@ -99,7 +99,7 @@
 						</div>
 						<div class="panel-footer">
 							{{ Form::label('total_payment', 'Total Payment'); }}
-							{{ Form::text('total_payment', $amount*3); }}
+							{{ Form::hidden('total_payment', $amount*3); }}
 							<span id="total_payment_a" style="float: right;"></span>
 						</div>
 					</div>

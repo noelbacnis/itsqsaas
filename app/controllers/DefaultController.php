@@ -146,13 +146,15 @@ class DefaultController extends \BaseController {
 				$banner = new Banner;
 				$banner->filename = $filename;
 				$banner->status = 1;
+				// $banner->client_id = $newClient->id;
+				$banner->email = Input::get('dummy_email');
 					
 				$banner->save();
 
 				# Update the client id of the newly uploaded images
+				// $newClient = Client::where('email', '=', Input::get('dummy_email'))->first();
 				// $newBanner = Banner::where('filename', '=', $filename)->first();
-				// $newClient = Client::where('email', '=', Session::get('session_email'))->first();
-
+				
 				// $newBanner->client_id = $newClient->id;
 				// $newBanner->save();
 
@@ -206,6 +208,14 @@ class DefaultController extends \BaseController {
 		}
 		else
 		{
+			$client = Client::find(Input::get('client_id'));
+			$banners = Banner::where('email', '=', $client->email)->get();
+
+			foreach ($banners as $b):
+				$b->client_id = Input::get('client_id');
+				$b->save();
+			endforeach;
+
 			$subscription->client_id = Input::get('client_id');
 			$subscription->subscription_type_id = Input::get('subscription_type_id');
 			$subscription->transaction_number = 0;
