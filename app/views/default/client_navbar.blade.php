@@ -44,7 +44,9 @@
                 <li>
                     <a href="{{ action('client_dashboard') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Dashboard</a>
                 </li>
-                
+                <li>
+                  <a href="{{ action('client_info') }}"><i class="fa fa-fw fa-bar-chart-o"></i> My Restaurant's Info</a>
+                </li>
                 
                 <li>
                   <a href="{{ action('orders.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Orders</a>

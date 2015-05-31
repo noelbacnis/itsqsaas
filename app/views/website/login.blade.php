@@ -31,7 +31,8 @@
 	<!-- Header -->
     <header id="top" class="header" style="height:250px">
         <div class="text-vertical-center">
-            <h1>Restaurant</h1>
+            <span>{{ HTML::image('uploads/'.$client_cms->name.'/'.$client_cms->image, '', array( 'class' => '', 'style'=>'width: 100px;')) }}</span>
+            <h1>{{ $client_cms->name }}</h1>
             <h3>Login</h3>
             <br>
         </div>
@@ -75,7 +76,7 @@
 			                </div>
 
 			                <div class="col-xs-12" style="padding:0px">
-			                  <button type="submit" class="btn btn-primary" id="btnlogin" style="width:100%"  data-loading-text="Logging in..." >Login</button>
+			                  <button type="submit" class="btn" id="btnlogin" style="width:100%;border-color:#{{ $client_cms->primary_color }};background-color:#{{ $client_cms->primary_color }};color:#fff" data-loading-text="Logging in..." >Login</button>
 			                  <hr>
 			                </div>
 			            {{Form::close()}}

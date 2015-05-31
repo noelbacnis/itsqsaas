@@ -33,8 +33,10 @@
 
 	<!-- Header -->
     <header id="top" class="header" style="height:250px">
+
         <div class="text-vertical-center">
-            <h1>Restaurant</h1>
+            <span>{{ HTML::image('uploads/'.$client_name.'/'.$client_cms->image, '', array( 'class' => '', 'style'=>'width: 100px;')) }}</span>
+            <h1>{{ $client_cms->name }}</h1>
             <h3>Ordering</h3>
             <br>
         </div>
@@ -54,8 +56,8 @@
 	                        <div style="height: 100%;line-height: 50px;float: left;font-family: verdana;font-size: 15px">Choose your order from the categories below</div>
 	                    </div>
 						
-						<div class="panel panel-primary">
-							<div class="panel-heading">
+						<div class="panel " style="border-color:#{{ $client_cms->primary_color }} " style="border-color:#{{ $client_cms->primary_color }} ">
+							<div class="panel-heading" style="border-color:#{{ $client_cms->primary_color }};background-color:#{{ $client_cms->primary_color }};color:#fff ">
 								<div class="panel-title">Products</div>
 							</div>
 							<div class="panel-body" style="color:black">
@@ -92,8 +94,8 @@
                         <div style="height: 100%;line-height: 50px;float: left;font-family: verdana;font-size: 15px">Input Quantity</div>
                     </div>
 					{{ Form::open(array('route' => 'addorder' ,'class' => '', 'id' => '')); }}
-					<div class="panel panel-primary">
-						<div class="panel-heading">
+					<div class="panel " style="border-color:#{{ $client_cms->primary_color }} ">
+						<div class="panel-heading" style="border-color:#{{ $client_cms->primary_color }};background-color:#{{ $client_cms->primary_color }};color:#fff ">
 							<div class="panel-title">Product Preview</div>
 						</div>
 						<div class="panel-body">
@@ -131,8 +133,8 @@
                         <div style="height: 100%;line-height: 40px;margin: 0px 5px 0px 5px;float: left;font-family: impact;font-size: 30px;font-weight: bold;border-radius: 500px;border:4px solid;width: 50px;height: 50px;text-align: center;">3</div> 
                         <div style="height: 100%;line-height: 50px;float: left;font-family: verdana;font-size: 15px">Review your orders</div>
                     </div>
-					<div class="panel panel-primary">
-						<div class="panel-heading">
+					<div class="panel " style="border-color:#{{ $client_cms->primary_color }} ">
+						<div class="panel-heading" style="border-color:#{{ $client_cms->primary_color }};background-color:#{{ $client_cms->primary_color }};color:#fff ">
 							<div class="panel-title">My Orders</div>
 						</div>
 						<div class="panel-body">
@@ -184,8 +186,8 @@
                         <div style="height: 100%;line-height: 40px;margin: 0px 5px 0px 5px;float: left;font-family: impact;font-size: 30px;font-weight: bold;border-radius: 500px;border:4px solid;width: 50px;height: 50px;text-align: center;">4</div> 
                         <div style="height: 100%;line-height: 50px;float: left;font-family: verdana;font-size: 15px">Fill in the delivery information</div>
                     </div>
-					<div class="panel panel-primary">
-						<div class="panel-heading">
+					<div class="panel " style="border-color:#{{ $client_cms->primary_color }} ">
+						<div class="panel-heading" style="border-color:#{{ $client_cms->primary_color }};background-color:#{{ $client_cms->primary_color }};color:#fff ">
 							<div class="panel-title">Delivery Details</div>
 						</div>
 						<div class="panel-body">
@@ -286,7 +288,7 @@
 
 
 			                <div class="col-xs-12" style="padding:0px">
-			                  <button type="submit" class="btn btn-primary" style="width:100%">Submit Order</button>
+			                  <button type="submit" class="btn" style="width:100%;border-color:#{{ $client_cms->primary_color }};background-color:#{{ $client_cms->primary_color }};color:#fff  ">Submit Order</button>
 			                  <hr>
 			                </div>
 			            {{Form::close()}}
