@@ -55,6 +55,16 @@ class ClientsController extends \BaseController {
 		
 	}
 
+	public function changeStatus($id, $status)
+	{
+
+		$client = Client::where('id', '=', $id)->first();
+	    $client->status = $status;
+	    $client->save();
+
+	    return Redirect::back();
+	}
+
 	/**
 	 * Display a listing of clients
 	 *
@@ -62,11 +72,15 @@ class ClientsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$clients = Client::paginate(10);
-		echo "<pre>";
-		print_r($clients);
-		echo "</pre>";
-		// return View::make('clients.index', compact('clients'));
+		$clients = Client::with('subscription')->paginate(10);
+		// echo "<pre>";
+		// print_r($clients);
+		// echo "</pre>";
+		// foreach ($clients as $c) {
+		// 	echo $c->name;
+		// 	# code...
+		// }
+		return View::make('clients.index', compact('clients'));
 	}
 
 	/**

@@ -1,4 +1,4 @@
-@extends('default.client_navbar')
+@extends('default.admin_navbar')
 
 @section('content2')
 
@@ -17,33 +17,12 @@
 	<!-- Heading Buttons -->
 	<div class="row bottom-padding">
 	    
-	    <div class="col-md-6">
-	    	
-	    	<!-- <table class="table table-striped table-bordered">
-	    		<tr>
-	    			<td><b>Restaurant Name:</b></td>
-	    			<td>@if ($clients->name) {{ $clients->name }} @else {{ 'Not set' }} @endif</td>
-	    		</tr>
-	    		<tr>
-	    			<td><b>Subscription Type:</b></td>
-	    			<td>@if ($clients->subscription->subscription_type_id) {{ $clients->subscription->subscription_type_id }} @else {{ 'Not set' }} @endif</td>
-	    		</tr>
-	    		<tr>
-	    			<td><b>Period:</b></td>
-	    			<td>From {{ $clients->subscription->start_period }} <br>
-	    				To {{ $clients->subscription->end_period }}</td>
-	    		</tr>
-	    		<tr>
-	    			<td colspan="2">{{ link_to_route('clients.edit', 'Edit', array($clients->id), array('class' => 'btn btn-info col-md-5', 'style' => 'margin-right:5px')) }}</td>
-	    		</tr>
-	    	</table> -->
-
-
+	    <div class="col-md-12">
 	    	 <table class="table table-striped table-bordered">
 		    	<thead>
 		    		<tr>
 		    			<th>Name</th>
-		    			<th>Domain/th>
+		    			<th>Domain</th>
 		    			<th>Email</th>
 		    			<th>Contact Number</th>
 		    			<th>Status</th>
@@ -55,8 +34,23 @@
 		    		@if ($clients->count())
 						@foreach ($clients as $c)
 							<tr>
-								<td><?php print_r($c)?></td>
-								
+								<td>{{ $c->name }}</td>
+								<td>{{ $c->domain }}</td>
+								<td>{{ $c->email }}</td>
+								<td>{{ $c->contact_number }}</td>
+								<td>{{ $c->status }}</td>
+								<td>{{ $c->created_at }}</td>
+								<td>
+									{{ link_to_route('clients.show', 'View', array($c->id), array('class' => 'btn btn-info col-md-5', 'style' => 'margin-right:5px')) }}
+		                                
+		                                @if ($c->status == 'INACTIVE')
+		                                	{{ link_to_route('client_change_status', 'Activate', array($c->id,'ACTIVE'), array('class' => 'btn btn-danger col-md-6', 'style' => 'margin-right:5px')) }}
+			                            @elseif ($c->status == 'ACTIVE')                   
+			                                {{ link_to_route('client_change_status', 'Deactivate', array($c->id,'INACTIVE'), array('class' => 'btn btn-success col-md-6', 'style' => 'margin-right:5px')) }}
+		                                @endif
+	                                	
+		                          
+								</td>
 							</tr>
 						@endforeach
 					@endif

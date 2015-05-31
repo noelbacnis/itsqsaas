@@ -64,6 +64,7 @@ Route::group(array('before'=>'admin_auth'), function() {
 		Auth::logout();
 		return Redirect::route('admin_login')->with('flash_notice', 'You are successfully logged out.')->with('alert_class', 'alert-success');
 	}));
+	Route::get('admin/client/status/{id}/{status}', array('as' => 'client_change_status', 'uses' => 'ClientsController@changeStatus'));
 });
 
 Route::get('flush', function(){
