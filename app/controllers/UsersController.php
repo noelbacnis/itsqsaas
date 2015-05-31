@@ -57,7 +57,7 @@ class UsersController extends \BaseController {
 				$client_id = Auth::user()->foreign_id;
 				$account_status = Client::where('id', '=', $client_id)->first();
 				// if($account_status->status == 'ACTIVE'){
-					$subscription = Subscription::select('subscription_type_id')->where('client_id', '=', $client_id)->where('status', 'ACTIVE')->first();
+					$subscription = Subscription::select('subscription_type_id')->where('client_id', '=', $client_id)->where('status','=','ACTIVE')->first();
 
 					$subscription_type = SubscriptionsType::where('id', '=', $subscription->subscription_type_id)->first();
 					Session::put('subscription_type', $subscription_type->id);

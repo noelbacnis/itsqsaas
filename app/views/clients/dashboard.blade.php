@@ -21,7 +21,7 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        @if (Auth::user()->client->subscription->first()->id == 2 && Auth::user()->client->subscription->count() == 1)
+                        @if (Auth::user()->client->subscription->first()->subscription_type_id == 2 && Auth::user()->client->subscription->count() == 1)
                             <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Upgrade to Premium</button>
                         @elseif (Auth::user()->client->subscription->count() > 1 && Session::get('subscription_type') != 3)
                         <h3>You have a pending upgrade</h3>
