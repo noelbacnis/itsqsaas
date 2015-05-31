@@ -99,8 +99,8 @@
 						</div>
 						<div class="panel-footer">
 							{{ Form::label('total_payment', 'Total Payment'); }}
-
-							<span id="total_payment" style="float: right;"></span>
+							{{ Form::text('total_payment', $amount*3); }}
+							<span id="total_payment_a" style="float: right;"></span>
 						</div>
 					</div>
 				</div>
@@ -117,7 +117,8 @@
 			var val = $(this).val();
 			var amount = $('#amount').val();
 
-			$('#total_payment').html('$'+(val*amount).toFixed(2));
+			$('#total_payment_a').html('$'+(val*amount).toFixed(2))
+			$('#total_payment').val((val*amount).toFixed(2));
 		});
 	});
 </script>
