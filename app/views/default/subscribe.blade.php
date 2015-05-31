@@ -49,7 +49,8 @@
 						<!--== DROPZONE FORM
 							================================================== -->
 							{{ Form::open(array('url' => 'uploadStarterBanner' ,'class' => 'dropzone dz-clickable', 'id' => 'dropzone')); }}
-							
+							<div class="dropzone-preview"></div>
+							{{ Form::hidden('dummy_email', '', array('id' => 'dummy_email')); }}
 							{{ Form::close(); }}
 						</div>
 						
@@ -167,6 +168,12 @@
 				}
 
 			});
+
+			$('#email').on('keyup', function(){
+				var val = $(this).val();
+				$('#dummy_email').val(val);
+			});
+
 			
 		});
 
@@ -174,6 +181,8 @@
 
 			autoProcessQueue : false,
 			parallelUploads : 5,
+			// uploadMultiple : true,
+			// maxFiles : 5,
 
 			dictDefaultMessage : "<h2>Drag and drop images here for your banner.</h2><br>You can also click here to select your files.",
 			paramName : 'banners',

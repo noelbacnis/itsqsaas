@@ -5901,3 +5901,142 @@ Stack trace:
 #16 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(641): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
 #17 /Applications/XAMPP/xamppfiles/htdocs/itsqsaas/public/index.php(49): Illuminate\Foundation\Application->run()
 #18 {main} [] []
+[2015-05-31 22:10:59] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function getClientOriginalName() on array' in C:\xampp\htdocs\itsqsaas\app\controllers\DefaultController.php:145
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-05-31 22:26:36] production.ERROR: exception 'InvalidArgumentException' with message 'Command "generate:make" is not defined.
+
+Did you mean one of these?
+    migrate:make
+    command:make
+    controller:make
+    generate:view
+    generate:seed
+    generate:model
+    generate:publish-templates
+    generate:pivot
+    generate:controller
+    generate:migration
+    generate:resource
+    generate:scaffold' in C:\xampp\htdocs\itsqsaas\vendor\symfony\console\Symfony\Component\Console\Application.php:564
+Stack trace:
+#0 C:\xampp\htdocs\itsqsaas\vendor\symfony\console\Symfony\Component\Console\Application.php(190): Symfony\Component\Console\Application->find('generate:make')
+#1 C:\xampp\htdocs\itsqsaas\vendor\symfony\console\Symfony\Component\Console\Application.php(124): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#2 C:\xampp\htdocs\itsqsaas\artisan(59): Symfony\Component\Console\Application->run()
+#3 {main} [] []
+[2015-05-31 22:38:54] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function getClientOriginalName() on array' in C:\xampp\htdocs\itsqsaas\app\controllers\DefaultController.php:145
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-05-31 22:43:25] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function getClientOriginalName() on array' in C:\xampp\htdocs\itsqsaas\app\controllers\DefaultController.php:145
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-05-31 22:46:37] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function getClientOriginalName() on array' in C:\xampp\htdocs\itsqsaas\app\controllers\DefaultController.php:145
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-05-31 22:47:38] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function getClientOriginalName() on array' in C:\xampp\htdocs\itsqsaas\app\controllers\DefaultController.php:145
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-05-31 22:49:30] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function getClientOriginalName() on array' in C:\xampp\htdocs\itsqsaas\app\controllers\DefaultController.php:145
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-05-31 22:50:48] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function getClientOriginalName() on array' in C:\xampp\htdocs\itsqsaas\app\controllers\DefaultController.php:145
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-05-31 22:52:54] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function getClientOriginalName() on array' in C:\xampp\htdocs\itsqsaas\app\controllers\DefaultController.php:145
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-05-31 22:55:34] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'public' (T_PUBLIC)' in C:\xampp\htdocs\itsqsaas\app\controllers\DefaultController.php:127
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-05-31 22:57:11] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function getClientOriginalName() on array' in C:\xampp\htdocs\itsqsaas\app\controllers\DefaultController.php:145
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-05-31 22:57:51] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function getClientOriginalName() on array' in C:\xampp\htdocs\itsqsaas\app\controllers\DefaultController.php:145
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-05-31 23:01:49] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function getClientOriginalName() on array' in C:\xampp\htdocs\itsqsaas\app\controllers\DefaultController.php:145
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-05-31 23:03:27] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function getClientOriginalName() on array' in C:\xampp\htdocs\itsqsaas\app\controllers\DefaultController.php:145
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-05-31 23:03:45] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function getClientOriginalName() on array' in C:\xampp\htdocs\itsqsaas\app\controllers\DefaultController.php:145
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-05-31 23:40:09] production.ERROR: exception 'ErrorException' with message 'Trying to get property of non-object' in C:\xampp\htdocs\itsqsaas\app\controllers\DefaultController.php:151
+Stack trace:
+#0 C:\xampp\htdocs\itsqsaas\app\controllers\DefaultController.php(151): Illuminate\Exception\Handler->handleError(8, 'Trying to get p...', 'C:\\xampp\\htdocs...', 151, Array)
+#1 [internal function]: DefaultController->uploadStarterBanner()
+#2 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(231): call_user_func_array(Array, Array)
+#3 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(93): Illuminate\Routing\Controller->callAction('uploadStarterBa...', Array)
+#4 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(62): Illuminate\Routing\ControllerDispatcher->call(Object(DefaultController), Object(Illuminate\Routing\Route), 'uploadStarterBa...')
+#5 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Routing\Router.php(967): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'DefaultControll...', 'uploadStarterBa...')
+#6 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}()
+#7 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Routing\Route.php(109): call_user_func_array(Object(Closure), Array)
+#8 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1033): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#9 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1001): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(775): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(745): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Session\Middleware.php(72): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Cookie\Queue.php(47): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Cookie\Guard.php(51): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\xampp\htdocs\itsqsaas\vendor\stack\builder\src\Stack\StackedHttpKernel.php(23): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(641): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#17 C:\xampp\htdocs\itsqsaas\public\index.php(49): Illuminate\Foundation\Application->run()
+#18 {main} [] []
+[2015-05-31 23:44:39] production.ERROR: exception 'ErrorException' with message 'Trying to get property of non-object' in C:\xampp\htdocs\itsqsaas\app\controllers\DefaultController.php:160
+Stack trace:
+#0 C:\xampp\htdocs\itsqsaas\app\controllers\DefaultController.php(160): Illuminate\Exception\Handler->handleError(8, 'Trying to get p...', 'C:\\xampp\\htdocs...', 160, Array)
+#1 [internal function]: DefaultController->uploadStarterBanner()
+#2 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(231): call_user_func_array(Array, Array)
+#3 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(93): Illuminate\Routing\Controller->callAction('uploadStarterBa...', Array)
+#4 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(62): Illuminate\Routing\ControllerDispatcher->call(Object(DefaultController), Object(Illuminate\Routing\Route), 'uploadStarterBa...')
+#5 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Routing\Router.php(967): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'DefaultControll...', 'uploadStarterBa...')
+#6 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}()
+#7 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Routing\Route.php(109): call_user_func_array(Object(Closure), Array)
+#8 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1033): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#9 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1001): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(775): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(745): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Session\Middleware.php(72): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Cookie\Queue.php(47): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Cookie\Guard.php(51): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\xampp\htdocs\itsqsaas\vendor\stack\builder\src\Stack\StackedHttpKernel.php(23): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(641): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#17 C:\xampp\htdocs\itsqsaas\public\index.php(49): Illuminate\Foundation\Application->run()
+#18 {main} [] []
+[2015-05-31 23:44:39] production.ERROR: exception 'ErrorException' with message 'Trying to get property of non-object' in C:\xampp\htdocs\itsqsaas\app\controllers\DefaultController.php:160
+Stack trace:
+#0 C:\xampp\htdocs\itsqsaas\app\controllers\DefaultController.php(160): Illuminate\Exception\Handler->handleError(8, 'Trying to get p...', 'C:\\xampp\\htdocs...', 160, Array)
+#1 [internal function]: DefaultController->uploadStarterBanner()
+#2 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(231): call_user_func_array(Array, Array)
+#3 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(93): Illuminate\Routing\Controller->callAction('uploadStarterBa...', Array)
+#4 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(62): Illuminate\Routing\ControllerDispatcher->call(Object(DefaultController), Object(Illuminate\Routing\Route), 'uploadStarterBa...')
+#5 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Routing\Router.php(967): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'DefaultControll...', 'uploadStarterBa...')
+#6 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}()
+#7 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Routing\Route.php(109): call_user_func_array(Object(Closure), Array)
+#8 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1033): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#9 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1001): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(775): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(745): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Session\Middleware.php(72): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Cookie\Queue.php(47): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#14 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Cookie\Guard.php(51): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#15 C:\xampp\htdocs\itsqsaas\vendor\stack\builder\src\Stack\StackedHttpKernel.php(23): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#16 C:\xampp\htdocs\itsqsaas\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(641): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#17 C:\xampp\htdocs\itsqsaas\public\index.php(49): Illuminate\Foundation\Application->run()
+#18 {main} [] []
