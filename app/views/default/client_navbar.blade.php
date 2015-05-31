@@ -69,6 +69,12 @@
                 </li>
       @elseif (Session::get('subscription_type') == 2)
                 <li>
+                  <a href="{{ action('client_dashboard') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Dashboard</a>
+                </li>
+                <li>
+                  <a href="{{ action('client_info') }}"><i class="fa fa-fw fa-bar-chart-o"></i> My Restaurant Info</a>
+                </li>
+                <li>
                     <a href="{{ action('categories.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Categories</a>
                 </li>
                 <li>
@@ -76,9 +82,6 @@
                 </li>
                 <li>
                   <a href="{{ action('products.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Products</a>
-                </li>
-                <li>
-                  <a href="{{ action('client_info') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Clients</a>
                 </li>
                <!--  <li>
                   <a href="{{ action('customers.index') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Customers</a>
