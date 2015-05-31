@@ -141,7 +141,7 @@ class OrdersController extends \BaseController {
 	 */
 	public function index()
 	{
-		$orders = Order::with('customer')->paginate(10);
+		$orders = Order::with('customer')->where('client_id', '=', Auth::user()->foreign_id)->paginate(10);
 
 		return View::make('orders.index', compact('orders'));
 	}

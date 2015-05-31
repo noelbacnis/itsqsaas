@@ -201,6 +201,36 @@ class ClientsController extends \BaseController {
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
+		if (Input::hasFile('image'))
+			{
+				$file = Input::file('image');
+			}
+
+			$data['image'] = $file->getClientOriginalName();
+
+			// $client = new Client;
+			// $client->name = Input::get('name');
+			// $client->description = Input::get('description');
+			// $client->tagline = Input::get('tagline');
+			// $client->image = $file->getClientOriginalName();
+			// $client->primary_color = Input::get('primary_color');
+			// $client->contact_number = Input::get('contact_number');
+			// $client->address = Input::get('address');
+			// $client->domain = Input::get('domain');
+			// $client->email = Input::get('email');
+			// $client->status = 'ACTIVE';
+			// $client->subscription_id = 0;
+			// $client->update();
+
+			if (!File::exists(public_path().'/uploads/'.Input::get('name')))
+			{
+				$directory = File::makeDirectory(public_path().'/uploads/'.Input::get('name'));
+			}
+
+			$filename = $file->getClientOriginalName();
+			$file->move(public_path().'/uploads/'.Input::get('name'), $filename);
+
+
 		$client->update($data);
 
 		// return Redirect::route('clients.index');
