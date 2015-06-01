@@ -250,6 +250,7 @@ class DefaultController extends \BaseController {
 
 		$sub = Subscription::find(Input::get('subscription_id'));
 		$sub->transaction_number = Input::get('transaction_number');
+		$sub->status = 'ACTIVE';
 		$sub->save();
 
 		return Redirect::to('/');
@@ -296,7 +297,7 @@ class DefaultController extends \BaseController {
 		$sub->transaction_number = Input::get('transaction_number');
 		$sub->start_period = date('Y-m-d h:i:s', strtotime(date('Y-m-d h:i:s')));
 		$sub->end_period = date('Y-m-d h:i:s', strtotime("+".Input::get('period')." months", strtotime(date('Y-m-d h:i:s'))));
-		$sub->status = 'INACTIVE';
+		$sub->status = 'ACTIVE';
 		$sub->save();
 
 		return Redirect::to('/');
