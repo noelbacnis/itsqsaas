@@ -36,7 +36,7 @@
 		    	<tbody>
 		    		@if ($subscriptions->count())
 						@foreach ($subscriptions as $s)
-							@if ($s->clients->status == 'INACTIVE')
+							@if ($s->status == 'INACTIVE')
 							<tr class="danger">
 							@else
 							<tr>
@@ -47,7 +47,7 @@
 								<td>{{ $s->total_amount }}</td>
 								<td>{{ $s->start_period }}</td>
 								<td>{{ $s->end_period }}</td>
-								<td>{{ $s->clients->status}}</td>
+								<td>{{ $s->status}}</td>
 								
 							</tr>
 						@endforeach

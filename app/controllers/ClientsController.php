@@ -4,8 +4,15 @@ class ClientsController extends \BaseController {
 
 	public function showClientHome()
 	{
-		$client_id = Auth::user()->id;
-		$client = Client::where('id', '=', $client_id)->with('subscription')->get();
+		$client_id = Auth::user()->foreign_id;
+		$client = Client::where('id', '=', $client_id)->with(array('subscription'=>function($query){
+			$query->where('status', '=', 'ACTIVE');
+		}))->first();
+		Session::put('subscription_type',$client->subscription[0]->subscription_type_id);
+		// echo $client->subscription[0]->subscription_type_id;
+		// echo "<pre>";
+		// print_r($client);
+		// echo "</pre>";
 
 		return View::make('clients.dashboard', compact('client'));
 	}
@@ -37,18 +44,19 @@ class ClientsController extends \BaseController {
 	{
 		$domain_count = Client::where('domain', '=', $domain)->count();
 		$domain_info = Client::where('domain', '=', $domain)->first();
-
+		$subscription = Subscription::where('client_id', '=', $domain_info->id)->where('status', '=', 'ACTIVE')->first();
+		// echo($subscription_status);
 		// echo "<pre>";
 		// 	print_r($domain);
 		// 	echo "</pre>";
 
 		if ($domain_count > 0) {
-			if ($domain_info->status == 'ACTIVE') {
+			if ($subscription->status == 'ACTIVE') {
 				// if ($domain > 0) {
 				Session::put('domain', $domain);
 				$client_name = Client::select('name')->where('domain', '=', Session::get('domain'))->first()->name;
 				$client_id = Client::select('id')->where('domain', '=', $domain)->first()->id;
-				$subscription = Subscription::select('subscription_type_id')->where('client_id', '=', $client_id)->first();
+				// $subscription = Subscription::select('subscription_type_id')->where('client_id', '=', $client_id)->first();
 				$subscription_type = SubscriptionsType::select('name')->where('id', '=', $subscription->subscription_type_id)->first();
 						
 				Session::remove('domain_subscription_type');
@@ -64,7 +72,7 @@ class ClientsController extends \BaseController {
 				// print_r($domain);
 				// echo "</pre>";
 				return View::make('website.website', compact('client_cms', 'client_name'))->nest('navbar', 'default.customer_navbar');
-			}else if ($domain_info->status == 'INACTIVE') {
+			}else if ($subscription_status == 'INACTIVE') {
 				echo "Account not yet active";
 			}
 		}else{
@@ -76,11 +84,17 @@ class ClientsController extends \BaseController {
 	public function changeStatus($id, $client_id, $status)
 	{
 
-		$client = Client::where('id', '=', $id)->first();
-	    $client->status = $status;
-	    $client->save();
+		// $client = Client::where('id', '=', $client_id)->first();
+	 //    $client->status = $status;
+	 //    $client->save();
 
 	 //    return Redirect::back();
+		$client = Subscription::where('client_id', '=', $client_id)->first();
+		if ($status == 'ACTIVE') {
+			$client->status = 'INACTIVE';
+		}
+	    $client->save();
+
 		$client = Subscription::where('id', '=', $id)->first();
 	    $client->status = $status;
 	    $client->save();
@@ -108,14 +122,14 @@ class ClientsController extends \BaseController {
 
 		$old = Subscription::where('status', '=', 'ACTIVE')->where('client_id', '=', $client_id)->first();
 		$old->end_period = date('Y-m-d h:i:s', strtotime(date('Y-m-d h:i:s')));
-		$old->status = 'INACTIVE';
+		// $old->status = 'INACTIVE';
 		$old->save();
 
 		$sub = Subscription::find(Input::get('subscription_id'));
 		$sub->transaction_number = Input::get('transaction_number');
 		$sub->start_period = date('Y-m-d h:i:s', strtotime(date('Y-m-d h:i:s')));
 		$sub->end_period = date('Y-m-d h:i:s', strtotime("+".Input::get('period')." months", strtotime(date('Y-m-d h:i:s'))));
-		$sub->status = 'ACTIVE';
+		// $sub->status = 'ACTIVE';
 		$sub->save();
 
 		Session::forget('subscription_type');
