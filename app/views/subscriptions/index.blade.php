@@ -66,7 +66,7 @@
 		                               -->  
 		                                @if ($s->status == 'INACTIVE')
 		                                	{{ link_to_route('client_change_status', 'Activate', array($s->id, $s->clients->id,'ACTIVE'), array('class' => 'btn btn-danger col-md-11', 'style' => 'margin-right:5px')) }}
-			                            @elseif($s->subscriptionsType->id != 1)                 
+			                            @else                 
 			                                {{ link_to_route('client_change_status', 'Deactivate', array($s->id, $s->clients->id,'INACTIVE'), array('class' => 'btn btn-success col-md-11', 'style' => 'margin-right:5px')) }}
 		                                @endif
 		                          

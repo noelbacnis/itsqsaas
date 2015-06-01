@@ -48,8 +48,8 @@ class ClientsController extends \BaseController {
 		// 	print_r($domain);
 		// 	echo "</pre>";
 		if ($domain_count > 0) {
-			$subscription = Subscription::where('client_id', '=', $domain_info->id)->where('status', '=', 'ACTIVE')->first();
-
+			$subscription = Subscription::where('client_id', '=', $domain_info->id)->first();
+			// print_r($subscription);
 			if ($subscription->status == 'ACTIVE') {
 				// if ($domain > 0) {
 				Session::put('domain', $domain);
@@ -69,7 +69,7 @@ class ClientsController extends \BaseController {
 				// print_r($domain);
 				// echo "</pre>";
 				return View::make('website.website', compact('client_cms', 'client_name'))->nest('navbar', 'default.customer_navbar');
-			}else if ($subscription_status == 'INACTIVE') {
+			}else if ($subscription->status == 'INACTIVE') {
 				echo "Account not yet active";
 			}
 		}else{
