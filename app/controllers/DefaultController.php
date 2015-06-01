@@ -220,7 +220,7 @@ class DefaultController extends \BaseController {
 			$subscription->subscription_type_id = Input::get('subscription_type_id');
 			$subscription->transaction_number = 0;
 			$subscription->total_amount = 0;
-			$subscription->status = 'ACTIVE';
+			$subscription->status = 'INACTIVE';
 			$subscription->start_period = date('Y-m-d h:i:s', strtotime(date('Y-m-d h:i:s')));
 			$subscription->end_period = date('Y-m-d h:i:s', strtotime("+".Input::get('period')." months", strtotime(date('Y-m-d h:i:s'))));
 			$subscription->save();
@@ -228,7 +228,6 @@ class DefaultController extends \BaseController {
 			return Redirect::to('/');
 		} # End Input::get('client_id')
 
-		
 	} # End doSubscriptionPayment
 
 	public function subscriptionSuccess()
@@ -251,7 +250,7 @@ class DefaultController extends \BaseController {
 
 		$sub = Subscription::find(Input::get('subscription_id'));
 		$sub->transaction_number = Input::get('transaction_number');
-		$sub->status = 'ACTIVE';
+		$sub->status = 'INACTIVE';
 		$sub->save();
 
 		return Redirect::to('/');
@@ -298,7 +297,7 @@ class DefaultController extends \BaseController {
 		$sub->transaction_number = Input::get('transaction_number');
 		$sub->start_period = date('Y-m-d h:i:s', strtotime(date('Y-m-d h:i:s')));
 		$sub->end_period = date('Y-m-d h:i:s', strtotime("+".Input::get('period')." months", strtotime(date('Y-m-d h:i:s'))));
-		$sub->status = 'ACTIVE';
+		$sub->status = 'INACTIVE';
 		$sub->save();
 
 		return Redirect::to('/');

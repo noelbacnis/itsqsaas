@@ -13,7 +13,6 @@ class ClientsController extends \BaseController {
 		// echo "<pre>";
 		// print_r($client);
 		// echo "</pre>";
-
 		return View::make('clients.dashboard', compact('client'));
 	}
 
@@ -48,7 +47,6 @@ class ClientsController extends \BaseController {
 		// echo "<pre>";
 		// 	print_r($domain);
 		// 	echo "</pre>";
-
 		if ($domain_count > 0) {
 			$subscription = Subscription::where('client_id', '=', $domain_info->id)->where('status', '=', 'ACTIVE')->first();
 
@@ -66,9 +64,7 @@ class ClientsController extends \BaseController {
 				$client_cms = Client::with('banners')->with('products')->where('id', '=', $client_id)->first();
 				// $client_cms = Client::with('banners')->with(array('products'=>function($query){
 				// 											$query->with('category');
-				// 										}))->where('id', '=', $client_id)->first();
-
-
+				// 										}))->where('id', '=', $client_id)->first()
 				// echo "<pre>";
 				// print_r($domain);
 				// echo "</pre>";
