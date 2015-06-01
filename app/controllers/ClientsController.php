@@ -4,8 +4,15 @@ class ClientsController extends \BaseController {
 
 	public function showClientHome()
 	{
-		$client_id = Auth::user()->id;
-		$client = Client::where('id', '=', $client_id)->with('subscription')->get();
+		$client_id = Auth::user()->foreign_id;
+		$client = Client::where('id', '=', $client_id)->with(array('subscription'=>function($query){
+			$query->where('status', '=', 'ACTIVE');
+		}))->first();
+		Session::put('subscription_type',$client->subscription[0]->subscription_type_id);
+		// echo $client->subscription[0]->subscription_type_id;
+		// echo "<pre>";
+		// print_r($client);
+		// echo "</pre>";
 
 		return View::make('clients.dashboard', compact('client'));
 	}
@@ -115,14 +122,14 @@ class ClientsController extends \BaseController {
 
 		$old = Subscription::where('status', '=', 'ACTIVE')->where('client_id', '=', $client_id)->first();
 		$old->end_period = date('Y-m-d h:i:s', strtotime(date('Y-m-d h:i:s')));
-		$old->status = 'INACTIVE';
+		// $old->status = 'INACTIVE';
 		$old->save();
 
 		$sub = Subscription::find(Input::get('subscription_id'));
 		$sub->transaction_number = Input::get('transaction_number');
 		$sub->start_period = date('Y-m-d h:i:s', strtotime(date('Y-m-d h:i:s')));
 		$sub->end_period = date('Y-m-d h:i:s', strtotime("+".Input::get('period')." months", strtotime(date('Y-m-d h:i:s'))));
-		$sub->status = 'ACTIVE';
+		// $sub->status = 'ACTIVE';
 		$sub->save();
 
 		Session::forget('subscription_type');
