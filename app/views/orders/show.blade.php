@@ -15,15 +15,7 @@
     </div>
     <!-- /.row -->
 
-		<!-- Heading Buttons -->
-	<div class="row bottom-padding">
-	    <div class="col-md-2">
-	    	<a href="{{ action('orders.index') }}" class="btn btn-info col-md-12"> <i class="fa fa-caret-left"></i> Back</a>
-	        <br>
-	    </div>
-	    <div class="col-md-10"></div>
-	</div>
-	<!-- /.Heading Buttons -->
+		
 
 	<div class="row">
 	    <div class="col-md-12">
@@ -33,6 +25,26 @@
 
 
 			@if(isset($order))
+
+					<!-- Heading Buttons -->
+	<div class="row bottom-padding">
+	    <div class="col-md-2">
+	    	<a href="{{ action('orders.index') }}" class="btn btn-info col-md-12"> <i class="fa fa-caret-left"></i> Back</a>
+	        <br>
+	    </div>
+	    <div class="col-md-8"></div>
+	    <div class="col-md-2">
+	    	 @if ($order->status == 'FOR APPROVAL' || $order->status == 'REJECTED' )
+		                                	{{ link_to_route('order_change_status', 'Approve', array($order->id,'APPROVED'), array('class' => 'btn col-md-12 btn-success', 'style' => 'margin-right:5px')) }}
+			                            @elseif ($order->status == 'APPROVED')                   
+			                                {{ link_to_route('order_change_status', 'Reject', array($order->id,'REJECTED'), array('class' => 'btn col-md-12 btn-danger', 'style' => 'margin-right:5px')) }}
+		                                @endif
+	    </div>
+	</div>
+	<!-- /.Heading Buttons -->
+
+	<br>
+					
 		      		<div class="panel panel-default">
                     	<div class="panel-heading"  style="background-color: white">Customer Information</div>
                         <div class="panel-body"  style=" margin-bottom: -20px;">

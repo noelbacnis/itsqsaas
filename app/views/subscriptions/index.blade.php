@@ -73,6 +73,8 @@
 								</td>
 							</tr>
 						@endforeach
+					@else
+						<tr><td colspan="9"><center>No one subscribed yet</center></td></tr>
 					@endif
 		    	</tbody>
 		    </table>

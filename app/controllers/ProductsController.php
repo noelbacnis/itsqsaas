@@ -6,6 +6,8 @@ class ProductsController extends \BaseController {
 	{
 		$client_name = Client::select('name')->where('domain', '=', Session::get('domain'))->first()->name;
 		$client_id = Client::select('id')->where('domain', '=', Session::get('domain'))->first()->id;
+		$client_cms = Client::with('banners')->with('products')->where('id', '=', $client_id)->first();
+
 		$categories = Category::with('products')->where('client_id', '=', $client_id)->get();
 		$product = Product::where('id', '=', $id)->get();
 
@@ -28,7 +30,7 @@ class ProductsController extends \BaseController {
 			}
 		}
 			
-		return View::make('website.ordering', compact('categories', 'product', 'order_products', 'customer_info', 'client_name'))->nest('navbar', 'default.customer_navbar');
+		return View::make('website.ordering', compact('categories', 'product', 'order_products', 'customer_info', 'client_name', 'client_cms'))->nest('navbar', 'default.customer_navbar');
 		// return View::make('clients.website', compact('categories', 'product', 'order_products', 'customer_info', 'client_name'))->nest('navbar', 'default.customer_navbar');
 	}
 
@@ -127,7 +129,8 @@ class ProductsController extends \BaseController {
 	{
 		$product = Product::find($id);
 		$status = array('ACTIVE'=>'ACTIVE', 'INACTIVE'=>'INACTIVE');
-		$categories = Category::orderBy('name')->lists('name', 'id');
+		// $categories = Category::orderBy('name')->lists('name', 'id');
+		$categories = Category::where('client_id', '=', Auth::user()->foreign_id)->orderBy('name')->lists('name', 'id');
 		$client_name = Client::select('name')->where('id', '=', Auth::user()->foreign_id)->first()->name;
 
 		return View::make('products.edit', compact('product','status','categories','client_name'));
@@ -150,6 +153,33 @@ class ProductsController extends \BaseController {
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
+
+		// $client_name = Client::select('name')->where('id', '=', Auth::user()->foreign_id)->first()->name;
+		// if(!File::exists(public_path().'/uploads/'.$client_name)){
+		// 	File::makeDirectory(public_path().'/uploads/'.$client_name);
+		// }
+		// if (Input::hasFile('image')){
+		// 	$file = Input::file('image');
+		// 	$filename = $file->getClientOriginalName();
+		// 	$file->move(public_path().'/uploads/'.$client_name, $filename);
+		// 	$data['image'] = $filename;
+		// }
+
+		$product->update($data);
+
+		return Redirect::route('products.index');
+	}
+
+	public function updateProductPhoto($id){
+		$product = Product::findOrFail($id);
+
+		// $validator = Validator::make($data = Input::all(), Product::$rules,  Product::$messages);
+		// $validator->setAttributeNames(Product::$friendly_names);
+
+		// if ($validator->fails())
+		// {
+		// 	return Redirect::back()->withErrors($validator)->withInput();
+		// }
 
 		$client_name = Client::select('name')->where('id', '=', Auth::user()->foreign_id)->first()->name;
 		if(!File::exists(public_path().'/uploads/'.$client_name)){

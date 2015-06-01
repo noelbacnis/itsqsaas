@@ -45,7 +45,8 @@
             <div class="row">
 
 
-				<div class="col-md-5" style="background-color:none">
+                <div class="col-md-12" style="background-color:none; padding-left:400px; padding-right:400px">
+                
 					<div class="panel panel-default">
 					  <div class="panel-body">
 
@@ -78,6 +79,10 @@
 			                <div class="col-xs-12" style="padding:0px">
 			                  <button type="submit" class="btn" id="btnlogin" style="width:100%;border-color:#{{ $client_cms->primary_color }};background-color:#{{ $client_cms->primary_color }};color:#fff" data-loading-text="Logging in..." >Login</button>
 			                  <hr>
+                              <center>
+                               <a href="{{ action('customer_register') }}">Don't have an account yet? Register Now</a>
+                                  
+                              </center>
 			                </div>
 			            {{Form::close()}}
 			          <!-- END LOGIN FORM -->

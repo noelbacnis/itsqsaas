@@ -99,7 +99,7 @@ class CustomersController extends \BaseController {
 	 */
 	public function index()
 	{
-		$customers = Customer::with('orders')->paginate(10);
+		$customers = Customer::where('client_id', '=', Auth::user()->foreign_id)->with('orders')->paginate(10);
 
 		return View::make('customers.index', compact('customers'));
 	}

@@ -60,6 +60,7 @@ Route::group(array('before'=>'client_auth'), function() {
 	}));
 	Route::get('client/order/status/{id}/{status}', array('as' => 'order_change_status', 'uses' => 'OrdersController@changeStatus'));
 	Route::post('uploadBanner', 'BannersController@uploadStarterBanner');
+	Route::post('client/product/upload/{id}', array('as' => 'update_product_photo', 'uses' => 'ProductsController@updateProductPhoto'));
 
 });
 

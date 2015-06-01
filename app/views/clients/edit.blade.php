@@ -47,7 +47,7 @@
 						<i>(This is your domain name. Your site will be available at www.domainname.com)</i>
 						<br><br>
 						{{ Form::label('email', 'Contact E-mail'); }}
-						{{ Form::email('email', $value=null, array('class' => 'form-control')); }}
+						{{ Form::email('email', $value=null, array('class' => 'form-control', 'disabled')); }}
 						<i>(Details of your subscription will be sent to this e-mail)</i>
 					</div>
 				</div>

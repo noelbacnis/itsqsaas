@@ -53,16 +53,16 @@
 		                            <td class="col-md-2">{{ $order->updated_at }}</td>
 		                            <td class="col-md-2">{{ $order->total }}</td>
 		                            <td class="col-md-1">{{ $order->cash }}</td>
-		                            <td class="col-md-1">{{ $order->customer['first_name'].' '.$order['customer->last_name'] }}</td>
+		                            <td class="col-md-1">{{ $order->first_name.' '.$order->last_name }}</td>
 		                            <td class="col-md-1">{{ $order->status }}</td>
 
 		                            <td class="col-md-3">
 		                                {{ link_to_route('orders.show', 'View', array($order->id), array('class' => 'btn btn-info col-md-5', 'style' => 'margin-right:5px')) }}
 		                                
 		                                @if ($order->status == 'FOR APPROVAL' || $order->status == 'REJECTED' )
-		                                	{{ link_to_route('order_change_status', 'Approve', array($order->id,'APPROVED'), array('class' => 'btn btn-info col-md-6', 'style' => 'margin-right:5px')) }}
+		                                	{{ link_to_route('order_change_status', 'Approve', array($order->id,'APPROVED'), array('class' => 'btn btn-success col-md-6', 'style' => 'margin-right:5px')) }}
 			                            @elseif ($order->status == 'APPROVED')                   
-			                                {{ link_to_route('order_change_status', 'Reject', array($order->id,'REJECTED'), array('class' => 'btn btn-info col-md-6', 'style' => 'margin-right:5px')) }}
+			                                {{ link_to_route('order_change_status', 'Reject', array($order->id,'REJECTED'), array('class' => 'btn btn-danger col-md-6', 'style' => 'margin-right:5px')) }}
 		                                @endif
 		                            </td>
 		                        </tr>

@@ -38,21 +38,36 @@
 		                </div>
 		            @endif
 					
-					{{ Form::model($product, array('method' => 'PATCH','files' => true, 'class' => 'form-horizontal', 'route' => array('products.update', $product->id))) }}
-		            <div class="col-md-4 well">
-						<b>Change Product's Photo</b><br><br>
-						<!-- form open -->
-						    <div class="form-group">
-								
-					            <div class="col-sm-12">
-					            	{{ HTML::image('uploads/'.$client_name.'/'.$product->image,'', array('width' => '100%')) }} 
-						            {{ Form::file('image', $value=null, array('class' => 'form-control' , 'placeholder' => '')) }}
-						        </div>
-						    </div>
-					    <!-- form close -->
-					</div>
+
+
+
+					{{ Form::model($product, array('method' => 'POST','files' => true, 'class' => 'form-horizontal', 'route' => array('update_product_photo', $product->id))) }}
+			            <div class="col-md-4 well">
+							<b>Change Product's Photo</b><br><br>
+							<!-- form open -->
+							    <div class="form-group">
+									
+						            <div class="col-sm-12">
+						            	{{ HTML::image('uploads/'.$client_name.'/'.$product->image,'', array('width' => '100%')) }} 
+							            {{ Form::file('image', $value=null, array('class' => 'form-control' , 'placeholder' => '')) }}
+							        </div>
+							    </div>
+							     <div class="form-group">
+				                    <div class="col-sm-offset-2 col-sm-10">
+				                        {{ Form::submit('Update', array('class' => 'btn btn-info pull-right col-xs-12', 'style' => 'margin:5px')) }}
+				                    </div>
+				            </div>
+						    <!-- form close -->
+						</div>
+
+			        {{ Form::close() }}
+
+
+					<div class="col-md-8">
 					
-		            <div class="col-md-8">
+					{{ Form::model($product, array('method' => 'PATCH','class' => 'form-horizontal', 'route' => array('products.update', $product->id))) }}
+
+		            
 		                <div class="form-group">
 		                    {{ Form::label('name', 'Product Name', array('class' => 'col-sm-3 control-label')) }}
 		                    <div class="col-sm-9">

@@ -45,7 +45,7 @@
             <div class="row">
 
 
-				<div class="col-md-5" style="background-color:none">
+				<div class="col-md-12" style="background-color:none; padding-left:300px; padding-right:300px">
 					<div class="panel panel-default">
 					  <div class="panel-body">
 

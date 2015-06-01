@@ -57,18 +57,27 @@ class UsersController extends \BaseController {
 				$client_id = Auth::user()->foreign_id;
 				$account_status = Client::where('id', '=', $client_id)->first();
 				// if($account_status->status == 'ACTIVE'){
-					$subscription = Subscription::select('subscription_type_id')->where('client_id', '=', $client_id)->where('status','=','ACTIVE')->first();
-
-					$subscription_type = SubscriptionsType::where('id', '=', $subscription->subscription_type_id)->first();
-					Session::put('subscription_type', $subscription_type->id);
-					return Redirect::route('client_dashboard')->with('flash_notice', 'You have successfully logged in.')->with('alert_class', 'alert-success');
-
-				// }else{
-				// 	return Redirect::route('client_login')->with('flash_notice', 'Account not yet activated by the admin')->with('alert_class', 'alert-danger');
-				// }
+					$subscription = Subscription::select('subscription_type_id')->where('client_id', '=', $client_id)->where('status','=','ACTIVE')->where('subscription_type_id','!=',1)->first();
+					if (isset($subscription)) {
+						$subscription_type = SubscriptionsType::where('id', '=', $subscription->subscription_type_id)->first();
+						Session::put('subscription_type', $subscription_type->id);
+						return Redirect::route('client_dashboard')->with('flash_notice', 'You have successfully logged in.')->with('alert_class', 'alert-success');
+					}else{
+						Auth::logout();
+						return Redirect::route('client_login')->with('flash_notice', 'Account not yet activated by the admin')->with('alert_class', 'alert-danger');
+					}
 				
 			}else if($user['user_type'] == 'customer'){
-				return Redirect::route('client_website')->with('flash_notice', 'You have successfully logged in.');
+				$customer_id = Auth::user()->foreign_id;
+				$customer_client_id = Customer::select('client_id')->where('id', '=', $customer_id)->first()->client_id;
+				$domain_client_id = Client::select('id')->where('domain', '=', Session::get('domain'))->first()->id;
+				if($customer_client_id == $domain_client_id){
+					return Redirect::route('client_website')->with('flash_notice', 'You have successfully logged in.');
+				}else{
+					Auth::logout();
+					return Redirect::route('customer_login')->with('flash_notice', 'Log in failed.')->with('alert_class', 'alert-danger');
+				}
+
 			}else if($user['user_type'] == 'admin'){
 				return Redirect::route('admin_dashboard')->with('flash_notice', 'You have successfully logged in.');
 			}

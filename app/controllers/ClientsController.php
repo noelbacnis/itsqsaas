@@ -48,14 +48,14 @@ class ClientsController extends \BaseController {
 		// 	print_r($domain);
 		// 	echo "</pre>";
 		if ($domain_count > 0) {
-			$subscription = Subscription::where('client_id', '=', $domain_info->id)->first();
+			$subscription = Subscription::where('client_id', '=', $domain_info->id)->where('status', '=', 'ACTIVE')->first();
+			// echo "<pre>";
 			// print_r($subscription);
-			if ($subscription->status == 'ACTIVE') {
-				// if ($domain > 0) {
+			// echo "</pre>";
+			if (isset($subscription)) {
 				Session::put('domain', $domain);
 				$client_name = Client::select('name')->where('domain', '=', Session::get('domain'))->first()->name;
 				$client_id = Client::select('id')->where('domain', '=', $domain)->first()->id;
-				// $subscription = Subscription::select('subscription_type_id')->where('client_id', '=', $client_id)->first();
 				$subscription_type = SubscriptionsType::select('name')->where('id', '=', $subscription->subscription_type_id)->first();
 						
 				Session::remove('domain_subscription_type');
@@ -65,11 +65,9 @@ class ClientsController extends \BaseController {
 				// $client_cms = Client::with('banners')->with(array('products'=>function($query){
 				// 											$query->with('category');
 				// 										}))->where('id', '=', $client_id)->first()
-				// echo "<pre>";
-				// print_r($domain);
-				// echo "</pre>";
+			
 				return View::make('website.website', compact('client_cms', 'client_name'))->nest('navbar', 'default.customer_navbar');
-			}else if ($subscription->status == 'INACTIVE') {
+			}else{
 				echo "Account not yet active";
 			}
 		}else{
