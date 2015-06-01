@@ -26,11 +26,11 @@
             
             @if(Session::get('domain_subscription_type')=='Premium')
                 <li>
-                    <a href="{{ action('customer_ordering') }}" >Ordering</a>
+                    <a href="{{ url('www/'.Session::get('domain').'/ordering') }}" >Ordering</a>
                 </li>
                 @if(!Auth::check())
-                <li><a href="{{ action('customer_login') }}">Login</a></li>
-                <li><a href="{{ action('customer_register') }}">Register</a></li>
+                <li><a href="{{ url('www/'.Session::get('domain').'/login') }}">Login</a></li>
+                <li><a href="{{ url('www/'.Session::get('domain').'/register') }}">Register</a></li>
                 @else
                 <li>{{ link_to_route('customer_logout','Logout') }}</li>
                 @endif

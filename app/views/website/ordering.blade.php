@@ -65,19 +65,28 @@
 
 								@if($categories->count())
 									@foreach($categories as $category)
-										{{$category->name}} <br>
-										@foreach($category->products as $prod)
-											@if($prod->image != '')
-												{{ HTML::image('uploads/'.$client_name.'/'.$prod->image,'', array( 'width' => 120)) }} 
-											@else
-												{{ HTML::image('assets/images/default_img_1.png', '', array( 'width' => 120)) }} 
-											@endif
-											<a href="{{ route('view_product', $prod->id) }}">
-												{{$prod->name}}
-											</a>
-											<br>
-											
-										@endforeach
+										<h4>{{$category->name}} </h4>
+										<div class="row" style="margin-left:10px">
+											@foreach($category->products as $prod)
+												<a href="{{ route('view_product', $prod->id) }}">
+													<div class="panel panel-default col-md-3 "  style="border-color:#{{ $client_cms->primary_color }};padding:0px">
+														<div class="panel-body">
+															@if($prod->image != '')
+																{{ HTML::image('uploads/'.$client_name.'/'.$prod->image,'', array( 'width' => '100%', 'class' => 'img-rounded')) }} 
+															@else
+																{{ HTML::image('assets/images/default_img_1.png', '', array( 'width' => '100%', 'class' => 'img-rounded')) }} 
+															@endif
+														</div>
+														<div class="panel-footer">
+															{{$prod->name}}
+														</div>
+													</div>
+												</a>
+
+
+											@endforeach
+										</div>
+
 									@endforeach
 								@else
 									No Products Yet
@@ -98,31 +107,33 @@
 						<div class="panel-heading" style="border-color:#{{ $client_cms->primary_color }};background-color:#{{ $client_cms->primary_color }};color:#fff ">
 							<div class="panel-title">Product Preview</div>
 						</div>
-						<div class="panel-body">
+						<div class="panel-body" style="min-height:150px">
 							@if(isset($product))
 								@foreach($product as $p)
 									<div class="col-md-6" style="">
 										@if($p->image != '')
-											{{ HTML::image('uploads/'.$client_name.'/'.$p->image,'', array( 'width' => 120)) }} 
+											{{ HTML::image('uploads/'.$client_name.'/'.$p->image,'', array( 'width' => '100%', 'class' => 'img-rounded')) }} 
 										@else
-											{{ HTML::image('assets/images/default_img_1.png', '', array( 'width' => 120)) }} 
+											{{ HTML::image('assets/images/default_img_1.png', '', array( 'width' => '100%', 'class' => 'img-rounded')) }} 
 										@endif
 									</div>
 									<div class="col-md-6" style="color:black">
 										{{ Form::hidden('id', $p->id ); }}
-										<h3>{{ $p->name }}</h3>
-										<small>{{ $p->description }}</small> <br>
-										<small>{{ $p->price }}</small>
+										<h4>{{ $p->name }}</h4>
+										<p class="lead" style="font-size:small">{{ $p->description }}
+										<br>
+										PHP {{ $p->price }}
+										</p> 
 										{{ Form::hidden('price', $p->price) }}
 									</div>
 								@endforeach
 							@endif
 						</div>
 						<div class="panel-footer" style="">
-							<div class="row">
-								<div class="col-md-4" style="padding:0px">{{ Form::label('quantity', 'Quantity'); }}</div>
-								<div class="col-md-4" style="padding:0px">{{ Form::number('quantity', '1', array('class' => 'form-control', 'placeholder' => '1')); }}</div>
-								<div class="col-md-4" style="padding:0px"><button type="submit" class="btn btn-success form-control">Add Order</button></div>
+							<div class="row" style="padding-left:30px;padding-right:30px">
+								<div class="col-md-4" style="padding:0px; padding-left:10px">{{ Form::label('quantity', 'Quantity'); }}</div>
+								<div class="col-md-4" style="padding:0px; padding-left:10px">{{ Form::number('quantity', '1', array('class' => 'form-control', 'placeholder' => '1')); }}</div>
+								<div class="col-md-4" style="padding:0px; padding-left:10px"><button type="submit" class="btn btn-success form-control">Add Order</button></div>
 							</div>
 						</div>
 					</div>
@@ -137,11 +148,11 @@
 						<div class="panel-heading" style="border-color:#{{ $client_cms->primary_color }};background-color:#{{ $client_cms->primary_color }};color:#fff ">
 							<div class="panel-title">My Orders</div>
 						</div>
-						<div class="panel-body">
+						<div class="panel-body" style="min-height:150px">
 							<table style="width:100%; color:black">
 								<tr>
 									<td style="width:40%">Name</td>
-									<td style="width:15%">Quantity</td>
+									<td style="width:15%">Qty</td>
 									<td style="width:15%">Price</td>
 									<td style="width:20%">Subtotal</td>
                                     <td style="width:10%">Remove</td>
@@ -167,9 +178,9 @@
 							</table>
 						</div>
 						<div class="panel-footer" style="color:black">
-							<div class="row">
-								<div class="col-md-6" style="padding:0px">Total:</div>
-								<div class="col-md-6" style="padding:0px">Php {{ $total }}</div>
+							<div class="row" style="padding-left:30px;padding-right:30px">
+								<div class="col-md-8" style="padding:0px">Total:</div>
+								<div class="col-md-4" style="padding:0px">Php {{ $total }}</div>
 							</div>
 						</div>
 					</div>
@@ -215,78 +226,83 @@
 			            	<?php $email = '' ?>
 			            @endif
 			            	{{ Form::hidden('status', 'FOR APPROVAL') }}
-			                <div class="form-group">
-			                  <div class="input-group">
-			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-			                    {{ Form::text('first_name', $value=null, array('class' => 'form-control' , 'placeholder' => 'First Name')) }}
-			                  </div>
-			                </div>
 
-			                <div class="form-group">
-			                  <div class="input-group">
-			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-			                    {{ Form::text('last_name', $value=null, array('class' => 'form-control' , 'placeholder' => 'Last Name')) }}
-			                  </div>
-			                </div>
+			            	<div class="col-md-6" style="padding-right:30px">
+			            		<div class="form-group">
+				                  <div class="input-group">
+				                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+				                    {{ Form::text('first_name', $value=null, array('class' => 'form-control' , 'placeholder' => 'First Name')) }}
+				                  </div>
+				                </div>
 
-			                <div class="form-group">
-			                  <div class="input-group">
-			                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-			                    {{ Form::email('email', $email, array('class' => 'form-control' , 'placeholder' => 'Enter Email')) }}
-			                  </div>
-			                </div>
+				                <div class="form-group">
+				                  <div class="input-group">
+				                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+				                    {{ Form::text('last_name', $value=null, array('class' => 'form-control' , 'placeholder' => 'Last Name')) }}
+				                  </div>
+				                </div>
 
-			                <div class="form-group">
-			                  <div class="input-group">
-			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-			                    {{ Form::number('cash', $value=null, array('class' => 'form-control' , 'placeholder' => 'Change For')) }}
-			                  </div>
-			                </div>
+				                <div class="form-group">
+				                  <div class="input-group">
+				                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+				                    {{ Form::email('email', $email, array('class' => 'form-control' , 'placeholder' => 'Enter Email')) }}
+				                  </div>
+				                </div>
 
-			                <div class="form-group">
-			                  <div class="input-group">
-			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-			                    {{ Form::text('del_contact_number', $value=null, array('class' => 'form-control' , 'placeholder' => 'Contact Number')) }}
-			                  </div>
-			                </div>
+				                <div class="form-group">
+				                  <div class="input-group">
+				                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+				                    {{ Form::number('cash', $value=null, array('class' => 'form-control' , 'placeholder' => 'Change For')) }}
+				                  </div>
+				                </div>
 
-			                <div class="form-group">
-			                  <div class="input-group">
-			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-			                    {{ Form::text('del_address_number', $value=null, array('class' => 'form-control' , 'placeholder' => 'Address Number')) }}
-			                  </div>
-			                </div>
+				                <div class="form-group">
+				                  <div class="input-group">
+				                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+				                    {{ Form::text('del_contact_number', $value=null, array('class' => 'form-control' , 'placeholder' => 'Contact Number')) }}
+				                  </div>
+				                </div>
 
-			                <div class="form-group">
-			                  <div class="input-group">
-			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-			                    {{ Form::text('del_address_baranggay', $value=null, array('class' => 'form-control' , 'placeholder' => 'Baranggay')) }}
-			                  </div>
-			                </div>
+				                <div class="form-group">
+				                  <div class="input-group">
+				                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+				                    {{ Form::text('del_address_number', $value=null, array('class' => 'form-control' , 'placeholder' => 'Address Number')) }}
+				                  </div>
+				                </div>
 
-			                <div class="form-group">
-			                  <div class="input-group">
-			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-			                    {{ Form::text('del_address_municipal', $value=null, array('class' => 'form-control' , 'placeholder' => 'Municipal')) }}
-			                  </div>
-			                </div>
+				                <div class="form-group">
+				                  <div class="input-group">
+				                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+				                    {{ Form::text('del_address_baranggay', $value=null, array('class' => 'form-control' , 'placeholder' => 'Baranggay')) }}
+				                  </div>
+				                </div>
+			            	</div>
 
-			                <div class="form-group">
-			                  <div class="input-group">
-			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-			                    {{ Form::text('del_address_province', $value=null, array('class' => 'form-control' , 'placeholder' => 'Province')) }}
-			                  </div>
-			                </div>
+			            	<div class="col-md-6" style="padding-left:30px">
+			            		
 
-			                <div class="form-group">
-			                  <div class="input-group">
-			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-			                		{{ Form::textarea('del_message', $value=null, array('class' => 'form-control')) }}
-			                  </div>
-			                </div>
+				                <div class="form-group">
+				                  <div class="input-group">
+				                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+				                    {{ Form::text('del_address_municipal', $value=null, array('class' => 'form-control' , 'placeholder' => 'Municipal')) }}
+				                  </div>
+				                </div>
 
+				                <div class="form-group">
+				                  <div class="input-group">
+				                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+				                    {{ Form::text('del_address_province', $value=null, array('class' => 'form-control' , 'placeholder' => 'Province')) }}
+				                  </div>
+				                </div>
 
-
+				                <div class="form-group">
+				                  <div class="input-group">
+				                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+				                		{{ Form::textarea('del_message', $value=null, array('class' => 'form-control')) }}
+				                  </div>
+				                </div>
+			            	</div>
+			                
 			                <div class="col-xs-12" style="padding:0px">
 			                  <button type="submit" class="btn" style="width:100%;border-color:#{{ $client_cms->primary_color }};background-color:#{{ $client_cms->primary_color }};color:#fff  ">Submit Order</button>
 			                  <hr>

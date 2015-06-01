@@ -65,7 +65,7 @@ class ClientsController extends \BaseController {
 				// $client_cms = Client::with('banners')->with(array('products'=>function($query){
 				// 											$query->with('category');
 				// 										}))->where('id', '=', $client_id)->first()
-			
+				// echo Session::get('domain');
 				return View::make('website.website', compact('client_cms', 'client_name'))->nest('navbar', 'default.customer_navbar');
 			}else{
 				echo "Account not yet active";
