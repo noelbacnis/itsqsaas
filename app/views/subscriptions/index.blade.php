@@ -60,14 +60,14 @@
 								<td>{{ $s->total_amount }}</td>
 								<td>{{ $s->start_period }}</td>
 								<td>{{ $s->end_period }}</td>
-								<td>{{ $s->clients->status}}</td>
+								<td>{{ $s->status}}</td>
 								<td>
 									<!-- {{ link_to_route('subscriptions.show', 'View', array($s->id), array('class' => 'btn btn-info col-md-4', 'style' => 'margin-right:5px')) }}
 		                               -->  
-		                                @if ($s->clients->status == 'INACTIVE')
-		                                	{{ link_to_route('client_change_status', 'Activate', array($s->clients->id,'ACTIVE'), array('class' => 'btn btn-danger col-md-11', 'style' => 'margin-right:5px')) }}
-			                            @else                 
-			                                {{ link_to_route('client_change_status', 'Deactivate', array($s->clients->id,'INACTIVE'), array('class' => 'btn btn-success col-md-11', 'style' => 'margin-right:5px')) }}
+		                                @if ($s->status == 'INACTIVE')
+		                                	{{ link_to_route('client_change_status', 'Activate', array($s->id, $s->clients->id,'ACTIVE'), array('class' => 'btn btn-danger col-md-11', 'style' => 'margin-right:5px')) }}
+			                            @elseif($s->subscriptionsType->id != 1)                 
+			                                {{ link_to_route('client_change_status', 'Deactivate', array($s->id, $s->clients->id,'INACTIVE'), array('class' => 'btn btn-success col-md-11', 'style' => 'margin-right:5px')) }}
 		                                @endif
 		                          
 								</td>

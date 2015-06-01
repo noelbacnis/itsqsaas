@@ -73,10 +73,15 @@ class ClientsController extends \BaseController {
 		
 	}
 
-	public function changeStatus($id, $status)
+	public function changeStatus($id, $client_id, $status)
 	{
 
 		$client = Client::where('id', '=', $id)->first();
+	    $client->status = $status;
+	    $client->save();
+
+	 //    return Redirect::back();
+		$client = Subscription::where('id', '=', $id)->first();
 	    $client->status = $status;
 	    $client->save();
 
