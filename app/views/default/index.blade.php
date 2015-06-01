@@ -38,7 +38,7 @@
 						<h3>Web Template</h3>
 						<p>Avail of our free subscription and get a prestigious website template for you restaurant!</p>
 						<br><br>
-						<p><a href="{{ URL::to('free'); }}" class="subscribe-btn">FREE</a></p>
+						<p><a href="{{ URL::to('free'); }}" class="subscribe-btn">FREE</a> OR <a href="{{ URL::to('freeUpgrade'); }}" class="subscribe-btn">UPGRADE</a></p>
 					</div>
 					<div class="col-md-4">
 						<h3>PAID</h3>

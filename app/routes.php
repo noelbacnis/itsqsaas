@@ -17,6 +17,9 @@ Route::get('/', 'DefaultController@index');
 Route::get('free', 'DefaultController@freeSubscription');
 Route::post('subscribe/doFreeSubscribe', 'DefaultController@doFreeSubscribe');
 
+Route::get('freeUpgrade', 'DefaultController@freeUpgrade');
+Route::post('doFreeUpgrade', 'DefaultController@doFreeUpgrade');
+Route::post('doUpgradeTransaction', 'DefaultController@doUpgradeTransaction');
 
 Route::post('uploadStarterBanner', 'DefaultController@uploadStarterBanner');
 

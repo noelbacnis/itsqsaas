@@ -255,6 +255,53 @@ class DefaultController extends \BaseController {
 		return Redirect::to('/');
 	} # End doEnterTransactionNumber
 
+	public function freeUpgrade()
+	{
+		$view = View::make('default.upgrade')->nest('navbar', 'default.navbar');
+		return $view;
+	} # End freeUpgrade
+
+	public function doFreeUpgrade()
+	{
+		$client = Client::where('email', '=', Input::get('email'))->first();
+
+		$sub = new Subscription;
+		$sub->client_id = $client->id;
+		$sub->subscription_type_id = Input::get('subscription_type_id');
+		$sub->status = 'INACTIVE';
+		$sub->start_period = date('Y-m-d h:i:s', strtotime(date('Y-m-d h:i:s')));
+		$sub->end_period = date('Y-m-d h:i:s', strtotime("+".Input::get('period')." months", strtotime(date('Y-m-d h:i:s'))));
+		$sub->save();
+
+		$user = new User;
+		$user->username = Input::get('email');
+		$user->password = Hash::make('1234');
+		$user->foreign_id = $client->id;
+		$user->user_type = 'client';
+		$user->save();
+
+		return Redirect::back();
+	} # End doFreeUpgrade
+
+	public function doUpgradeTransaction()
+	{
+		$client = Client::where('email', '=', Input::get('email'))->first();
+
+		$old = Subscription::where('status', '=', 'ACTIVE')->where('client_id', '=', $client->id)->first();
+		$old->end_period = date('Y-m-d h:i:s', strtotime(date('Y-m-d h:i:s')));
+		$old->status = 'INACTIVE';
+		$old->save();
+
+		$sub = Subscription::find(Input::get('subscription_id'));
+		$sub->transaction_number = Input::get('transaction_number');
+		$sub->start_period = date('Y-m-d h:i:s', strtotime(date('Y-m-d h:i:s')));
+		$sub->end_period = date('Y-m-d h:i:s', strtotime("+".Input::get('period')." months", strtotime(date('Y-m-d h:i:s'))));
+		$sub->status = 'INACTIVE';
+		$sub->save();
+
+		return Redirect::to('/');
+	}
+
 
 
 }
