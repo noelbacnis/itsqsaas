@@ -48,7 +48,7 @@
 		    	<tbody>
 		    		@if ($subscriptions->count())
 						@foreach ($subscriptions as $s)
-							@if ($s->clients->status == 'INACTIVE')
+							@if ($s->status == 'INACTIVE')
 							<tr class="danger">
 							@else
 							<tr>
