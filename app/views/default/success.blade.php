@@ -10,6 +10,18 @@
 		{{ $navbar }}
 
 		<div class="container">
+
+      @if (Session::get('message'))
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="alert alert-success">
+              {{ Session::get('message'); }}
+            </div>
+          </div>
+        </div>
+      @endif
+
+
 			<div class="center" style="margin-top: 50px;">
 				<div class="inner">
 					<p class="roboto">Great! Thank you for subscribing to<?php echo date('Y-m-d H:i:s'); ?></p>

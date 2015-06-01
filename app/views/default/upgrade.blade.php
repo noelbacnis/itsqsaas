@@ -19,7 +19,17 @@
 			</div>
 		</div>
 		<br>
+
+		@if (Session::get('message'))
 			<div class="row">
+				<div class="col-lg-12">
+					<div class="alert alert-success">
+						{{ Session::get('message') }}
+					</div>
+				</div>
+			</div>
+		@endif
+					<div class="row">
 				<div class="col-lg-6">
 					{{ Form::open(array('url' => 'doFreeUpgrade')) }}
 						<div class="panel panel-default">
