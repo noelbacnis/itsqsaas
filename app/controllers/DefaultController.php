@@ -204,7 +204,7 @@ class DefaultController extends \BaseController {
 			$user->user_type = 'client';
 			$user->save();
 
-			return Redirect::to('subscriptionSuccess');
+			return Redirect::to('subscriptionSuccess')->with('message', 'Your subscription ID is '.$subscription->id);
 		}
 		else
 		{
@@ -281,14 +281,14 @@ class DefaultController extends \BaseController {
 		$user->user_type = 'client';
 		$user->save();
 
-		return Redirect::back();
+		return Redirect::back()->with('message', 'Your subscription ID is '.$sub->id);
 	} # End doFreeUpgrade
 
 	public function doUpgradeTransaction()
 	{
 		$client = Client::where('email', '=', Input::get('email'))->first();
 
-		$old = Subscription::where('status', '=', 'ACTIVE')->where('client_id', '=', $client->id)->first();
+		$old = Subscription::where('id', '!=', Input::get('subscription_id'))->where('client_id', '=', $client->id)->first();
 		$old->end_period = date('Y-m-d h:i:s', strtotime(date('Y-m-d h:i:s')));
 		$old->save();
 
