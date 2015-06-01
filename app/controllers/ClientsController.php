@@ -90,15 +90,18 @@ class ClientsController extends \BaseController {
 		$sub->client_id = Input::get('client_id');
 		$sub->subscription_type_id = Input::get('subscription_type_id');
 		$sub->total_amount = (59.99*Input::get('period'));
+		$sub->status = 'INACTIVE';
 		$sub->save();
 
-		return Redirect::to('clients.dashboard');
+		return Redirect::to('client/dashboard');
 
 	} # End upgradeSubscription
 
 	public function doEnterTransactionNumber()
 	{
-		$old = Subscription::where('client_id', '=', Auth::user()->id)->where('status', '=', 'ACTIVE')->first();
+		$client_id = Auth::user()->foreign_id;
+
+		$old = Subscription::where('status', '=', 'ACTIVE')->where('client_id', '=', $client_id)->first();
 		$old->end_period = date('Y-m-d h:i:s', strtotime(date('Y-m-d h:i:s')));
 		$old->status = 'INACTIVE';
 		$old->save();
@@ -107,6 +110,9 @@ class ClientsController extends \BaseController {
 		$sub->transaction_number = Input::get('transaction_number');
 		$sub->status = 'ACTIVE';
 		$sub->save();
+
+		Session::forget('subscription_type');
+		Session::put('subscription_type', 3);
 
 		return Redirect::to('client/dashboard');
 	}
