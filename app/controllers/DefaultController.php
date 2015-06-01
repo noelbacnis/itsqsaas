@@ -220,6 +220,7 @@ class DefaultController extends \BaseController {
 			$subscription->subscription_type_id = Input::get('subscription_type_id');
 			$subscription->transaction_number = 0;
 			$subscription->total_amount = 0;
+			$subscription->status = 'ACTIVE';
 			$subscription->start_period = date('Y-m-d h:i:s', strtotime(date('Y-m-d h:i:s')));
 			$subscription->end_period = date('Y-m-d h:i:s', strtotime("+".Input::get('period')." months", strtotime(date('Y-m-d h:i:s'))));
 			$subscription->save();

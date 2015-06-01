@@ -44,13 +44,14 @@ class ClientsController extends \BaseController {
 	{
 		$domain_count = Client::where('domain', '=', $domain)->count();
 		$domain_info = Client::where('domain', '=', $domain)->first();
-		$subscription = Subscription::where('client_id', '=', $domain_info->id)->where('status', '=', 'ACTIVE')->first();
 		// echo($subscription_status);
 		// echo "<pre>";
 		// 	print_r($domain);
 		// 	echo "</pre>";
 
 		if ($domain_count > 0) {
+			$subscription = Subscription::where('client_id', '=', $domain_info->id)->where('status', '=', 'ACTIVE')->first();
+
 			if ($subscription->status == 'ACTIVE') {
 				// if ($domain > 0) {
 				Session::put('domain', $domain);
