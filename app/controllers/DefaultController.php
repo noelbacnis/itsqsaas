@@ -290,7 +290,6 @@ class DefaultController extends \BaseController {
 
 		$old = Subscription::where('status', '=', 'ACTIVE')->where('client_id', '=', $client->id)->first();
 		$old->end_period = date('Y-m-d h:i:s', strtotime(date('Y-m-d h:i:s')));
-		$old->status = 'INACTIVE';
 		$old->save();
 
 		$sub = Subscription::find(Input::get('subscription_id'));
