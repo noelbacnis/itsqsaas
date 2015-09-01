@@ -82,7 +82,7 @@
                                         <i class="fa fa-cloud fa-stack-1x text-primary"></i>
                                     </span>
 
-                                    {{ HTML::image('uploads/'.$client_name.'/'.$client_cms->products[0]->image,'', array( 'width' => '100%')) }} 
+                                    {{ HTML::image('uploads/'.$client_name.'/'.$client_cms->products[0]->image,'', array( 'width' => '80%', 'class' => 'img-rounded')) }} 
 
                                     <h4>
                                         <strong>{{ $client_cms->products[0]->name }}</strong>
@@ -101,20 +101,22 @@
                                 @if($p->image != '')
                                     <div class="portfolio-item">
                                         <a href="#">
-                                            {{ HTML::image('uploads/'.$client_name.'/'.$p->image,'', array( 'class' => 'img-portfolio img-responsive', 'width' => '300px' )) }}
+                                            {{ HTML::image('uploads/'.$client_name.'/'.$p->image,'', array( 'class' => 'img-thumbnail img-portfolio img-responsive', 'width' => '300px' )) }}
                                         </a>
                                     </div>
                                 @else
                                      <div class="portfolio-item">
                                         <a href="#">
-                                            {{ HTML::image('assets/images/default_img_1.png','', array( 'class' => 'img-portfolio img-responsive', 'width' => '300px' )) }}
+                                            {{ HTML::image('assets/images/default_img_1.png','', array( 'class' => 'img-thumbnail img-portfolio img-responsive', 'width' => '300px' )) }}
                                         </a>
                                     </div>
                                 @endif
                                 <h4><strong>{{ $p->name }}</strong></h4>
-                                <p>{{ $p->description }}</p>
-                                <p>PHP {{ $p->price }}</p>
-                                <p>{{ $p->category->name }}</p>
+                                <p class="lead" style="font-size:large">
+                                    {{ $p->description }}<br>
+                                    PHP {{ $p->price }}<br>
+                                    {{ $p->category->name }}
+                                </p>
                             </div>
                         @endforeach
                             <div>

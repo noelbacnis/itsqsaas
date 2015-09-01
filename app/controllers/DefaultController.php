@@ -265,23 +265,27 @@ class DefaultController extends \BaseController {
 	public function doFreeUpgrade()
 	{
 		$client = Client::where('email', '=', Input::get('email'))->first();
+		if(isset($client )){
+			$sub = new Subscription;
+			$sub->client_id = $client->id;
+			$sub->subscription_type_id = Input::get('subscription_type_id');
+			$sub->status = 'INACTIVE';
+			$sub->start_period = date('Y-m-d h:i:s', strtotime(date('Y-m-d h:i:s')));
+			$sub->end_period = date('Y-m-d h:i:s', strtotime("+".Input::get('period')." months", strtotime(date('Y-m-d h:i:s'))));
+			$sub->save();
 
-		$sub = new Subscription;
-		$sub->client_id = $client->id;
-		$sub->subscription_type_id = Input::get('subscription_type_id');
-		$sub->status = 'INACTIVE';
-		$sub->start_period = date('Y-m-d h:i:s', strtotime(date('Y-m-d h:i:s')));
-		$sub->end_period = date('Y-m-d h:i:s', strtotime("+".Input::get('period')." months", strtotime(date('Y-m-d h:i:s'))));
-		$sub->save();
+			$user = new User;
+			$user->username = Input::get('email');
+			$user->password = Hash::make('1234');
+			$user->foreign_id = $client->id;
+			$user->user_type = 'client';
+			$user->save();
 
-		$user = new User;
-		$user->username = Input::get('email');
-		$user->password = Hash::make('1234');
-		$user->foreign_id = $client->id;
-		$user->user_type = 'client';
-		$user->save();
+			return Redirect::back()->with('message', 'Your subscription ID is '.$sub->id);
+		}else{
+			return Redirect::back()->with('message', 'This email does not exist');
 
-		return Redirect::back()->with('message', 'Your subscription ID is '.$sub->id);
+		}
 	} # End doFreeUpgrade
 
 	public function doUpgradeTransaction()
